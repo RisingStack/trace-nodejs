@@ -1,0 +1,23 @@
+{
+  "name": "seetru",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RisingStack/seetru.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RisingStack/seetru/issues"
+  },
+  "homepage": "https://github.com/RisingStack/seetru",
+  "dependencies": {
+    "express": "^4.12.3",
+    "hapi": "^8.4.0",
+    "superagent": "^1.1.0"
+  }
+}
