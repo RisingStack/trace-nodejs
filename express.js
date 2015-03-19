@@ -1,0 +1,24 @@
+var seetru = require('./seetru');
+
+var express = require('express');
+var superagent = require('superagent');
+
+var app = express();
+
+app.get('/', function (req, res) {
+
+  superagent
+    .get('http://localhost:3001')
+    .end(function(err, response) {
+      res.json(response.body);
+    });
+
+});
+
+var server = app.listen(3000, function (err) {
+
+  var host = server.address().address
+  var port = server.address().port
+
+  console.log('Express app listening at http://%s:%s', host, port)
+});
