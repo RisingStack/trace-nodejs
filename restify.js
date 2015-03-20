@@ -3,7 +3,8 @@ var seetru = require('./seetru');
 var restify = require('restify');
 
 function respond(req, res) {
-  console.log('Incoming request');
+  console.log('Restify Request hit at', process.hrtime());
+
   res.json({
     status: 'ok'
   });

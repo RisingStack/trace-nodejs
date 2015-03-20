@@ -10,6 +10,9 @@ server.route({
   method: 'GET',
   path:'/',
   handler: function (request, reply) {
+
+    console.log('Hapi Request hit at', process.hrtime());
+
     superagent
       .get('http://localhost:3002')
       .end(function(err, response) {

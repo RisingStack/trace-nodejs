@@ -7,6 +7,8 @@ var app = express();
 
 app.get('/', function (req, res) {
 
+  console.log('Express Request hit at', process.hrtime());
+
   superagent
     .get('http://localhost:3001')
     .end(function(err, response) {

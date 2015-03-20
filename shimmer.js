@@ -17,76 +17,62 @@ function shimmer(options) {
   }
 }
 
-function wrap(nodule, name, wrapper) {
-  if (!nodule || !nodule[name]) {
-    logger("no original function " + name + " to wrap");
-    return;
+function wrap(nodule, noduleName, methods, wrapper) {
+  if (!methods) {
+    return console.log('Must include a method name to wrap');
   }
 
-  if (!wrapper) {
-    logger("no wrapper function");
-    logger((new Error()).stack);
-    return;
-  }
+  if (!noduleName) noduleName = '[unknown]';
+  if (!Array.isArray(methods)) methods = [methods];
 
-  if (!isFunction(nodule[name]) || !isFunction(wrapper)) {
-    logger("original object and wrapper must be functions");
-    return;
-  }
+  methods.forEach(function (method) {
+    var fqmn = noduleName + '.' + method;
 
-  var original = nodule[name]
-    , wrapped = wrapper(original)
-    ;
+    if (!nodule) return;
+    if (!wrapper) return;
 
-  wrapped.__original = original;
-  wrapped.__unwrap = function () {
-    if (nodule[name] === wrapped) nodule[name] = original;
-  };
-  wrapped.__wrapped = true;
+    var original = nodule[method];
 
-  nodule[name] = wrapped;
+    if (!original) return console.log("%s not defined, so not wrapping.", fqmn);
+    if (original.__NR_unwrap) return console.log("%s already wrapped by agent.", fqmn);
 
-  return wrapped;
+    var wrapped = wrapper(original, method);
+    wrapped.__NR_original = original;
+    wrapped.__NR_unwrap = function __NR_unwrap() {
+      nodule[method] = original;
+      console.log("Removed instrumentation from %s.", fqmn);
+    };
+
+    nodule[method] = wrapped;
+    console.log("Instrumented %s.", fqmn)
+  })
 }
 
-function massWrap(nodules, names, wrapper) {
-  if (!nodules) {
-    logger("must provide one or more modules to patch");
-    logger((new Error()).stack);
-    return;
-  } else if (!Array.isArray(nodules)) {
-    nodules = [nodules];
-  }
 
-  if (!(names && Array.isArray(names))) {
-    logger("must provide one or more functions to wrap on modules");
+function unwrap(nodule, noduleName, method) {
+  if (!noduleName) {
+    noduleName = '[unknown]';
+  }
+  if (!method) {
     return;
   }
 
-  nodules.forEach(function (nodule) {
-    names.forEach(function (name) {
-      wrap(nodule, name, wrapper);
-    });
-  });
-}
+  var fqmn = noduleName + '.' + method;
 
-function unwrap(nodule, name) {
-  if (!nodule || !nodule[name]) {
-    logger("no function to unwrap.");
-    logger((new Error()).stack);
+  if (!nodule) return;
+  var wrapped = nodule[method]
+
+  if (!wrapped) {
+    return;
+  }
+  if (!wrapped.__NR_unwrap) {
     return;
   }
 
-  if (!nodule[name].__unwrap) {
-    logger("no original to unwrap to -- has " + name + " already been unwrapped?");
-  }
-  else {
-    return nodule[name].__unwrap();
-  }
+  wrapped.__NR_unwrap()
 }
 
 shimmer.wrap = wrap;
-shimmer.massWrap = massWrap;
 shimmer.unwrap = unwrap;
 
 module.exports = shimmer;
