@@ -10,14 +10,15 @@ var session = createNamespace('seetru');
 
 var HEADER_NAME = 'x-request-id';
 
-var RequestCollector = require('./RequestCollector');
+var IncomingCollector = require('./IncomingCollector');
+var OutgoingCollector = require('./OutgoingCollector');
 
 /*
  * @method wrapListener
  * @param {Function} listener
  * @returns {Function} listener
  */
-function wrapListener(listener, requestCollector) {
+function wrapListener(listener, incomingCollector) {
   return function (request, response) {
     var headers = request.headers;
     var requestId = headers[HEADER_NAME] || uuid.v1();
@@ -25,7 +26,7 @@ function wrapListener(listener, requestCollector) {
     session.set(HEADER_NAME, requestId);
 
     // Collect request start
-    requestCollector.emit(RequestCollector.REQUEST_STARTED, {
+    incomingCollector.emit(IncomingCollector.REQUEST_STARTED, {
       id: requestId,
       host: headers.host,
       url: request.originalUrl || request.url,
@@ -33,11 +34,12 @@ function wrapListener(listener, requestCollector) {
     });
 
     function instrumentedFinish() {
+      var requestId = session.get(HEADER_NAME);
 
       // Collect request ended
-      requestCollector.emit(RequestCollector.REQUEST_ENDED, {
+      incomingCollector.emit(IncomingCollector.REQUEST_ENDED, {
+        id: requestId,
         host: headers.host,
-        id: session.get(HEADER_NAME),
         url: request.originalUrl || request.url,
         time: process.hrtime()
       });
@@ -50,13 +52,13 @@ function wrapListener(listener, requestCollector) {
 }
 
 function seetru () {
-  var requestCollector = new RequestCollector();
+  var incomingCollector = new IncomingCollector();
+  var outgoingCollector = new OutgoingCollector();
 
   shimmer.wrap(http.Server.prototype, 'http.Server.prototype', ['on', 'addListener'], function (addListener) {
-    // console.log(this.address());
     return function (type, listener) {
       if (type === 'request' && typeof listener === 'function') {
-        return addListener.call(this, type, session.bind(wrapListener(listener, requestCollector)));
+        return addListener.call(this, type, session.bind(wrapListener(listener, incomingCollector)));
       } else {
         return addListener.apply(this, arguments);
       }
@@ -64,9 +66,19 @@ function seetru () {
   });
 
   shimmer.wrap(http, 'http', 'request', function (original) {
-    return function () {
-      arguments[0].headers = arguments[0].headers || {};
-      arguments[0].headers[HEADER_NAME] = session.get(HEADER_NAME);
+    return function (requestParams) {
+      var requestId = session.get(HEADER_NAME);
+
+      // Collect request start
+      outgoingCollector.emit(OutgoingCollector.REQUEST_STARTED, {
+        id: requestId,
+        host: requestParams.host + ':' + requestParams.port,
+        url: requestParams.path,
+        time: process.hrtime()
+      });
+
+      requestParams.headers = requestParams.headers || {};
+      requestParams.headers[HEADER_NAME] = requestId;
       var returned = original.apply(this, arguments);
       return returned;
     };
