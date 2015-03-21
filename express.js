@@ -1,4 +1,4 @@
-var seetru = require('./seetru');
+require('./seetru');
 
 var express = require('express');
 var superagent = require('superagent');
