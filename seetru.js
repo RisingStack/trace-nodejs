@@ -8,7 +8,7 @@ var uuid = require('node-uuid');
 var createNamespace = require('continuation-local-storage').createNamespace;
 var session = createNamespace('seetru');
 
-var HEADER_NAME = ['x-request-id'];
+var HEADER_NAME = 'x-request-id';
 
 var RequestCollector = require('./RequestCollector');
 
