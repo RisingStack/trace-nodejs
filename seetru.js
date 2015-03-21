@@ -8,7 +8,7 @@ var uuid = require('node-uuid');
 var createNamespace = require('continuation-local-storage').createNamespace;
 var session = createNamespace('seetru');
 
-var HEADER_NAME = ['x-request-id'];
+var HEADER_NAME = 'x-request-id';
 
 var RequestCollector = require('./RequestCollector');
 
@@ -56,7 +56,6 @@ function seetru () {
     // console.log(this.address());
     return function (type, listener) {
       if (type === 'request' && typeof listener === 'function') {
-        console.log('request');
         return addListener.call(this, type, session.bind(wrapListener(listener, requestCollector)));
       } else {
         return addListener.apply(this, arguments);
@@ -66,11 +65,9 @@ function seetru () {
 
   shimmer.wrap(http, 'http', 'request', function (original) {
     return function () {
-      console.log('Starting request!');
       arguments[0].headers = arguments[0].headers || {};
       arguments[0].headers[HEADER_NAME] = session.get(HEADER_NAME);
       var returned = original.apply(this, arguments);
-      console.log('Done setting up request -- OH YEAH!');
       return returned;
     };
   });
