@@ -19,7 +19,7 @@ var RequestCollector = require('./RequestCollector');
  */
 function wrapListener(listener, requestCollector) {
   return function (request, response) {
-    var headers = request.headers;    
+    var headers = request.headers;
     var requestId = headers[HEADER_NAME] || uuid.v1();
 
     session.set(HEADER_NAME, requestId);
@@ -27,6 +27,7 @@ function wrapListener(listener, requestCollector) {
     // Collect request start
     requestCollector.emit(RequestCollector.REQUEST_STARTED, {
       id: requestId,
+      host: headers.host,
       url: request.originalUrl || request.url,
       time: process.hrtime()
     });
@@ -35,6 +36,7 @@ function wrapListener(listener, requestCollector) {
 
       // Collect request ended
       requestCollector.emit(RequestCollector.REQUEST_ENDED, {
+        host: headers.host,
         id: session.get(HEADER_NAME),
         url: request.originalUrl || request.url,
         time: process.hrtime()
@@ -51,6 +53,7 @@ function seetru () {
   var requestCollector = new RequestCollector();
 
   shimmer.wrap(http.Server.prototype, 'http.Server.prototype', ['on', 'addListener'], function (addListener) {
+    // console.log(this.address());
     return function (type, listener) {
       if (type === 'request' && typeof listener === 'function') {
         console.log('request');
