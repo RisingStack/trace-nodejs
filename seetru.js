@@ -53,7 +53,6 @@ function seetru () {
   shimmer.wrap(http.Server.prototype, 'http.Server.prototype', ['on', 'addListener'], function (addListener) {
     return function (type, listener) {
       if (type === 'request' && typeof listener === 'function') {
-        console.log('request');
         return addListener.call(this, type, session.bind(wrapListener(listener, requestCollector)));
       } else {
         return addListener.apply(this, arguments);
@@ -63,11 +62,9 @@ function seetru () {
 
   shimmer.wrap(http, 'http', 'request', function (original) {
     return function () {
-      console.log('Starting request!');
       arguments[0].headers = arguments[0].headers || {};
       arguments[0].headers[HEADER_NAME] = session.get(HEADER_NAME);
       var returned = original.apply(this, arguments);
-      console.log('Done setting up request -- OH YEAH!');
       return returned;
     };
   });
