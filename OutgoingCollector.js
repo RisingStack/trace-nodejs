@@ -3,6 +3,7 @@ var util = require('util');
 
 var debugModule = require('debug');
 
+// TODO: remove in prod
 debugModule.enable('seetru:*');
 
 var debug = debugModule('seetru:collector:outgoing');
@@ -13,8 +14,6 @@ var debug = debugModule('seetru:collector:outgoing');
  * @extends events.EventEmitter
  */
 function OutgoingCollector() {
-  var _this = this;
-
   events.EventEmitter.call(this);
 
   this.on(OutgoingCollector.REQUEST_STARTED, this.onRequestStarted);

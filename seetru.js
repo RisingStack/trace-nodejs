@@ -22,26 +22,36 @@ function wrapListener(listener, incomingCollector) {
   return function (request, response) {
     var headers = request.headers;
     var requestId = headers[HEADER_NAME] || uuid.v1();
-
-    session.set(HEADER_NAME, requestId);
-
-    // Collect request start
-    incomingCollector.emit(IncomingCollector.REQUEST_STARTED, {
+    var collectorDataBag = {
       id: requestId,
       host: headers.host,
       url: request.originalUrl || request.url,
       time: process.hrtime()
+    };
+
+    // Set tracking header
+    session.set(HEADER_NAME, requestId);
+
+    // Collect request start
+    process.nextTick(function () {
+      incomingCollector.emit(IncomingCollector.REQUEST_STARTED, collectorDataBag);
     });
 
+    /*
+     * @method instrumentedFinish
+     */
     function instrumentedFinish() {
       var requestId = session.get(HEADER_NAME);
-
-      // Collect request ended
-      incomingCollector.emit(IncomingCollector.REQUEST_ENDED, {
+      var collectorDataBag = {
         id: requestId,
         host: headers.host,
         url: request.originalUrl || request.url,
         time: process.hrtime()
+      };
+
+      // Collect request ended
+      process.nextTick(function () {
+        incomingCollector.emit(IncomingCollector.REQUEST_ENDED, collectorDataBag);
       });
     }
 
@@ -51,6 +61,9 @@ function wrapListener(listener, incomingCollector) {
   };
 }
 
+/*
+ * @method seetru
+ */
 function seetru () {
   var incomingCollector = new IncomingCollector();
   var outgoingCollector = new OutgoingCollector();
@@ -68,21 +81,28 @@ function seetru () {
   shimmer.wrap(http, 'http', 'request', function (original) {
     return function (requestParams) {
       var requestId = session.get(HEADER_NAME);
-
-      // Collect request start
-      outgoingCollector.emit(OutgoingCollector.REQUEST_STARTED, {
+      var collectorDataBag = {
         id: requestId,
         host: requestParams.host + ':' + requestParams.port,
         url: requestParams.path,
         time: process.hrtime()
+      };
+
+      var returned;
+
+      // Collect request start
+      process.nextTick(function () {
+        outgoingCollector.emit(OutgoingCollector.REQUEST_STARTED, collectorDataBag);
       });
 
       requestParams.headers = requestParams.headers || {};
       requestParams.headers[HEADER_NAME] = requestId;
-      var returned = original.apply(this, arguments);
+      returned = original.apply(this, arguments);
+
       return returned;
     };
   });
 }
 
+// Init
 seetru();
