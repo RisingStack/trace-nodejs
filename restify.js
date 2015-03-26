@@ -1,4 +1,6 @@
-var seetru = require('./seetru');
+require('./lib')({
+  app: 'restify'
+});
 
 var restify = require('restify');
 

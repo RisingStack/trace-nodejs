@@ -1,4 +1,6 @@
-require('./seetru');
+require('./lib')({
+  app: 'express'
+});
 
 var express = require('express');
 var superagent = require('superagent');

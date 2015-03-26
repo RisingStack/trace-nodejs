@@ -1,4 +1,6 @@
-var seetru = require('./seetru');
+require('./lib')({
+  app: 'hapi'
+});
 
 var Hapi = require('hapi');
 var superagent = require('superagent');
