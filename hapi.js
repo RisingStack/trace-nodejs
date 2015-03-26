@@ -1,4 +1,6 @@
-var seetru = require('./seetru');
+require('./lib')({
+  app: 'hapi'
+});
 
 var Hapi = require('hapi');
 var superagent = require('superagent');
@@ -8,13 +10,13 @@ server.connection({ port: 3001 });
 
 server.route({
   method: 'GET',
-  path:'/',
+  path:'/users/1',
   handler: function (request, reply) {
 
-    console.log('Hapi Request hit at', process.hrtime());
+    // console.log('Hapi Request hit at', process.hrtime());
 
     superagent
-      .get('http://localhost:3002')
+      .get('http://localhost:3002/cars/2')
       .end(function(err, response) {
         reply(response.body);
       });
