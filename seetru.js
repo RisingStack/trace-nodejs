@@ -26,13 +26,14 @@ function wrapListener(listener, incomingCollector) {
       id: requestId,
       host: headers.host,
       url: request.originalUrl || request.url,
-      time: process.hrtime()
+      date: Date.now()
     };
 
     // Set tracking header
     session.set(HEADER_NAME, requestId);
 
     // Collect request start
+    var time = process.hrtime();
     process.nextTick(function () {
       incomingCollector.emit(IncomingCollector.REQUEST_STARTED, collectorDataBag);
     });
@@ -46,7 +47,8 @@ function wrapListener(listener, incomingCollector) {
         id: requestId,
         host: headers.host,
         url: request.originalUrl || request.url,
-        time: process.hrtime()
+        date: Date.now(),
+        timeDiff: process.hrtime(time)
       };
 
       // Collect request ended
@@ -98,6 +100,10 @@ function seetru () {
       requestParams.headers = requestParams.headers || {};
       requestParams.headers[HEADER_NAME] = requestId;
       returned = original.apply(this, arguments);
+
+      returned.on('response', function () {
+        outgoingCollector.emit(OutgoingCollector.REQUEST_ENDED, collectorDataBag);
+      });
 
       return returned;
     };
