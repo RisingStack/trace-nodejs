@@ -1,4 +1,4 @@
-require('./lib')({
+var seetru = require('./lib')({
   app: 'restify'
 });
 
@@ -16,7 +16,6 @@ function respond(req, res) {
         status: 'ok'
       });
     });
-
 
 }
 

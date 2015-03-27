@@ -1,4 +1,4 @@
-require('./lib')({
+var seetru = require('./lib')({
   app: 'express'
 });
 
@@ -6,6 +6,8 @@ var express = require('express');
 var superagent = require('superagent');
 
 var app = express();
+
+
 
 app.get('/', function (req, res) {
 

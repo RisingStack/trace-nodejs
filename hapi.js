@@ -1,4 +1,4 @@
-require('./lib')({
+var seetru = require('./lib')({
   app: 'hapi'
 });
 
