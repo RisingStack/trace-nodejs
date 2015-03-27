@@ -14,7 +14,13 @@ app.get('/', function (req, res) {
   superagent
     .get('http://localhost:3001/users/1')
     .end(function(err, response) {
-      res.json(response.body);
+
+      superagent
+        .get('http://localhost:3003/users/1')
+        .end(function(err, response) {
+          res.json(response.body);
+        });
+
     });
 
 });

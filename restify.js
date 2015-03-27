@@ -4,12 +4,20 @@ require('./lib')({
 
 var restify = require('restify');
 
+var superagent = require('superagent');
+
 function respond(req, res) {
   console.log('Restify Request hit at', process.hrtime());
 
-  res.json({
-    status: 'ok'
-  });
+  superagent
+    .get('http://localhost:3004/users/1')
+    .end(function(err, response) {
+      res.json({
+        status: 'ok'
+      });
+    });
+
+
 }
 
 var server = restify.createServer();
