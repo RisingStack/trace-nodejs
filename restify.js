@@ -12,9 +12,14 @@ function respond(req, res) {
   superagent
     .get('http://localhost:3004/users/1')
     .end(function(err, response) {
-      res.json({
-        status: 'ok'
-      });
+
+
+      var latency = Math.floor(Math.random() * 20) + 100;
+
+      setTimeout(function () {
+        res.json({status: 'ok'})
+      }, latency);
+
     });
 
 }

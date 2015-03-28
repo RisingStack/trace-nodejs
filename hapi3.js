@@ -13,7 +13,11 @@ server.route({
   path:'/users/1',
   handler: function (request, reply) {
 
-    reply({status: 'ok'})
+    var latency = Math.floor(Math.random() * 500) + 200;
+
+    setTimeout(function () {
+      reply({status: 'ok'})
+    }, latency);
   }
 });
 

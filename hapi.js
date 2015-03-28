@@ -13,12 +13,17 @@ server.route({
   path:'/users/1',
   handler: function (request, reply) {
 
-    // console.log('Hapi Request hit at', process.hrtime());
-
     superagent
       .get('http://localhost:3002/cars/2')
       .end(function(err, response) {
-        reply(response.body);
+
+        var latency = Math.floor(Math.random() * 80) + 20;
+
+        setTimeout(function () {
+          reply(response.body);
+        }, latency);
+
+
       });
   }
 });
