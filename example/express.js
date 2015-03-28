@@ -1,5 +1,5 @@
-var seetru = require('./lib')({
-  app: 'express'
+var seetru = require('./../lib/index')({
+  app: 'Users'
 });
 
 var express = require('express');
@@ -10,8 +10,6 @@ var app = express();
 
 
 app.get('/', function (req, res) {
-
-  console.log('Express Request hit at', process.hrtime());
 
   superagent
     .get('http://localhost:3001/users/1')
@@ -25,6 +23,14 @@ app.get('/', function (req, res) {
 
     });
 
+});
+
+app.get('/alma', function (req, res) {
+  var latency = Math.floor(Math.random() * 80) + 20;
+
+  setTimeout(function () {
+    res.json({status: ok});
+  }, latency);
 });
 
 var server = app.listen(3000, function (err) {

@@ -1,9 +1,8 @@
-require('./lib')({
-  app: 'RisingStack'
+require('./../lib/index')({
+  app: 'Tags'
 });
 
 var Hapi = require('hapi');
-var superagent = require('superagent');
 
 var server = new Hapi.Server();
 server.connection({ port: 3004 });

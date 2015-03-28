@@ -1,5 +1,5 @@
-var seetru = require('./lib')({
-  app: 'hapi'
+var seetru = require('./../lib/index')({
+  app: 'Products'
 });
 
 var Hapi = require('hapi');
