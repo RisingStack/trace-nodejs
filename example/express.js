@@ -1,5 +1,6 @@
 var seetru = require('./../lib/index')({
-  app: 'Users'
+  app: 'Users',
+  blackListHosts: []
 });
 
 var express = require('express');
@@ -29,7 +30,7 @@ app.get('/alma', function (req, res) {
   var latency = Math.floor(Math.random() * 80) + 20;
 
   setTimeout(function () {
-    res.json({status: ok});
+    res.json({status: 'ok'});
   }, latency);
 });
 
