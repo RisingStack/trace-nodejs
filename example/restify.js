@@ -1,5 +1,6 @@
 var seetru = require('./../lib/index')({
-  app: 'Categories'
+  app: 'Categories',
+  service: 5
 });
 
 var restify = require('restify');

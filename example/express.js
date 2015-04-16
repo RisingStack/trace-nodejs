@@ -1,5 +1,6 @@
 var seetru = require('./../lib/index')({
-  app: 'Users'
+  app: 'Users',
+  service: 1
 });
 
 var express = require('express');

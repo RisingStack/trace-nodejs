@@ -1,5 +1,6 @@
 var seetru = require('./../lib/index')({
-  app: 'Locations'
+  app: 'Locations',
+  service: 3
 });
 
 var Hapi = require('hapi');

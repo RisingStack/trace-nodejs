@@ -1,5 +1,6 @@
 require('./../lib/index')({
-  app: 'Tags'
+  app: 'Tags',
+  service: 4
 });
 
 var Hapi = require('hapi');
