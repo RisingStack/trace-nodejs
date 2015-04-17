@@ -6,7 +6,7 @@
   "scripts": {
     "jshint": "jshint lib",
     "jscs": "jscs lib",
-    "test": "mocha test/index.js"
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
