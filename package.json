@@ -6,7 +6,7 @@
   "scripts": {
     "jshint": "jshint lib",
     "jscs": "jscs lib",
-    "test": "mocha test"
+    "test": "mocha $(find . -name \"*.spec.js\" -not -path \"./node_modules/*\")"
   },
   "repository": {
     "type": "git",

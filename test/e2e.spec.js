@@ -10,7 +10,7 @@ var seetru = require('../lib')({
 
 describe('The collector', function () {
 
-  it('Adds the request-id header to the server response', function (done) {
+  it('adds the request-id header to the server response', function (done) {
 
     var parent = express();
     var child = express();
@@ -39,11 +39,7 @@ describe('The collector', function () {
 
   });
 
-});
-
-describe('The collector', function () {
-
-  it('Adds the x-seetrue header to the server response', function (done) {
+  it('adds the x-seetrue header to the server response', function (done) {
 
     var parent = express();
     var child = express();
