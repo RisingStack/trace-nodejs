@@ -6,7 +6,8 @@
   "scripts": {
     "jshint": "jshint lib",
     "jscs": "jscs lib",
-    "test": "mocha $(find . -name \"*.spec.js\" -not -path \"./node_modules/*\")"
+    "test": "mocha $(find . -name \"*.spec.js\" -not -path \"./node_modules/*\")",
+    "cover": "istanbul cover _mocha $(find . -name \"*.spec.js\" -not -path \"./node_modules/*\"); open coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "chai": "^2.2.0",
+    "istanbul": "^0.3.13",
     "jscs": "^1.12.0",
     "jshint": "^2.6.3",
     "mocha": "^2.2.4",
