@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "jshint": "jshint lib",
-    "jscs": "jscs lib"
+    "jscs": "jscs lib",
+    "test": "mocha test/index.js"
   },
   "repository": {
     "type": "git",
@@ -28,13 +29,17 @@
     "superagent": "^1.1.0"
   },
   "devDependencies": {
+    "chai": "^2.2.0",
     "jscs": "^1.12.0",
     "jshint": "^2.6.3",
+    "mocha": "^2.2.4",
     "pre-commit": "^1.0.6",
-    "restify": "^3.0.1"
+    "restify": "^3.0.1",
+    "supertest": "^0.15.0"
   },
   "pre-commit": [
     "jshint",
-    "jscs"
+    "jscs",
+    "test"
   ]
 }
