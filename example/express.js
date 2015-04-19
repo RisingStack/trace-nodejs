@@ -19,9 +19,18 @@ app.get('/', function (req, res) {
     .get('http://localhost:3001/users/1')
     .end(function(err, response) {
 
+      seetru.report({
+        status: 'doing',
+        data: 'eee'
+      });
+
       superagent
         .get('http://localhost:3003/users/1')
         .end(function(err, response) {
+          seetru.report({
+            status: 'done',
+            data: 'eee'
+          });
           res.json(response.body);
         });
 
