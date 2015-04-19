@@ -9,7 +9,7 @@ var superagent = require('superagent');
 var server = new Hapi.Server();
 server.connection({ port: 3001 });
 
-server.route({
+server.route([{
   method: 'GET',
   path:'/users/1',
   handler: function (request, reply) {
@@ -27,7 +27,13 @@ server.route({
 
       });
   }
-});
+}, {
+  method: 'GET',
+  path: '/products/3',
+  handler: function (request, reply) {
+    reply('ok');
+  }
+}]);
 
 server.start(function () {
   console.log('Hapi Server running at:', server.info.uri);

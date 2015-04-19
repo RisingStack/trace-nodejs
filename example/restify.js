@@ -8,7 +8,6 @@ var restify = require('restify');
 var superagent = require('superagent');
 
 function respond(req, res) {
-  console.log('Restify Request hit at', process.hrtime());
 
   superagent
     .get('http://localhost:3004/users/1')
