@@ -29,7 +29,7 @@ server.route([{
   }
 }, {
   method: 'GET',
-  path: '/products/3',
+  path: '/procuts/3',
   handler: function (request, reply) {
     reply('ok');
   }
