@@ -8,9 +8,12 @@ var superagent = require('superagent');
 
 var app = express();
 
-
+var getNamespace = require('continuation-local-storage').getNamespace;
+var session = getNamespace('seetru');
 
 app.get('/', function (req, res) {
+
+  var req = Math.floor(Math.random() * 1000);
 
   superagent
     .get('http://localhost:3001/users/1')
