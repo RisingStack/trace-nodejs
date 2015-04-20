@@ -1,5 +1,9 @@
 var express = require('express');
 var supertest = require('supertest');
+var async = require('async');
+
+var getNamespace = require('continuation-local-storage').getNamespace;
+
 var expect = require('chai').expect;
 var serviceId = 1;
 
@@ -38,6 +42,82 @@ describe('The collector', function () {
       .end(done);
 
   });
+
+  /* 
+  it('adds the request-id header to the server response every time called',
+     function (done) {
+
+    var source1 = express();
+    var source2 = express();
+    var destination = express();
+
+    var storage = {};
+    storage.source1 = [];
+    storage.source2 = [];
+
+    destination.get('/test', function (req, res) {
+      res.send('ok');
+    });
+
+    source1.get('/test', function (req, res) {
+
+      var session = getNamespace('seetru');
+      var traceId = session.get('requestId');
+      storage.source1.push(traceId);
+
+      supertest(destination)
+        .get('/test')
+        .end(function (err) {
+          if (err) {
+            return done(err);
+          }
+
+          var session = getNamespace('seetru');
+          var traceId = session.get('requestId');
+          storage.source1.push(traceId);
+
+          res.send('ok');
+        });
+    });
+
+    source2.get('/test', function (req, res) {
+
+      var session = getNamespace('seetru');
+      var traceId = session.get('requestId');
+      storage.source2.push(traceId);
+
+      supertest(destination)
+        .get('/test')
+        .end(function (err) {
+          if (err) {
+            return done(err);
+         }
+          var session = getNamespace('seetru');
+          var traceId = session.get('requestId');
+          storage.source2.push(traceId);
+
+          res.send('ok');
+        });
+    });
+
+    async.series([
+      function pingSource1(cb) {
+        supertest(source1)
+          .get('/test')
+          .end(cb);
+      },
+      function pingSource2(cb) {
+        supertest(source2)
+          .get('/test')
+          .end(cb);
+      },
+      function expect(cb) {
+        expect(storage.source1[0]).to.not.eql(storage.source2[0]);
+        cb();
+      }
+    ]);
+  });
+ */
 
   it('adds the x-seetrue header to the server response', function (done) {
 
