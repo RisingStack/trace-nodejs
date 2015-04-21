@@ -19,6 +19,7 @@ app.get('/', function (req, res) {
     .get('http://localhost:3001/users/1')
     .end(function(err, response) {
 
+      b;
       seetru.report({
         status: 'doing',
         data: 'eee'
@@ -37,6 +38,7 @@ app.get('/', function (req, res) {
     });
 
 });
+
 
 app.get('/alma', function (req, res) {
   var latency = Math.floor(Math.random() * 80) + 20;
