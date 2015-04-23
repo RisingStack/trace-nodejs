@@ -14,17 +14,13 @@ var session = getNamespace('seetru');
 app.get('/', function (req, res) {
 
   var req = Math.floor(Math.random() * 1000);
-
   superagent
     .get('http://localhost:3001/users/1')
     .end(function(err, response) {
-
-      b;
       seetru.report({
         status: 'doing',
         data: 'eee'
       });
-
       superagent
         .get('http://localhost:3003/users/1')
         .end(function(err, response) {
@@ -32,7 +28,7 @@ app.get('/', function (req, res) {
             status: 'done',
             data: 'eee'
           });
-          res.json(response.body);
+          res.json({});
         });
 
     });
