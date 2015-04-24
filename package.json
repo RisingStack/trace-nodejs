@@ -30,6 +30,7 @@
     "microtime": "^1.2.0",
     "node-uuid": "^1.4.3",
     "qs": "^2.4.1",
+    "stackup": "^1.0.0",
     "superagent": "^1.1.0"
   },
   "devDependencies": {

@@ -16,22 +16,23 @@ app.get('/', function (req, res) {
   var req = Math.floor(Math.random() * 1000);
 
   superagent
-    .get('http://localhost:3001/users/1')
+    .get('http://localhost:1481')
     .end(function(err, response) {
 
+      console.log(err)
       seetru.report({
-        status: 'doing',
+        status: 'aaaaaaaaaaaaaaaaaaaa',
         data: 'eee'
       });
 
       superagent
-        .get('http://localhost:3003/users/1')
+        .get('http://risingstack.com')
         .end(function(err, response) {
           seetru.report({
-            status: 'done',
+            status: 'bbbbbbbbbbbbbbb',
             data: 'eee'
           });
-          res.json(response.body);
+          res.json({});
         });
 
     });
