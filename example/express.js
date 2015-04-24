@@ -18,7 +18,6 @@ app.get('/', function (req, res) {
 
       var session = getNamespace('seetru');
       var traceId = session.get('request-id');
-      console.log('route', traceId);
 
       seetru.report({
         status: 'doing',
