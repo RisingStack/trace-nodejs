@@ -8,7 +8,7 @@ var seetru = require('../lib')({
   service: serviceId
 });
 
-describe('The collector', function () {
+describe.skip('The collector', function () {
 
   it('adds the request-id header to the server response', function (done) {
 
