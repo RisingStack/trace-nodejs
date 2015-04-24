@@ -13,27 +13,23 @@ var getNamespace = require('continuation-local-storage').getNamespace;
 app.get('/', function (req, res) {
 
   superagent
-    .get('http://localhost:3001/users/1')
+    .get('http://localhost:1481')
     .end(function(err, response) {
 
-      var session = getNamespace('seetru');
-      var traceId = session.get('request-id');
-
       seetru.report({
-        status: 'doing',
+        status: 'aaaaaaaaaaaaaaaaaaaa',
         data: 'eee'
       });
 
-      res.json({})
-      //superagent
-      //  .get('http://localhost:3003/users/1')
-      //  .end(function(err, response) {
-      //    seetru.report({
-      //      status: 'done',
-      //      data: 'eee'
-      //    });
-      //    res.json({});
-      //  });
+      superagent
+        .get('http://risingstack.com')
+        .end(function(err, response) {
+          seetru.report({
+            status: 'bbbbbbbbbbbbbbb',
+            data: 'eee'
+          });
+          res.json({});
+        });
 
     });
 
