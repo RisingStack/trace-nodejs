@@ -9,17 +9,13 @@ var superagent = require('superagent');
 var app = express();
 
 var getNamespace = require('continuation-local-storage').getNamespace;
-var session = getNamespace('seetru');
 
 app.get('/', function (req, res) {
-
-  var req = Math.floor(Math.random() * 1000);
 
   superagent
     .get('http://localhost:1481')
     .end(function(err, response) {
 
-      console.log(err)
       seetru.report({
         status: 'aaaaaaaaaaaaaaaaaaaa',
         data: 'eee'
@@ -38,6 +34,7 @@ app.get('/', function (req, res) {
     });
 
 });
+
 
 app.get('/alma', function (req, res) {
   var latency = Math.floor(Math.random() * 80) + 20;
