@@ -3,10 +3,23 @@
 ## Installation
 
 ```javascript
-var seetru = require('seetru')({
-    app: 'APP_NAME',
-    service: 3
-})
+var seetru = require('seetru');
+```
+
+### Config file
+
+A config file should be present at the project root: `risingtrace.config.js`:
+
+```
+/*
+* The RisingTrace configuration file
+* */
+
+module.exports = {
+  appName: 'Users',
+  licenceKey: '1234'
+};
+
 ```
 
 ** NOTE: THIS IS SUBJECT TO CHANGE PRETTY SOON **
