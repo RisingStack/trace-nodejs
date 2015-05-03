@@ -3,12 +3,9 @@ var supertest = require('supertest');
 var expect = require('chai').expect;
 var serviceId = 1;
 
-var seetru = require('../lib')({
-  app: 'Users',
-  service: serviceId
-});
-
 describe.skip('The collector', function () {
+
+  //var seetru = require('../lib');
 
   it('adds the request-id header to the server response', function (done) {
 
