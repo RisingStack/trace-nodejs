@@ -5,9 +5,33 @@ describe('The collector', function () {
 
   describe('reads the config', function () {
 
-    it('throws an error if credentials are missing');
+    it('throws an error if appName is missing', function () {
+      var seetru;
+      try {
+        seetru = require('../lib');
+      } catch (ex) {
+        expect(ex.message).to.eql('Missing appName');
+        return;
+      }
 
-    it('merges the config if everything is ok');
+      throw new Error('Unhandled error');
+    });
+
+    it('throws an error if apiKey is missing', function () {
+      process.env.RISINGTRACE_APP_NAME = 'test';
+      var seetru;
+      try {
+        seetru = require('../lib');
+      } catch (ex) {
+        expect(ex.message).to.eql('Missing apiKey');
+        return;
+      } finally {
+        //reset our env variable\
+        process.env.RISINGTRACE_APP_NAME = undefined;
+      }
+
+      throw new Error('Unhandled error');
+    });
 
   });
 
