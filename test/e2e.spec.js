@@ -33,6 +33,16 @@ describe('The collector', function () {
       throw new Error('Unhandled error');
     });
 
+    it('does not throw error if apiKey and appName is present', function () {
+      process.env.RISINGTRACE_APP_NAME = 'test';
+      process.env.RISINGTRACE_API_KEY = 'test';
+
+      var seetru = require('../lib');
+
+      process.env.RISINGTRACE_APP_NAME = undefined;
+      process.env.RISINGTRACE_API_KEY = undefined;
+    });
+
   });
 
   describe('collects orphan traces (stacks)', function () {
