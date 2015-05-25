@@ -1,69 +1,27 @@
-var express = require('express');
 var supertest = require('supertest');
 var expect = require('chai').expect;
-var serviceId = 1;
 
-describe.skip('The collector', function () {
+describe('The collector', function () {
 
-  //var seetru = require('../lib');
+  describe('reads the config', function () {
 
-  it('adds the request-id header to the server response', function (done) {
+    it('throws an error if credentials are missing');
 
-    var parent = express();
-    var child = express();
-
-    child.get('/risingstack', function (req, res) {
-      expect(req.headers['request-id']).to.be.ok;
-      res.send('ok');
-    });
-
-    parent.get('/test', function (req, res) {
-
-      supertest(child)
-        .get('/risingstack')
-        .end(function (err, result) {
-          if (err) {
-            return done(err);
-          }
-          res.send('ok');
-        });
-
-    });
-
-    supertest(parent)
-      .get('/test')
-      .end(done);
+    it('merges the config if everything is ok');
 
   });
 
-  it('adds the x-seetrue header to the server response', function (done) {
+  describe('collects orphan traces (stacks)', function () {
 
-    var parent = express();
-    var child = express();
+    it('sends the traces to the trace collector api');
 
-    child.get('/risingstack', function (req, res) {
-      var seetruHeader = req.headers['x-seetru'];
-      expect(seetruHeader).to.be.ok;
-      expect(parseInt(seetruHeader.split('-')[1], 10)).to.be.equal(serviceId);
-      res.send('ok');
-    });
+  });
 
-    parent.get('/test', function (req, res) {
+  it('gets a serviceId', function () {
 
-      supertest(child)
-        .get('/risingstack')
-        .end(function (err, result) {
-          if (err) {
-            return done(err);
-          }
-          res.send('ok');
-        });
+  });
 
-    });
-
-    supertest(parent)
-      .get('/test')
-      .end(done);
+  it('send user events (report)', function () {
 
   });
 
