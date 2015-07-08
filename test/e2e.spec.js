@@ -17,22 +17,6 @@ describe('The collector', function () {
       throw new Error('Unhandled error');
     });
 
-    it('throws an error if apiKey is missing', function () {
-      process.env.RISINGTRACE_APP_NAME = 'test';
-      var seetru;
-      try {
-        seetru = require('../lib');
-      } catch (ex) {
-        expect(ex.message).to.eql('Missing apiKey');
-        return;
-      } finally {
-        //reset our env variable\
-        process.env.RISINGTRACE_APP_NAME = undefined;
-      }
-
-      throw new Error('Unhandled error');
-    });
-
     it('does not throw error if apiKey and appName is present', function () {
       process.env.RISINGTRACE_APP_NAME = 'test';
       process.env.RISINGTRACE_API_KEY = 'test';
