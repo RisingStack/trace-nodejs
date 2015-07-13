@@ -29,7 +29,7 @@ describe('The collector', function () {
   describe('collects orphan traces (stacks)', function () {
 
     it('sends the traces to the trace collector api', function () {
-      
+
     });
 
   });
