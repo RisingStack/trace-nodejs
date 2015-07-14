@@ -1,5 +1,10 @@
 # seetru
 
+## Compatibility
+* v0.10@latest
+* v0.12@latest
+* iojs@latest
+
 ## Installation
 
 ```javascript
