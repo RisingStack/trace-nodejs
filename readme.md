@@ -1,9 +1,6 @@
 # Trace
 
 ## Compatibility
-The Trace collector can be used in any project, that runs on `node v10@latest`, `v12@latest` or `iojs@latest`.
-
-## Compatibility
 * v0.10@latest
 * v0.12@latest
 * iojs@latest
