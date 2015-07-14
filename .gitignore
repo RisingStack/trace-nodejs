@@ -1,4 +1,4 @@
 node_modules
-seetru.log
-seetru_trace_*
+trace.log
+trace_*
 coverage

@@ -5,9 +5,9 @@ describe('The collector', function () {
   describe('reads the config', function () {
 
     it('throws an error if appName is missing', function () {
-      var seetru;
+      var trace;
       try {
-        seetru = require('../lib');
+        trace = require('../lib');
       } catch (ex) {
         expect(ex.message).to.eql('Missing appName');
         return;
@@ -17,11 +17,11 @@ describe('The collector', function () {
     });
 
     it('does not throw error if appName is present', function () {
-      process.env.RISINGTRACE_APP_NAME = 'test';
+      process.env.TRACE_APP_NAME = 'test';
 
       require('../lib');
 
-      process.env.RISINGTRACE_APP_NAME = undefined;
+      process.env.TRACE_APP_NAME = undefined;
     });
 
   });
