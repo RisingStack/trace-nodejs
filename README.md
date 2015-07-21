@@ -5,15 +5,19 @@
 * v0.12@latest
 * iojs@latest
 
-## Installation
+## Installation and usage
+```
+npm install --save @risingstack/trace
+```
 
+After you installed Trace as a dependency, you just require it at the beginning of your main file.
 ```javascript
-var trace = require('@risingstack/trace');
+require('@risingstack/trace');
 ```
 
 ### Config file
 
-A config file should be present at the project root. You have to specify a `reporter`, which implements a `send` method to send the traced requests to the Trace servers or to your Logstash or any other storage. If you choose  to use our service, you need to specify an api key, in case of you want to use your Logstash, you have to add the connection informations. An example for the `trace.config.js` config file using the Trace servers:
+A config file should be present at the project root. You have to specify a `reporter`, which implements a `send` method to send the traced requests to the Trace servers or to your Logstash or any other storage. If you choose to use our service, you need to specify an api key, in case of you want to use your Logstash, you have to add the connection informations. An example for the `trace.config.js` config file using the Trace servers:
 
 ```javascript
 /**
@@ -32,7 +36,7 @@ config.reporter = require('@risingstack/trace/lib/reporters').trace.create({
 module.exports = config;
 ```
 
-An example for logstash config:
+An example for Logstash config:
 ```javascript
 /**
 * The Trace configuration file
@@ -63,7 +67,3 @@ trace.report({
   userId: 10
 });
 ```
-
-## Readings
-
-http://www.slideshare.net/othiym23/cls-asynclistener-asynchronous-observability-for-nodejs
