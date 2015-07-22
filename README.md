@@ -1,4 +1,4 @@
-![Trace logo](https://cloud.githubusercontent.com/assets/1764512/8827915/babae4fe-308f-11e5-8087-ac24bb9c8a3d.png)
+![Trace logo](https://cloud.githubusercontent.com/assets/1764512/8830445/83e8263c-309c-11e5-9f7f-aa3420e9b2f0.png)
 ***
 [![Build Status](https://travis-ci.org/RisingStack/trace-nodejs.svg)](https://travis-ci.org/RisingStack/trace-nodejs)
 
