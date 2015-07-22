@@ -60,8 +60,7 @@
     "logstash-client": "^1.0.0",
     "microtime": "^1.2.0",
     "node-uuid": "^1.4.3",
-    "qs": "^4.0.0",
-    "superagent": "^1.2.0"
+    "qs": "^4.0.0"
   },
   "devDependencies": {
     "chai": "^3.2.0",
