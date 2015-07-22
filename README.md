@@ -8,7 +8,7 @@ npm install --save @risingstack/trace
 
 After you installed Trace as a dependency, you just require it at the beginning of your main file.
 ```javascript
-require('@risingstack/trace');
+var trace = require('@risingstack/trace');
 ```
 
 ### Config file
@@ -65,7 +65,6 @@ module.exports = config;
 This method can be use to report additional data to the Trace servers which later on helps with debugging.
 
 ```javascript
-
 trace.report({
   userId: 10
 });
