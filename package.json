@@ -40,9 +40,8 @@
   "scripts": {
     "jshint": "jshint lib",
     "jscs": "jscs lib",
-    "test": "npm run test-unit && npm run test-e2e",
+    "test": "npm run test-unit",
     "test-unit": "mocha $(find ./lib -name \"*.spec.js\" -not -path \"./node_modules/*\")",
-    "test-e2e": "mocha $(find ./test -name \"*.spec.js\" -not -path \"./node_modules/*\")",
     "cover": "istanbul cover _mocha $(find . -name \"*.spec.js\" -not -path \"./node_modules/*\"); open coverage/lcov-report/index.html",
     "cover-unit": "istanbul cover _mocha $(find . -name \"*.spec.js\" -not -path \"./test/*\"); open coverage/lcov-report/index.html"
   },
