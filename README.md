@@ -1,4 +1,6 @@
 ![Trace logo](https://cloud.githubusercontent.com/assets/1764512/8827915/babae4fe-308f-11e5-8087-ac24bb9c8a3d.png)
+***
+[![Build Status](https://travis-ci.org/RisingStack/trace-nodejs.svg)](https://travis-ci.org/RisingStack/trace-nodejs)
 
 ## Installation and usage
 
