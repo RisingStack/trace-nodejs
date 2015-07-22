@@ -1,11 +1,7 @@
 # Trace
 
-## Compatibility
-* v0.10@latest
-* v0.12@latest
-* iojs@latest
-
 ## Installation and usage
+
 ```
 npm install --save @risingstack/trace
 ```
@@ -17,7 +13,14 @@ require('@risingstack/trace');
 
 ### Config file
 
-A config file should be present at the project root. You have to specify a `reporter`, which implements a `send` method to send the traced requests to the Trace servers or to your Logstash or any other storage. If you choose to use our service, you need to specify an api key, in case of you want to use your Logstash, you have to add the connection informations. An example for the `trace.config.js` config file using the Trace servers:
+A config file should be present at the project root. You have to specify a `reporter`,
+which implements a `send` method to send the traced requests to the Trace servers
+or to your Logstash or any other storage.
+
+If you choose to use our service, you need to specify an api key.
+
+In case you want to use your Logstash, you have to add the connection informations.
+An example for the `trace.config.js` config file using the Trace servers:
 
 ```javascript
 /**
@@ -67,3 +70,16 @@ trace.report({
   userId: 10
 });
 ```
+
+## Compatibility with Node versions
+
+* v0.10@latest
+* v0.12@latest
+* iojs@latest
+
+## Supported HTTP Client libraries
+
+* native HTTP/HTTPS clients
+* [request](https://github.com/request/request)
+* [superagent](https://github.com/visionmedia/superagent)
+* more coming soon!
