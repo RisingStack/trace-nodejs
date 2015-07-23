@@ -74,6 +74,16 @@ trace.report({
 });
 ```
 
+### trace.getTransactionId(String)
+
+This method can be use to get the current transactionId. It can be useful if you want to integrate trace with your
+current logging systems.
+
+```javascript
+var transactionId = trace.getTransactionId();
+```
+
+
 ## Compatibility with Node versions
 
 * v0.10@latest
