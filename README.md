@@ -74,7 +74,7 @@ trace.report({
 });
 ```
 
-### trace.getTransactionId(String)
+### trace.getTransactionId()
 
 This method can be use to get the current transactionId. It can be useful if you want to integrate trace with your
 current logging systems.
