@@ -23,7 +23,7 @@ If you choose to use our service, you need to specify an api key.
 
 In case you want to use your Logstash, you have to add the connection informations.
 
-You can specify these informations two ways. Either using a config file, which should be present at the project root, or via environment variables. Currently we try to read a config file and if there are `TRACE_APP_NAME` and/or `TRACE_REPORTER_TYPE` with `TRACE_REPORTER_CONFIG` env, we override the configuration accordingly.
+You can specify these informations two ways. Either using a config file, or via environment variables. Currently we look for the config file at the project root by default, which you can override with an absolute path in the `TRACE_CONFIG_PATH` environment variable. We try to read the config file and if there are `TRACE_APP_NAME` and/or `TRACE_REPORTER_TYPE` with `TRACE_REPORTER_CONFIG` env, we override the configuration accordingly.
 
 An example for the `trace.config.js` config file using the Trace servers:
 
