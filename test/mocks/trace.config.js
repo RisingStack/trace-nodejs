@@ -6,7 +6,7 @@ var config = {};
 
 config.appName = 'Users';
 
-config.reporter = require('../lib/reporters').logstash.create({
+config.reporter = require('../../lib/reporters').logstash.create({
   type: 'tcp',
   host: 'localhost',
   port: 12201
