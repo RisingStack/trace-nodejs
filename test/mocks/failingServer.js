@@ -21,4 +21,5 @@ failingServer.listen(15124, function (err) {
   if (err) {
     throw err;
   }
+  console.log('listening');
 });
