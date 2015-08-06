@@ -36,6 +36,10 @@ var config = {};
 
 config.appName = 'Users';
 
+config.ignoreHeaders = {
+  'user-agent': ['007']
+};
+
 config.reporter = require('@risingstack/trace/lib/reporters').trace.create({
  apiKey: '1234',
  appName: config.appName
