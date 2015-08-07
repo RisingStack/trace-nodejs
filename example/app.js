@@ -1,5 +1,5 @@
 var express = require('express');
-var trace = require('@risingstack/trace');
+require('@risingstack/trace');
 
 var app = express();
 
@@ -10,7 +10,7 @@ app.get('/', function (req, res) {
       2,
       3
     ]
-  })
+  });
 });
 
 app.listen(3000, function(err) {
