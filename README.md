@@ -2,7 +2,7 @@
 ***
 [![Build Status](https://travis-ci.org/RisingStack/trace-nodejs.svg)](https://travis-ci.org/RisingStack/trace-nodejs)
 
-**Trace is currently in beta and under active development - putting it into production is highly discouraged currently.**
+**Trace is currently in beta and under active development - putting it into production is highly discouraged.**
 
 ## Installation and usage
 
