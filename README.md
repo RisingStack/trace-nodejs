@@ -6,9 +6,13 @@
 
 ## Installation and usage
 
+As Trace uses scoped packages, be sure to use npm version greater than 2.7.0.
+
 ```
 npm install --save @risingstack/trace
 ```
+
+*If you can't update to npm@2.7.0 for whatever reason, you can still install Trace using `npm i risingstack/trace-nodejs`.*
 
 After you installed Trace as a dependency, you just require it at the beginning of your main file.
 ```javascript
