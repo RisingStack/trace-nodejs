@@ -33,6 +33,7 @@
     "url": "https://github.com/RisingStack/trace-nodejs/issues"
   },
   "dependencies": {
+    "bl": "^1.0.0",
     "continuation-local-storage": "^3.1.4",
     "debug": "^2.2.0",
     "lodash": "^3.10.0",
