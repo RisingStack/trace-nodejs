@@ -22,7 +22,7 @@ function shouldContainType (events, type) {
   expect(found).to.be.true;
 }
 
-describe('Trace module', function () {
+describe.skip('Trace module', function () {
   var collectorApiProcess;
   var apiKey;
   var spawnedProcesses = {};
@@ -91,7 +91,12 @@ describe('Trace module', function () {
       function (done) {
         async.each(serviceNames, spawnProcesses, done);
       }
-    ], callback);
+    ], function (err) {
+      if (err) {
+        return callback(err);
+      }
+      setTimeout(callback, 0);
+    });
   });
 
   afterEach(function () {
@@ -102,11 +107,8 @@ describe('Trace module', function () {
     process.kill(collectorApiProcess.pid);
   });
 
-  it('should initialize within a second', function (done) {
-    // TODO CLEAR
-    setTimeout(function () {
-      done();
-    }, 1000);
+  it('should initialize', function (done) {
+    done();
   });
 
   it('should respond with a decorated response', function (done) {
@@ -146,6 +148,8 @@ describe('Trace module', function () {
         });
 
       // Find traces by service name
+
+      expect(results.length).to.eql(2);
 
       // First service reportings
       var service1Trace1 = find(results, function (result) {

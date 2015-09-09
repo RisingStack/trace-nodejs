@@ -4,52 +4,43 @@ var fs = require('fs');
 var https = require('https');
 var path = require('path');
 
-var koa = require('koa');
-var Router = require('koa-router');
-var bodyParser = require('koa-bodyparser');
-
-var router = new Router();
+var express = require('express');
+var bodyParser = require('body-parser');
 
 var credentials = {
   key: fs.readFileSync(path.join(__dirname, 'cert/server.key'), 'utf-8'),
   cert: fs.readFileSync(path.join(__dirname, 'cert/server.crt'), 'utf-8')
 };
 
-router.post('/service', function * () {
-  if (this.request.body.name === 'service1') {
-    this.body = {
-      key: 1
-    };
-    this.status = 200;
-    return;
+var app = express()
+  .use(bodyParser.json());
+
+app.post('/service', function (req, res) {
+  if (req.body.name === 'service1') {
+    return res.json({
+        key: 1
+      });
   }
-  if (this.request.body.name === 'service2') {
-    this.body = {
+  if (req.body.name === 'service2') {
+    return res.json({
       key: 2
-    };
-    this.status = 200;
-    return;
+    });
   }
-  this.body = {
+
+  return res.json({
     message: 'error'
-  };
-  this.status = 400;
+  });
 });
 
-router.post('/service/sample', function * () {
-  this.body = {
+app.post('/service/sample', function (req, res) {
+  return res.json({
     message: 'error'
-  };
-  this.status = 400;
+  });
 });
-
-var app = koa();
-
-app.use(bodyParser());
-app.use(router.middleware());
 
 https
-  .createServer(credentials, app.callback())
+  .createServer(credentials, app)
   .listen(4000, function () {
     console.log('collector server started');
   });
+

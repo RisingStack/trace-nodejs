@@ -4,25 +4,19 @@
 /* Pull trace in */
 require('../../../');
 
-var koa = require('koa');
-var Router = require('koa-router');
+var express = require('express');
 
-var router = new Router();
+var app = express();
 
-router.get('/', function * () {
-  this.body = {
+app.get('/', function (req, res) {
+  res.json({
     message: 'success'
-  };
-  this.status = 200;
+  });
 });
 
-router.get('/error', function * () {
+app.get('/error', function (req, res) {
   throw new Error('Error happened');
 });
-
-var app = koa();
-
-app.use(router.middleware());
 
 app.listen(process.env.PORT, function () {
   console.log('service 2 is running on port: ' + process.env.PORT);
