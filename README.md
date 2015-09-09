@@ -2,8 +2,6 @@
 ***
 [![Build Status](https://travis-ci.org/RisingStack/trace-nodejs.svg)](https://travis-ci.org/RisingStack/trace-nodejs)
 
-**Trace is currently in beta and under active development - putting it into production is highly discouraged.**
-
 ## Installation and usage
 
 As Trace uses scoped packages, be sure to use npm version greater than 2.7.0.
