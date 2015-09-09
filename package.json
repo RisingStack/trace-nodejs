@@ -21,6 +21,7 @@
     "jscs": "jscs lib",
     "test": "npm run test-unit",
     "test-unit": "mocha $(find ./lib -name \"*.spec.js\" -not -path \"./node_modules/*\")",
+    "test-e2e": "mocha $(find ./test -name \"*.e2e.js\" -not -path \"./node_modules/*\")",
     "cover": "istanbul cover _mocha $(find . -name \"*.spec.js\" -not -path \"./node_modules/*\"); open coverage/lcov-report/index.html",
     "cover-unit": "istanbul cover _mocha $(find . -name \"*.spec.js\" -not -path \"./test/*\"); open coverage/lcov-report/index.html"
   },
@@ -41,18 +42,23 @@
     "qs": "^4.0.0"
   },
   "devDependencies": {
+    "async": "^1.4.2",
     "chai": "^3.2.0",
     "chai-subset": "^1.0.1",
     "express": "^4.12.3",
     "istanbul": "^0.3.13",
     "jscs": "^1.12.0",
     "jshint": "^2.6.3",
+    "koa": "^1.0.0",
+    "koa-bodyparser": "^2.0.1",
+    "koa-router": "^5.1.2",
     "mocha": "^2.2.4",
     "nock": "^2.7.0",
     "pre-commit": "^1.0.6",
     "proxyquire": "^1.6.0",
     "sinon": "^1.14.1",
     "sinon-chai": "^2.8.0",
+    "superagent": "^1.3.0",
     "supertest": "^1.0.1"
   },
   "pre-commit": [
