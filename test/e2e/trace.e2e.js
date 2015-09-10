@@ -40,10 +40,10 @@ describe.skip('Trace module', function () {
         PORT: testConfig.portBase + index,
         API_KEY: apiKey,
         TRACE_CONFIG_PATH: path.join(servicePath, 'trace.config.js'),
-        COLLECTOR_API_URL: 'http://localhost:4000/',
+        TRACE_COLLECTOR_API_URL: 'http://localhost:4000/',
         /* Allow self signed certs in tests */
         NODE_TLS_REJECT_UNAUTHORIZED: '0',
-        TRACE_LOGFILE_PATH: './'
+        TRACE_COLLECT_INTERVAL: 500
       });
 
       var serviceConfig = require(env.TRACE_CONFIG_PATH);
@@ -112,22 +112,25 @@ describe.skip('Trace module', function () {
   });
 
   it('should respond with a decorated response', function (done) {
-    request
-    .get('http://localhost:3001/')
-    .end(function (err, res) {
-      if (err) {
-        return done(err);
-      }
+    this.timeout(16000);
+    setTimeout(function () {
+      request
+      .get('http://localhost:3001/')
+      .end(function (err, res) {
+        if (err) {
+          return done(err);
+        }
 
-      expect(res.body).to.be.eql({
-        message: 'success'
+        expect(res.body).to.be.eql({
+          message: 'success'
+        });
+
+        expect(res.headers['x-parent']).be.eql('1');
+        expect(res.headers['x-client-send']).match(/\d{10,11}/);
+
+        setTimeout(done, 10000);
       });
-
-      expect(res.headers['x-parent']).be.eql('1');
-      expect(res.headers['x-client-send']).match(/\d{10,11}/);
-
-      done();
-    });
+    }, 5000);
   });
 
   it('should write the requests to a file', function (done) {
