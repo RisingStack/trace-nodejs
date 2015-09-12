@@ -41,7 +41,8 @@
     "logstash-client": "^1.0.0",
     "microtime": "^2.0.0",
     "node-uuid": "^1.4.3",
-    "qs": "^4.0.0"
+    "qs": "^4.0.0",
+    "sync-request": "^2.0.1"
   },
   "devDependencies": {
     "async": "^1.4.2",
