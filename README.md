@@ -104,9 +104,11 @@ var transactionId = trace.getTransactionId();
 
 ## Compatibility with Node versions
 
-* v0.10@latest
-* v0.12@latest
-* iojs@latest
+* node v0.10@latest
+* node v0.12@latest
+* iojs v2@latest
+* iojs v3@latest
+* node v4@latest
 
 ## Supported HTTP Client libraries
 
