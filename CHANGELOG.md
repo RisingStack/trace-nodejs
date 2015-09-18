@@ -1,3 +1,11 @@
+
+
+### Features
+
+* **method:** add method support ([481ecd3](https://github.com/RisingStack/trace-nodejs/commit/481ecd3))
+
+
+
 <a name="1.7.5"></a>
 ## [1.7.5](https://github.com/RisingStack/trace-nodejs/compare/v1.7.5...v1.7.5) (2015-09-14)
 
