@@ -46,7 +46,11 @@ describe.skip('Trace module', function () {
         TRACE_COLLECT_INTERVAL: 500
       });
 
-      var serviceConfig = require(env.TRACE_CONFIG_PATH);
+      try {
+        var serviceConfig = require(env.TRACE_CONFIG_PATH);
+      } catch (ex) {
+      }
+
 
       var spawned = spawn('node', ['--harmony', servicePath ], {
         env: env
