@@ -42,7 +42,8 @@
     "microtime": "^2.0.0",
     "node-uuid": "^1.4.3",
     "qs": "^4.0.0",
-    "sync-request": "^2.0.1"
+    "sync-request": "^2.0.1",
+    "usage": "^0.7.1"
   },
   "devDependencies": {
     "async": "^1.4.2",
