@@ -77,7 +77,7 @@ describe.skip('Trace module', function () {
 
     /* Create processes */
     async.series([
-      /* Collector-API process */
+      /* HttpTransaction-API process */
       function (done) {
         collectorApiProcess = spawn('node', ['--harmony', path.join(__dirname, './collectorApi') ]);
 
