@@ -1,14 +1,113 @@
+<a name="1.11.0"></a>
+# [1.11.0](https://github.com/RisingStack/trace-nodejs/compare/v1.11.0...v1.11.0) (2015-10-26)
+
+
+
+
+<a name="1.11.0"></a>
+# [1.11.0](https://github.com/RisingStack/trace-nodejs/compare/v1.10.2...v1.11.0) (2015-10-25)
+
+
+### Bug Fixes
+
+* **pathname:** replace pathname with path ([8c64375](https://github.com/RisingStack/trace-nodejs/commit/8c64375))
+* **sampleRate:** fix sample rate calculation ([f4add9d](https://github.com/RisingStack/trace-nodejs/commit/f4add9d))
+* **spanId:** fix spanId collecting ([abb8daf](https://github.com/RisingStack/trace-nodejs/commit/abb8daf))
+
+### Features
+
+* **clientSend:** add host and url to client send ([316859e](https://github.com/RisingStack/trace-nodejs/commit/316859e))
+
+
+
+<a name="1.10.2"></a>
+## [1.10.2](https://github.com/RisingStack/trace-nodejs/compare/v1.10.1...v1.10.2) (2015-10-20)
+
+
+### Bug Fixes
+
+* **apm:** cpu usage calculation ([0f36fee](https://github.com/RisingStack/trace-nodejs/commit/0f36fee))
+
+
+
+<a name="1.10.1"></a>
+## [1.10.1](https://github.com/RisingStack/trace-nodejs/compare/v1.10.0...v1.10.1) (2015-10-10)
+
+
+### Bug Fixes
+
+* **header:** fix header name case ([995cf93](https://github.com/RisingStack/trace-nodejs/commit/995cf93))
+* **mustCollect:** place mustCollect setting to the right place ([b043dff](https://github.com/RisingStack/trace-nodejs/commit/b043dff))
+
+### Features
+
+* **logging:** add debug logging to http.prototype wraps ([a4da5ea](https://github.com/RisingStack/trace-nodejs/commit/a4da5ea))
+* **mustCollect:** add must-collect header ([53ebd06](https://github.com/RisingStack/trace-nodejs/commit/53ebd06))
+
+
+
+<a name="1.10.0"></a>
+# [1.10.0](https://github.com/RisingStack/trace-nodejs/compare/v1.9.2...v1.10.0) (2015-10-07)
+
+
+### Bug Fixes
+
+* **rename:** rename responses to rpm ([69abef6](https://github.com/RisingStack/trace-nodejs/commit/69abef6))
+* **tests:** add tests ([8adfb48](https://github.com/RisingStack/trace-nodejs/commit/8adfb48))
+* **typo:** correct statusCode typo ([a593b3e](https://github.com/RisingStack/trace-nodejs/commit/a593b3e))
+
+### Features
+
+* **rpm:** add rpm functionality ([4b282e0](https://github.com/RisingStack/trace-nodejs/commit/4b282e0))
+
+
+
+<a name="1.9.2"></a>
+## [1.9.2](https://github.com/RisingStack/trace-nodejs/compare/v1.9.1...v1.9.2) (2015-10-02)
+
+
+### Bug Fixes
+
+* **trace:** check is serviceId is undefined ([2f10f5b](https://github.com/RisingStack/trace-nodejs/commit/2f10f5b))
+
+
+
+<a name="1.9.1"></a>
+## [1.9.1](https://github.com/RisingStack/trace-nodejs/compare/v1.9.0...v1.9.1) (2015-09-30)
+
+
+### Bug Fixes
+
+* **trace:** send metrics only if serviceId is present ([e8924f7](https://github.com/RisingStack/trace-nodejs/commit/e8924f7))
+
+
+
+<a name="1.9.0"></a>
+# [1.9.0](https://github.com/RisingStack/trace-nodejs/compare/v1.8.0...v1.9.0) (2015-09-27)
+
+
+### Bug Fixes
+
+* **apm:** collect every 1 minute ([b993b35](https://github.com/RisingStack/trace-nodejs/commit/b993b35))
+* **apm:** only send used memory ([018484f](https://github.com/RisingStack/trace-nodejs/commit/018484f))
+* **apm:** round cpu usage ([a63a813](https://github.com/RisingStack/trace-nodejs/commit/a63a813))
+* **apm:** use megabytes instead of bytes ([b82ee8c](https://github.com/RisingStack/trace-nodejs/commit/b82ee8c))
+* **e2e:** remove e2e test from default test command ([b086dbf](https://github.com/RisingStack/trace-nodejs/commit/b086dbf))
+
+### Features
+
+* **apm:** adding apm skeleton ([b4f778f](https://github.com/RisingStack/trace-nodejs/commit/b4f778f))
+
+
+
+<a name="1.8.0"></a>
+# [1.8.0](https://github.com/RisingStack/trace-nodejs/compare/v1.7.5...v1.8.0) (2015-09-21)
 
 
 ### Features
 
+* **config:** remove appName duplication ([c3e7d65](https://github.com/RisingStack/trace-nodejs/commit/c3e7d65))
 * **method:** add method support ([481ecd3](https://github.com/RisingStack/trace-nodejs/commit/481ecd3))
-
-
-
-<a name="1.7.5"></a>
-## [1.7.5](https://github.com/RisingStack/trace-nodejs/compare/v1.7.5...v1.7.5) (2015-09-14)
-
 
 
 
