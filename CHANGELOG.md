@@ -1,3 +1,9 @@
+<a name="1.12.1"></a>
+## [1.12.1](https://github.com/RisingStack/trace-nodejs/compare/v1.12.1...v1.12.1) (2015-11-18)
+
+
+
+
 <a name="1.11.0"></a>
 # [1.11.0](https://github.com/RisingStack/trace-nodejs/compare/v1.10.2...v1.11.0) (2015-10-25)
 
