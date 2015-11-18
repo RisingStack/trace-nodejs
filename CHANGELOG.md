@@ -1,6 +1,10 @@
 <a name="1.12.1"></a>
-## [1.12.1](https://github.com/RisingStack/trace-nodejs/compare/v1.12.1...v1.12.1) (2015-11-18)
+## 1.12.1 (2015-11-18)
 
+
+### chore
+
+* chore(changelog): updating the changelog ([402aef1](https://github.com/RisingStack/trace-nodejs/commit/402aef1))
 
 
 
@@ -378,7 +382,3 @@
 
 <a name="1.1.0"></a>
 # 1.1.0 (2015-04-17)
-
-
-
-
