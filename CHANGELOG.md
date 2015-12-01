@@ -1,10 +1,71 @@
+<a name="1.12.2"></a>
+## [1.12.2](https://github.com/RisingStack/trace-nodejs/compare/v1.12.2...v1.12.2) (2015-12-01)
+
+
+
+
+<a name="1.12.2"></a>
+## [1.12.2](https://github.com/RisingStack/trace-nodejs/compare/v1.12.1...v1.12.2) (2015-11-23)
+
+
+### Bug Fixes
+
+* **wrap:** change stream wrap to http.Server ([923e50d](https://github.com/RisingStack/trace-nodejs/commit/923e50d))
+
+
+
 <a name="1.12.1"></a>
-## 1.12.1 (2015-11-18)
+## [1.12.1](https://github.com/RisingStack/trace-nodejs/compare/v1.12.0...v1.12.1) (2015-11-18)
 
 
-### chore
+### Bug Fixes
 
-* chore(changelog): updating the changelog ([402aef1](https://github.com/RisingStack/trace-nodejs/commit/402aef1))
+* **samplerate:** initial sample rate can be overwritten from env ([d32a3f5](https://github.com/RisingStack/trace-nodejs/commit/d32a3f5))
+
+
+
+<a name="1.12.0"></a>
+# [1.12.0](https://github.com/RisingStack/trace-nodejs/compare/v1.11.3...v1.12.0) (2015-11-18)
+
+
+### Bug Fixes
+
+* **RPM:** add tests for average response time ([34d58e8](https://github.com/RisingStack/trace-nodejs/commit/34d58e8))
+* **RPM:** correct average RPM calculation ([24d2d1e](https://github.com/RisingStack/trace-nodejs/commit/24d2d1e))
+* **RPM:** fix calculation issue with response time ([76c123a](https://github.com/RisingStack/trace-nodejs/commit/76c123a))
+* **sampling:** use a pessimistic starting rate ([67bff9e](https://github.com/RisingStack/trace-nodejs/commit/67bff9e))
+* **type:** errror -> error ([a0985f2](https://github.com/RisingStack/trace-nodejs/commit/a0985f2))
+
+### Features
+
+* **RPM:** add average server response time ([ce3e36c](https://github.com/RisingStack/trace-nodejs/commit/ce3e36c))
+* **RPM:** add rounding to average response time send ([49fff85](https://github.com/RisingStack/trace-nodejs/commit/49fff85))
+
+
+
+<a name="1.11.3"></a>
+## [1.11.3](https://github.com/RisingStack/trace-nodejs/compare/v1.11.2...v1.11.3) (2015-11-09)
+
+
+### Features
+
+* **apm:** collect interval can be modified via env var ([70c5cbb](https://github.com/RisingStack/trace-nodejs/commit/70c5cbb))
+
+
+
+<a name="1.11.2"></a>
+## [1.11.2](https://github.com/RisingStack/trace-nodejs/compare/v1.11.1...v1.11.2) (2015-11-07)
+
+
+### Bug Fixes
+
+* **http:** set isForceSampled based on mustCollect ([fdfb222](https://github.com/RisingStack/trace-nodejs/commit/fdfb222))
+
+
+
+<a name="1.11.1"></a>
+## [1.11.1](https://github.com/RisingStack/trace-nodejs/compare/v1.11.0...v1.11.1) (2015-11-02)
+
 
 
 
@@ -382,3 +443,7 @@
 
 <a name="1.1.0"></a>
 # 1.1.0 (2015-04-17)
+
+
+
+
