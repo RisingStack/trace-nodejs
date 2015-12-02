@@ -2,14 +2,14 @@
  * The Trace configuration file
  */
 
-var config = {};
+var config = {}
 
-config.appName = 'Users';
+config.appName = 'Users'
 
 config.reporter = require('@risingstack/trace/lib/reporters').logstash.create({
   type: 'tcp',
   host: 'localhost',
   port: 12201
-});
+})
 
-module.exports = config;
+module.exports = config

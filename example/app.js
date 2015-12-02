@@ -1,7 +1,7 @@
-var express = require('express');
-require('@risingstack/trace');
+var express = require('express')
+require('@risingstack/trace')
 
-var app = express();
+var app = express()
 
 app.get('/', function (req, res) {
   res.json({
@@ -10,13 +10,13 @@ app.get('/', function (req, res) {
       2,
       3
     ]
-  });
-});
+  })
+})
 
-app.listen(3000, function(err) {
+app.listen(3000, function (err) {
   if (err) {
-    throw err;
+    throw err
   }
 
-  console.log('app is listening');
-});
+  console.log('app is listening')
+})
