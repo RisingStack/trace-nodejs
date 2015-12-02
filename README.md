@@ -1,5 +1,6 @@
 ![Trace logo](https://cloud.githubusercontent.com/assets/1764512/8830445/83e8263c-309c-11e5-9f7f-aa3420e9b2f0.png)
 ***
+[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 [ ![Codeship Status for RisingStack/trace-nodejs](https://codeship.com/projects/8322f860-3ac7-0133-8753-0e111daba52d/status?branch=master)](https://codeship.com/projects/101987)
 
 ## Installation and usage
