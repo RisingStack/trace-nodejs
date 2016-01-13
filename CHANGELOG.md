@@ -1,6 +1,28 @@
-<a name="1.12.2"></a>
-## [1.12.2](https://github.com/RisingStack/trace-nodejs/compare/v1.12.2...v1.12.2) (2015-12-01)
+<a name="1.13.0"></a>
+# [1.13.0](https://github.com/RisingStack/trace-nodejs/compare/v1.13.0...v1.13.0) (2016-01-13)
 
+
+
+
+<a name="1.13.0"></a>
+# [1.13.0](https://github.com/RisingStack/trace-nodejs/compare/v1.12.2...v1.13.0) (2016-01-13)
+
+
+### Bug Fixes
+
+* **error:** send stack trace in the raw object ([80fed8b](https://github.com/RisingStack/trace-nodejs/commit/80fed8b))
+* **error:** sending error properties explicitly ([80da48e](https://github.com/RisingStack/trace-nodejs/commit/80da48e))
+* **error:** use more descriptive names for errors ([32f4a53](https://github.com/RisingStack/trace-nodejs/commit/32f4a53))
+* **httpTransaction:** fix user sent event ([246ffd0](https://github.com/RisingStack/trace-nodejs/commit/246ffd0))
+* **mustCollect:** adding mustCollect to request collector ([5df60c5](https://github.com/RisingStack/trace-nodejs/commit/5df60c5))
+* **mustCollect:** mustCollect header to request finish ([ca880e1](https://github.com/RisingStack/trace-nodejs/commit/ca880e1))
+
+### Features
+
+* **mustCollect:** add header to outgoing requests ([49a17fb](https://github.com/RisingStack/trace-nodejs/commit/49a17fb))
+* **mustCollect:** move mustCollect to cls session ([e6ceda2](https://github.com/RisingStack/trace-nodejs/commit/e6ceda2))
+* **stackTrace:** add network error ([8a284ff](https://github.com/RisingStack/trace-nodejs/commit/8a284ff))
+* **stackTrace:** add new error report format ([0e3e553](https://github.com/RisingStack/trace-nodejs/commit/0e3e553))
 
 
 
