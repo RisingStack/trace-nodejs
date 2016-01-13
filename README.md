@@ -93,6 +93,8 @@ trace.report({
 });
 ```
 
+Returns an error if parameter is not an Object.
+
 ### trace.getTransactionId()
 
 This method can be use to get the current transactionId. It can be useful if you want to integrate trace with your
