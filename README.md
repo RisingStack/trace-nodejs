@@ -26,7 +26,7 @@ If you choose to use our service, you need to specify an api key.
 
 In case you want to use your Logstash, you have to add the connection informations.
 
-You can specify these informations two ways. Either via environment variables or using an optional config module. We look for a config module named `trace.config.js` at your current working directory by default, which can be overridden with the `TRACE_CONFIG_PATH` environment variable. 
+You can specify these informations two ways. Most of them can be set via environment variables or using a config module. We look for a config module named `trace.config.js` at your current working directory by default, which can be overridden with the `TRACE_CONFIG_PATH` environment variable. Having a config module is optional, but some configuration may be set only with it.
 
 An example for how to start your app without a config file:
 
