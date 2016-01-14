@@ -26,9 +26,19 @@ If you choose to use our service, you need to specify an api key.
 
 In case you want to use your Logstash, you have to add the connection informations.
 
-You can specify these informations two ways. Either using a config file, or via environment variables. Currently we look for the config file at the project root by default, which you can override with an absolute path in the `TRACE_CONFIG_PATH` environment variable. We try to read the config file and if there are `TRACE_APP_NAME` and/or `TRACE_REPORTER_TYPE` with `TRACE_REPORTER_CONFIG` env, we override the configuration accordingly.
+You can specify these informations two ways. Either via environment variables or using an optional config module. We look for a config module named `trace.config.js` at your current working directory by default, which can be overridden with the `TRACE_CONFIG_PATH` environment variable. 
 
-An example for the `trace.config.js` config file using the Trace servers:
+An example for how to start your app without a config file:
+
+```
+node TRACE_APP_NAME=MyApp TRACE_API_KEY=1 index.js
+```
+
+An example with a custom config file using the Trace servers:
+
+```
+node TRACE_CONFIG_PATH=/path/to/my/config.js index.js
+```
 
 ```javascript
 /**
@@ -72,14 +82,6 @@ config.reporter = require('@risingstack/trace/lib/reporters').logstash.create({
 
 module.exports = config;
 ```
-
-An example for how to start your app without a config file:
-
-```
-node TRACE_APP_NAME=MyApp TRACE_REPORTER_TYPE=trace TRACE_REPORTER_CONFIG='{\"apiKey\":1,\"appName\":\"MyApp\"}' index.js
-```
-
-Note that if you want to use your custom reporter, you have to use the config file: the `TRACE_REPORTER_TYPE` environment variable is either `trace` or `logstash`. Also, the `TRACE_REPORTER_CONFIG` variable should be a valid, parseable JSON string.
 
 ## API
 
