@@ -1,6 +1,29 @@
-<a name="1.13.0"></a>
-# [1.13.0](https://github.com/RisingStack/trace-nodejs/compare/v1.13.0...v1.13.0) (2016-01-13)
+<a name="1.13.2"></a>
+## [1.13.2](https://github.com/RisingStack/trace-nodejs/compare/v1.13.2...v1.13.2) (2016-01-19)
 
+
+
+
+<a name="1.13.2"></a>
+## [1.13.2](https://github.com/RisingStack/trace-nodejs/compare/v1.13.1...v1.13.2) (2016-01-19)
+
+
+### Bug Fixes
+
+* **isForceSample:** set it for stack traces ([e91b9cc](https://github.com/RisingStack/trace-nodejs/commit/e91b9cc))
+* **mustCollect:** fix must collect ([350329e](https://github.com/RisingStack/trace-nodejs/commit/350329e))
+* **sampling:** unify samping method ([f4d048a](https://github.com/RisingStack/trace-nodejs/commit/f4d048a))
+* **spanId:** add spanId to user-sent and error events ([c8d91a1](https://github.com/RisingStack/trace-nodejs/commit/c8d91a1))
+
+
+
+<a name="1.13.1"></a>
+## [1.13.1](https://github.com/RisingStack/trace-nodejs/compare/v1.13.0...v1.13.1) (2016-01-13)
+
+
+### Bug Fixes
+
+* **mustCollect:** use a store instead of the session store ([f77ed8e](https://github.com/RisingStack/trace-nodejs/commit/f77ed8e))
 
 
 
