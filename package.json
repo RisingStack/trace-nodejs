@@ -15,7 +15,7 @@
     "microservices",
     "stack"
   ],
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "preinstall": "npm install node-gyp-install && ./node_modules/node-gyp-install/bin.js",
     "lint": "eslint lib example",
