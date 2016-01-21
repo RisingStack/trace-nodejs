@@ -90,12 +90,13 @@ module.exports = config;
 This method can be use to report additional data to the Trace servers which later on helps with debugging.
 
 ```javascript
-trace.report({
+trace.report('name', {
   userId: 10
 });
 ```
 
-Returns an error if parameter is not an Object.
+Throws an error if first parameter is not a String.
+Throws an error if second parameter is not an Object.
 
 ### trace.getTransactionId()
 
@@ -105,7 +106,6 @@ current logging systems.
 ```javascript
 var transactionId = trace.getTransactionId();
 ```
-
 
 ## Compatibility with Node versions
 
