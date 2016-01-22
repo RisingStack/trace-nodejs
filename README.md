@@ -25,7 +25,7 @@ You can specify the configuration two ways. Configuration options can be set via
 An example for how to start your app with environment variables:
 
 ```
-node TRACE_APP_NAME=MyApp TRACE_API_KEY=1 index.js
+node TRACE_SERVICE_NAME=MyApp TRACE_API_KEY=1 index.js
 ```
 
 An example with a custom config file using the Trace servers:
