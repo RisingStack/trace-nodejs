@@ -20,7 +20,7 @@ var trace = require('@risingstack/trace');
 
 ### Configuration
 
-You can specify the configuration two ways. Most options can be set via environment variables or using a config module. We look for a config module named `trace.config.js` at your current working directory by default, which can be overridden with the `TRACE_CONFIG_PATH` environment variable. Having a config module is optional, but some configuration may be set only with it. In order to use our service, you need to specify an api key and and a service name at minimum. The corresponding environment variables are: `TRACE_API_KEY` and `TRACE_SERVICE_NAME`
+You can specify the configuration two ways. Configuration options can be set via environment variables or using a config module. We look for a config module named `trace.config.js` at your current working directory by default, which can be overridden with the `TRACE_CONFIG_PATH` environment variable. Having a config module is optional, but some options may be set only with it. In order to use our service, you need to specify an api key and and a service name at minimum. The corresponding environment variables are: `TRACE_API_KEY` and `TRACE_SERVICE_NAME`.
 
 An example for how to start your app with environment variables:
 
