@@ -36,7 +36,6 @@
     "continuation-local-storage": "3.1.4",
     "debug": "2.2.0",
     "lodash": "3.10.0",
-    "logstash-client": "1.0.0",
     "microtime": "2.0.0",
     "node-uuid": "1.4.3",
     "qs": "4.0.0",
