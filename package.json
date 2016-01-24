@@ -54,6 +54,7 @@
     "express": "4.12.3",
     "istanbul": "0.3.13",
     "mocha": "2.2.4",
+    "mongoose": "4.3.7",
     "nock": "2.7.0",
     "pre-commit": "1.0.6",
     "proxyquire": "1.6.0",
