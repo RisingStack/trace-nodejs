@@ -1,6 +1,6 @@
 {
   "name": "@risingstack/trace",
-  "version": "1.13.2",
+  "version": "2.0.0-beta10",
   "author": "RisingStack, Inc.",
   "license": "MIT",
   "contributors": "RisingStack",
@@ -15,12 +15,14 @@
     "microservices",
     "stack"
   ],
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "preinstall": "npm install node-gyp-install && ./node_modules/node-gyp-install/bin.js",
     "lint": "eslint lib example",
-    "test": "npm run test-unit",
-    "test-unit": "mocha $(find ./lib -name \"*.spec.js\" -not -path \"./node_modules/*\")",
+    "test": "NODE_ENV=test npm run test-unit",
+    "test-unit": "NODE_ENV=test mocha $(find ./lib -name \"*.spec.js\" -not -path \"./node_modules/*\")",
+    "test-cls": "NODE_ENV=test mocha $(find ./lib -name \"*.spec.e2e.js\" -not -path \"./node_modules/*\")",
+    "test-e2e": "NODE_ENV=test tape ./e2e | node_modules/.bin/tap-spec",
     "cover": "istanbul cover _mocha $(find . -name \"*.spec.js\" -not -path \"./node_modules/*\"); open coverage/lcov-report/index.html",
     "changelog": "conventional-changelog -p angular -o CHANGELOG.md -r 500"
   },
@@ -36,7 +38,6 @@
     "continuation-local-storage": "3.1.4",
     "debug": "2.2.0",
     "lodash": "3.10.0",
-    "logstash-client": "1.0.0",
     "microtime": "2.0.0",
     "node-uuid": "1.4.3",
     "qs": "4.0.0",
@@ -45,7 +46,9 @@
   },
   "devDependencies": {
     "async": "1.4.2",
+    "bluebird": "3.1.4",
     "body-parser": "1.13.3",
+    "bookshelf": "0.9.1",
     "chai": "3.2.0",
     "chai-subset": "1.0.1",
     "conventional-changelog": "0.5.3",
@@ -53,15 +56,23 @@
     "eslint-config-standard": "4.4.0",
     "eslint-plugin-standard": "1.3.1",
     "express": "4.12.3",
+    "freshy": "1.0.1",
+    "ioredis": "1.14.0",
     "istanbul": "0.3.13",
+    "knex": "0.9.0",
     "mocha": "2.2.4",
+    "mongoose": "4.3.7",
     "nock": "2.7.0",
+    "pg": "4.4.3",
     "pre-commit": "1.0.6",
     "proxyquire": "1.6.0",
+    "redis": "2.4.2",
     "sinon": "1.14.1",
     "sinon-chai": "2.8.0",
     "superagent": "1.3.0",
-    "supertest": "1.0.1"
+    "supertest": "1.0.1",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.4.0"
   },
   "pre-commit": [
     "lint",
