@@ -49,6 +49,7 @@
     "bluebird": "3.1.4",
     "body-parser": "1.13.3",
     "bookshelf": "0.9.1",
+    "cassandra-driver": "3.0.0",
     "chai": "3.2.0",
     "chai-subset": "1.0.1",
     "conventional-changelog": "0.5.3",
