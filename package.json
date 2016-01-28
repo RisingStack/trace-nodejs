@@ -61,6 +61,7 @@
     "ioredis": "1.14.0",
     "istanbul": "0.3.13",
     "knex": "0.9.0",
+    "memcached": "2.2.1",
     "mocha": "2.2.4",
     "mongoose": "4.3.7",
     "mysql": "2.10.2",
