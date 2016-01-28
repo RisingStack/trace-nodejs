@@ -19,7 +19,7 @@
   "scripts": {
     "preinstall": "npm install node-gyp-install && ./node_modules/node-gyp-install/bin.js",
     "lint": "eslint lib example",
-    "test": "NODE_ENV=test npm run test-unit",
+    "test": "NODE_ENV=test npm run test-unit && npm run test-e2e",
     "test-unit": "NODE_ENV=test mocha $(find ./lib -name \"*.spec.js\" -not -path \"./node_modules/*\")",
     "test-cls": "NODE_ENV=test mocha $(find ./lib -name \"*.spec.e2e.js\" -not -path \"./node_modules/*\")",
     "test-e2e": "NODE_ENV=test node ./e2e | tap-spec",
