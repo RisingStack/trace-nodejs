@@ -8,16 +8,16 @@ app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
   res.send('hello word')
+  console.log(trace.getTransactionId())
 })
 
 app.post('/', function (req, res) {
   if (req.body) {
     trace.report('data', req.body)
+    console.log(trace.getTransactionId())
   }
   res.send(200)
 })
-
-console.log(trace.getTransactionId())
 
 function reportTime () {
   trace.report('time', {

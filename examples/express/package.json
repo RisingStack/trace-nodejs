@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@risingstack/trace": "^2.0.0",
+    "@risingstack/trace": "file:../..",
     "body-parser": "^1.14.2",
     "express": "^4.13.1"
   }
