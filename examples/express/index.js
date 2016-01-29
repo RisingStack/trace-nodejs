@@ -1,35 +1,49 @@
 'use strict'
 
+/*
+* Require trace as the first dependency of your project.
+*/
 var trace = require('@risingstack/trace')
 
 var app = require('express')()
 var bodyParser = require('body-parser')
+var count = 0
+
+/*
+* You can report arbitrary information with trace. You have to be in the middle
+* of an HTTP transaction to do this.
+*/
+function reportCount (count) {
+  trace.report('count', {
+    current: count
+  })
+}
+
 app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
-  res.send('hello word')
-  console.log(trace.getTransactionId())
+  ++count
+  console.log(trace.getTransactionId() + ' is the ' + count + '. transaction in this node')
+  reportCount(count)
+
+  res.send('hello')
 })
 
 app.post('/', function (req, res) {
-  if (req.body) {
-    trace.report('data', req.body)
-    console.log(trace.getTransactionId())
-  }
-  res.send(200)
-})
+  ++count
+  console.log(trace.getTransactionId() + ' is the ' + count + '. transaction in this node')
+  reportCount(count)
 
-function reportTime () {
-  trace.report('time', {
-    now: new Date()
-  })
-  setTimeout(reportTime, 1000)
-}
+  if (req.body && req.body.malicious) {
+    console.log('reporting malicious content')
+    trace.report('malicious', req.body.malicious)
+  }
+  res.sendStatus(200)
+})
 
 app.listen(3000, function (err) {
   if (err) {
     throw err
   }
-  console.log('app is listening')
-  reportTime()
+  console.log('example app is listening')
 })
