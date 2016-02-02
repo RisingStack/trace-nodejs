@@ -1,6 +1,42 @@
-<a name="1.13.2"></a>
-## [1.13.2](https://github.com/RisingStack/trace-nodejs/compare/v1.13.2...v1.13.2) (2016-01-19)
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/RisingStack/trace-nodejs/compare/v2.0.0...v2.0.0) (2016-02-02)
 
+
+
+
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/RisingStack/trace-nodejs/compare/v1.13.2...v2.0.0) (2016-02-02)
+
+
+### Bug Fixes
+
+* **api:** expose 401 errors ([5a1e650](https://github.com/RisingStack/trace-nodejs/commit/5a1e650))
+* **cls:** add debug namespace ([6f7d91d](https://github.com/RisingStack/trace-nodejs/commit/6f7d91d))
+* **cls:** hook module loading ([9999263](https://github.com/RisingStack/trace-nodejs/commit/9999263))
+* **cls:** use the fork of cls till the PR is merged ([b851663](https://github.com/RisingStack/trace-nodejs/commit/b851663))
+* **cls:** wrap more mongo related functions ([61a30ec](https://github.com/RisingStack/trace-nodejs/commit/61a30ec))
+* **cls:** wrapping mongoose ([2230075](https://github.com/RisingStack/trace-nodejs/commit/2230075))
+* **collector:** read config from single source ([c9493f5](https://github.com/RisingStack/trace-nodejs/commit/c9493f5))
+* **config:** remove localhost ([7a14905](https://github.com/RisingStack/trace-nodejs/commit/7a14905))
+* **configReader:** fix fn name ([983ed15](https://github.com/RisingStack/trace-nodejs/commit/983ed15))
+* **env:** extending the default env, not overwriting ([b0fd036](https://github.com/RisingStack/trace-nodejs/commit/b0fd036))
+* **http:** log the requestId on mustCollect ([aec7e04](https://github.com/RisingStack/trace-nodejs/commit/aec7e04))
+* **httpTransaction:** fix span creation ([c8e3b16](https://github.com/RisingStack/trace-nodejs/commit/c8e3b16))
+* **lib:** in case of missing parameters errors should be logged, but not crash the process ([bb2efbd](https://github.com/RisingStack/trace-nodejs/commit/bb2efbd))
+* **mongoose:** adding cls patch for mongoose ([5361cf2](https://github.com/RisingStack/trace-nodejs/commit/5361cf2))
+* **report:** add parameter validation ([5e3362a](https://github.com/RisingStack/trace-nodejs/commit/5e3362a))
+* **us:** reported names have to be unique ([2f7a41f](https://github.com/RisingStack/trace-nodejs/commit/2f7a41f))
+* **whitelist:** add collectorApi ([9aa49de](https://github.com/RisingStack/trace-nodejs/commit/9aa49de))
+
+### Features
+
+* **cls:** add mysql support ([85faaf1](https://github.com/RisingStack/trace-nodejs/commit/85faaf1))
+* **cls:** add q ([dbe0bfc](https://github.com/RisingStack/trace-nodejs/commit/dbe0bfc))
+* **cls:** adding amqp ([fe127d7](https://github.com/RisingStack/trace-nodejs/commit/fe127d7))
+* **cls:** adding bluebird support ([ff4f5b0](https://github.com/RisingStack/trace-nodejs/commit/ff4f5b0))
+* **cls:** adding support for redis ([1a40599](https://github.com/RisingStack/trace-nodejs/commit/1a40599))
+* **cs:** generate trace-id if there is none ([2f5710b](https://github.com/RisingStack/trace-nodejs/commit/2f5710b))
+* **userSend:** change user sent api ([de5693e](https://github.com/RisingStack/trace-nodejs/commit/de5693e))
 
 
 
