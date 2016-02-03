@@ -1,6 +1,16 @@
-<a name="2.0.0"></a>
-# [2.0.0](https://github.com/RisingStack/trace-nodejs/compare/v2.0.0...v2.0.0) (2016-02-02)
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/RisingStack/trace-nodejs/compare/v2.0.1...v2.0.1) (2016-02-03)
 
+
+
+
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/RisingStack/trace-nodejs/compare/v2.0.0...v2.0.1) (2016-02-03)
+
+
+### Bug Fixes
+
+* **http:** remove process.nextTick ([b75bd62](https://github.com/RisingStack/trace-nodejs/commit/b75bd62))
 
 
 
