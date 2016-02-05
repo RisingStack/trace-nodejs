@@ -63,7 +63,7 @@ module.exports = {
 
 ## API
 
-### trace.report(Object)
+### trace.report(String, [Object])
 
 This method can be use to report additional data to the Trace servers which later on helps with debugging.
 
@@ -75,6 +75,17 @@ trace.report('name', {
 
 Throws an error if first parameter is not a String.
 Throws an error if second parameter is not an Object.
+
+### trace.reportError(String, Error)
+
+This method can be used to send errors to the Trace servers - note that transactions that use
+this method are not subject to sampling, so it will be collected all the time.
+
+```javascript
+trace.reportError('mysql_error', new Error('connection refused'));
+```
+
+Throws an error if first parameter is not a String.
 
 ### trace.getTransactionId()
 
