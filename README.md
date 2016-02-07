@@ -103,10 +103,3 @@ var transactionId = trace.getTransactionId();
 * iojs v2@latest
 * iojs v3@latest
 * node v4@latest
-
-## Supported HTTP Client libraries
-
-* native HTTP/HTTPS clients
-* [request](https://github.com/request/request)
-* [superagent](https://github.com/visionmedia/superagent)
-* more coming soon!
