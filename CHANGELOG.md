@@ -1,6 +1,16 @@
-<a name="2.0.1"></a>
-## [2.0.1](https://github.com/RisingStack/trace-nodejs/compare/v2.0.1...v2.0.1) (2016-02-03)
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/RisingStack/trace-nodejs/compare/v2.1.0...v2.1.0) (2016-02-07)
 
+
+
+
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/RisingStack/trace-nodejs/compare/v2.0.1...v2.1.0) (2016-02-07)
+
+
+### Features
+
+* **error-report:** add trace.errorReport ([d0f4c3d](https://github.com/RisingStack/trace-nodejs/commit/d0f4c3d))
 
 
 
