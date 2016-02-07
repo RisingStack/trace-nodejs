@@ -4,3 +4,4 @@ test
 example
 .idea
 *.spec.js
+*.spec.e2e.js
