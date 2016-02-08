@@ -1,22 +1,13 @@
-var express = require('express')
-require('@risingstack/trace')
+// index.js
+var trace = require('@risingstack/trace')
 
-var app = express()
+var app = require('express')()
 
 app.get('/', function (req, res) {
-  res.json({
-    data: [
-      1,
-      2,
-      3
-    ]
+  trace.report('user-agent', {
+    userAgent: req.headers['user-agent']
   })
+  res.send('hello')
 })
 
-app.listen(3000, function (err) {
-  if (err) {
-    throw err
-  }
-
-  console.log('app is listening')
-})
+app.listen(3000)
