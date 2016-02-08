@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "TRACE_CONFIG_PATH=$(pwd)/config/trace.config.js node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "TRACE_CONFIG_PATH=config/trace.config.js node app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@risingstack/trace": "^1.0.1",
+    "@risingstack/trace": "file:..",
+    "body-parser": "^1.14.2",
     "express": "^4.13.1"
   }
 }
