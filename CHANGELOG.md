@@ -1,6 +1,26 @@
-<a name="2.1.0"></a>
-# [2.1.0](https://github.com/RisingStack/trace-nodejs/compare/v2.1.0...v2.1.0) (2016-02-07)
+<a name="2.1.2"></a>
+## [2.1.2](https://github.com/RisingStack/trace-nodejs/compare/v2.1.2...v2.1.2) (2016-02-09)
 
+
+
+
+<a name="2.1.2"></a>
+## [2.1.2](https://github.com/RisingStack/trace-nodejs/compare/v2.1.1...v2.1.2) (2016-02-09)
+
+
+### Bug Fixes
+
+* **cls:** always check if binded arg is a function ([4f25b54](https://github.com/RisingStack/trace-nodejs/commit/4f25b54))
+
+
+
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/RisingStack/trace-nodejs/compare/v2.1.0...v2.1.1) (2016-02-07)
+
+
+### Bug Fixes
+
+* **npmignore:** adding *.spec.e2e.js ([d295d2a](https://github.com/RisingStack/trace-nodejs/commit/d295d2a))
 
 
 
