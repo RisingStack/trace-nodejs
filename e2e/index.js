@@ -44,6 +44,6 @@ test('Trace collector', function (t) {
         }
       }
     )],
-    function() { t.end() }
+    function () { t.end() }
   )
 })
