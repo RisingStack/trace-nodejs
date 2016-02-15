@@ -1,6 +1,32 @@
-<a name="2.1.2"></a>
-## [2.1.2](https://github.com/RisingStack/trace-nodejs/compare/v2.1.2...v2.1.2) (2016-02-09)
+<a name="2.1.4"></a>
+## [2.1.4](https://github.com/RisingStack/trace-nodejs/compare/v2.1.4...v2.1.4) (2016-02-15)
 
+
+
+
+<a name="2.1.4"></a>
+## [2.1.4](https://github.com/RisingStack/trace-nodejs/compare/v2.1.3...v2.1.4) (2016-02-15)
+
+
+### Bug Fixes
+
+* **event-loop:** get values from libuv ([dfd50db](https://github.com/RisingStack/trace-nodejs/commit/dfd50db))
+* **http:** worker requests ([00d4f6c](https://github.com/RisingStack/trace-nodejs/commit/00d4f6c))
+* **http-metrics:** adding median and 95th ([a22c584](https://github.com/RisingStack/trace-nodejs/commit/a22c584))
+
+### Features
+
+* **metrics:** adding more detailed metrics ([30925b0](https://github.com/RisingStack/trace-nodejs/commit/30925b0))
+
+
+
+<a name="2.1.3"></a>
+## [2.1.3](https://github.com/RisingStack/trace-nodejs/compare/v2.1.2...v2.1.3) (2016-02-10)
+
+
+### Bug Fixes
+
+* **httpTransaction:** on http error type is \err\ ([52451f0](https://github.com/RisingStack/trace-nodejs/commit/52451f0))
 
 
 
