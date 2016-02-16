@@ -103,3 +103,16 @@ var transactionId = trace.getTransactionId();
 * iojs v2@latest
 * iojs v3@latest
 * node v4@latest
+
+## Migrating from 1.x to 2.x
+
+The `trace.config.js` file changed, and has the following format:
+
+```
+module.exports = {
+  serviceName: 'your-awesome-app',
+  apiKey: 'KEEP_ME_SECRET'
+}
+```
+
+Also, from `2.x` you can specify these values using only environment variables: `TRACE_SERVICE_NAME` and `TRACE_API_KEY`.
