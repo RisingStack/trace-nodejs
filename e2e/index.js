@@ -16,7 +16,8 @@ test('Trace collector', function (t) {
       {
         env: {
           TRACE_API_KEY: TRACE_API_KEY_TEST,
-          TRACE_SERVICE_NAME: TRACE_SERVICE_NAME_TEST
+          TRACE_SERVICE_NAME: TRACE_SERVICE_NAME_TEST,
+          TRACE_COLLECT_INTERVAL: 100
         }
       }
     ),

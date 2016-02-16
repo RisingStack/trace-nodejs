@@ -26,7 +26,7 @@
     "test-unit": "NODE_ENV=test mocha $(find ./lib -name \"*.spec.js\" -not -path \"./node_modules/*\")",
     "test-cls": "NODE_ENV=test mocha $(find ./lib -name \"*.spec.e2e.js\" -not -path \"./node_modules/*\")",
     "test-e2e": "NODE_ENV=test node ./e2e | tap-spec",
-    "cover": "istanbul cover _mocha $(find . -name \"*.spec.js\" -not -path \"./node_modules/*\"); open coverage/lcov-report/index.html",
+    "cover": "istanbul cover _mocha $(find ./lib -name \"*.spec.js\" -not -path \"./node_modules/*\"); open coverage/lcov-report/index.html",
     "changelog": "conventional-changelog -p angular -o CHANGELOG.md -r 500"
   },
   "repository": {
@@ -66,6 +66,7 @@
     "ioredis": "1.14.0",
     "istanbul": "0.4.2",
     "knex": "0.9.0",
+    "koa": "1.1.2",
     "lodash": "4.2.1",
     "memcached": "2.2.1",
     "mocha": "2.4.5",
