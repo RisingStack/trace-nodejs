@@ -1,6 +1,16 @@
-<a name="2.1.4"></a>
-## [2.1.4](https://github.com/RisingStack/trace-nodejs/compare/v2.1.4...v2.1.4) (2016-02-15)
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/RisingStack/trace-nodejs/compare/v2.2.0...v2.2.0) (2016-02-16)
 
+
+
+
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/RisingStack/trace-nodejs/compare/v2.1.4...v2.2.0) (2016-02-16)
+
+
+### Features
+
+* **config:** expose ignoreHeaders option to commandline ([0b3d21e](https://github.com/RisingStack/trace-nodejs/commit/0b3d21e))
 
 
 
