@@ -1,3 +1,7 @@
+### Deprecated
+
+#### Newer releases can be found here: https://github.com/RisingStack/trace-nodejs/releases
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/RisingStack/trace-nodejs/compare/v2.2.0...v2.2.0) (2016-02-16)
 
@@ -600,7 +604,3 @@
 
 <a name="1.1.0"></a>
 # 1.1.0 (2015-04-17)
-
-
-
-
