@@ -49,6 +49,7 @@
     "event-loop-stats": "1.0.0",
     "gc-stats": "1.0.0",
     "lodash.defaults": "4.0.1",
+    "lodash.isnumber": "3.0.3",
     "microtime": "2.0.0",
     "node-uuid": "1.4.7",
     "qs": "4.0.0",
