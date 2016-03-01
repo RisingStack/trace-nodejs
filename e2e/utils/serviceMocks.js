@@ -16,7 +16,7 @@ function mockServiceKeyRequest (url, apiKey, callback) {
       'Authorization': 'Bearer ' + apiKey
     }
   })
-    .post('/service')
+    .post('/v2/service')
     .reply(callback)
 }
 
@@ -59,7 +59,7 @@ function mockHttpTransactionRequest (url, apiKey, callback) {
       'Authorization': 'Bearer ' + apiKey
     }
   })
-    .post('/service/sample')
+    .post('/v2/service/sample')
     .reply(callback || 200)
 }
 
