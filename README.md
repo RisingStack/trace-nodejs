@@ -61,6 +61,8 @@ module.exports = {
 
 *Note: Custom reporters are no longer supported in trace 2.x*
 
+*Note: If you are running your app with NODE_ENV=test, Trace won't start*
+
 ## API
 
 ### trace.report(String, [Object])
