@@ -43,15 +43,17 @@
     "@risingstack/continuation-local-storage": "1.0.2",
     "bl": "1.1.2",
     "debug": "2.2.0",
-    "event-loop-stats": "1.0.0",
-    "gc-stats": "1.0.0",
     "lodash.assign": "4.0.6",
     "lodash.defaults": "4.0.1",
     "lodash.isnumber": "3.0.3",
-    "microtime": "2.0.0",
     "node-uuid": "1.4.7",
     "qs": "6.1.0",
     "sync-request": "3.0.0"
+  },
+  "optionalDependencies": {
+    "microtime": "2.0.0",
+    "event-loop-stats": "1.0.0",
+    "gc-stats": "1.0.0"
   },
   "devDependencies": {
     "amqplib": "0.4.1",
