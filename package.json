@@ -26,6 +26,7 @@
     "test": "npm run test-unit && npm run test-e2e",
     "test-unit": "mocha $(find ./lib -name \"*.spec.js\" -not -path \"./node_modules/*\")",
     "test-cls": "mocha $(find ./lib -name \"*.spec.cls.js\" -not -path \"./node_modules/*\")",
+    "test-module": "NODE_ENV=test mocha $(find ./lib -name \"*.spec.e2e.js\" -not -path \"./node_modules/*\")",
     "test-e2e": "node ./e2e | tap-spec",
     "cover": "istanbul cover _mocha $(find ./lib -name \"*.spec.js\" -not -path \"./node_modules/*\"); open coverage/lcov-report/index.html",
     "changelog": "conventional-changelog -p angular -o CHANGELOG.md -r 500",
@@ -48,6 +49,7 @@
     "lodash.isnumber": "3.0.3",
     "node-uuid": "1.4.7",
     "qs": "6.1.0",
+    "semver": "5.1.0",
     "sync-request": "3.0.0"
   },
   "optionalDependencies": {
@@ -82,6 +84,7 @@
     "mysql": "2.10.2",
     "nock": "7.2.2",
     "pg": "4.5.3",
+    "pg-native": "1.10.0",
     "pre-commit": "1.1.2",
     "redis": "2.4.2",
     "semantic-release": "4.3.5",
