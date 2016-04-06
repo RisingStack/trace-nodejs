@@ -23,14 +23,16 @@ test('should report apm metrics', function (t) {
     function (uri, requestBody) {
       t.pass('collector sent rpm metrics')
     })
-  serviceMocks.mockEdgeMetricsRequest(
+  serviceMocks.mockExternalEdgeMetricsRequest(
     TRACE_COLLECTOR_API_URL,
     TRACE_API_KEY_TEST,
-    TRACE_SERVICE_KEY_TEST,
-    1,
-    function (uri, requestBody) {
-      t.pass('collector sent edge metrics')
-    })
+    42,
+    Number.MAX_SAFE_INTEGER)
+  serviceMocks.mockIncomingEdgeMetricsRequest(
+    TRACE_COLLECTOR_API_URL,
+    TRACE_API_KEY_TEST,
+    42,
+    Number.MAX_SAFE_INTEGER)
   serviceMocks.mockApmMetricsRequest(
     TRACE_COLLECTOR_API_URL,
     TRACE_API_KEY_TEST,

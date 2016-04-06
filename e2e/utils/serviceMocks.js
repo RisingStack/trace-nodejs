@@ -42,13 +42,24 @@ function mockRpmMetricsRequest (url, apiKey, serviceKey, maxTimes, callback) {
     .reply(callback || 200)
 }
 
-function mockEdgeMetricsRequest (url, apiKey, serviceKey, maxTimes, callback) {
+function mockExternalEdgeMetricsRequest (url, apiKey, serviceKey, maxTimes, callback) {
   return nock(url, {
     reqheaders: {
       'Authorization': 'Bearer ' + apiKey
     }
   })
-    .post('/service/42/edge-metrics')
+    .post('/service/42/edge-external')
+    .times(maxTimes)
+    .reply(callback || 200)
+}
+
+function mockIncomingEdgeMetricsRequest (url, apiKey, serviceKey, maxTimes, callback) {
+  return nock(url, {
+    reqheaders: {
+      'Authorization': 'Bearer ' + apiKey
+    }
+  })
+    .post('/service/42/edge-incoming')
     .times(maxTimes)
     .reply(callback || 200)
 }
@@ -67,6 +78,7 @@ module.exports = {
   mockServiceKeyRequest: mockServiceKeyRequest,
   mockApmMetricsRequest: mockApmMetricsRequest,
   mockRpmMetricsRequest: mockRpmMetricsRequest,
-  mockEdgeMetricsRequest: mockEdgeMetricsRequest,
+  mockExternalEdgeMetricsRequest: mockExternalEdgeMetricsRequest,
+  mockIncomingEdgeMetricsRequest: mockIncomingEdgeMetricsRequest,
   mockHttpTransactionRequest: mockHttpTransactionRequest
 }
