@@ -50,6 +50,7 @@
     "lodash.isnumber": "3.0.3",
     "node-uuid": "1.4.7",
     "qs": "6.1.0",
+    "semver": "5.1.0",
     "sync-request": "3.0.0"
   },
   "optionalDependencies": {
@@ -85,6 +86,7 @@
     "mysql": "2.10.2",
     "nock": "7.2.2",
     "pg": "4.5.1",
+    "pg-native": "1.10.0",
     "pre-commit": "1.1.2",
     "redis": "2.4.2",
     "semantic-release": "4.3.5",
