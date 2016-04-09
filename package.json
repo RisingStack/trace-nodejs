@@ -66,7 +66,6 @@
     "bookshelf": "0.9.2",
     "cassandra-driver": "3.0.1",
     "chai": "3.5.0",
-    "chai-subset": "1.2.1",
     "conventional-changelog": "1.1.0",
     "eslint": "2.2.0",
     "eslint-config-standard": "5.1.0",
