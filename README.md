@@ -98,6 +98,56 @@ current logging systems.
 var transactionId = trace.getTransactionId();
 ```
 
+#### For custom transport layers
+
+##### trace.clientSend(data)
+
+This method is used to initiate a `client-send` event.
+
+Example:
+
+```javascript
+var tracePayload = trace.clientSend({
+  endpoint: '/users',
+  method: 'find'
+})
+
+transport.send(trace.extendPayload(myData, tracePayload))
+```
+
+##### trace.clientReceive(data)
+
+This method is used to initiate a `client-receive` event.
+
+Example:
+
+```javascript
+var tracePayload = trace.clientReceive(data.__trace)
+```
+
+##### trace.serverSend(data)
+
+This method is used to initiate a `server-send` event.
+
+Example:
+
+```javascript
+var = trace.serverSend(tracePayload)
+transport.reply(trace.extendPayload(myData, tracePayload))
+```
+
+##### trace.serverReceive(data)
+
+This method is used to initiate a `server-receive` event.
+
+Example:
+
+```javascript
+transport.on('data', function (data) {
+  var tracePayload = trace.serverReceive(data.__trace)
+})
+```
+
 ## Compatibility with Node versions
 
 * node v0.10@latest
