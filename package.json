@@ -22,7 +22,6 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "preinstall": "npm install node-gyp-install@2.2.0 && node-gyp-install",
     "lint": "eslint lib example e2e",
     "test": "npm run test-unit && npm run test-e2e",
     "test-unit": "mocha $(find ./lib -name \"*.spec.js\" -not -path \"./node_modules/*\")",
@@ -83,7 +82,6 @@
     "mongoose": "4.4.5",
     "mysql": "2.10.2",
     "nock": "7.2.2",
-    "node-gyp-install": "2.2.0",
     "pg": "4.5.1",
     "pre-commit": "1.1.2",
     "redis": "2.4.2",
