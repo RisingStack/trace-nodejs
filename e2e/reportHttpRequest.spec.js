@@ -63,6 +63,7 @@ test('should report http requests', function (t) {
     // http client request
     request
       .get('127.0.0.1:' + WEB_SERVER_PORT + '/test')
+      .set('x-must-collect', '1')
       .end(function (err) {
         t.error(err, 'client sends request')
       })
