@@ -102,9 +102,8 @@ var transactionId = trace.getTransactionId();
 
 * node v0.10@latest
 * node v0.12@latest
-* iojs v2@latest
-* iojs v3@latest
 * node v4@latest
+* node v5@latest
 
 ## Migrating from 1.x to 2.x
 
