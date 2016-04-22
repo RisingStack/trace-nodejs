@@ -26,6 +26,7 @@
     "test": "npm run test-unit && npm run test-e2e",
     "test-unit": "mocha $(find ./lib -name \"*.spec.js\" -not -path \"./node_modules/*\")",
     "test-cls": "mocha $(find ./lib -name \"*.spec.cls.js\" -not -path \"./node_modules/*\")",
+    "test-module": "NODE_ENV=test mocha $(find ./lib -name \"*.spec.e2e.js\" -not -path \"./node_modules/*\")",
     "test-e2e": "node ./e2e | tap-spec",
     "cover": "istanbul cover _mocha $(find ./lib -name \"*.spec.js\" -not -path \"./node_modules/*\"); open coverage/lcov-report/index.html",
     "changelog": "conventional-changelog -p angular -o CHANGELOG.md -r 500",
