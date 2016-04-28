@@ -53,7 +53,10 @@ module.exports = {
   apiKey: 'KEEP_ME_SECRET',
   ignoreHeaders: {
     'user-agent': ['007']
-  }
+  },
+  ignorePaths: [
+    '/healthcheck'
+  ]
 }
 ```
 
