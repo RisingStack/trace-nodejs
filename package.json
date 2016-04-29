@@ -50,10 +50,10 @@
     "node-uuid": "1.4.7",
     "qs": "6.1.0",
     "semver": "5.1.0",
-    "sync-request": "3.0.0"
+    "sync-request": "3.0.1"
   },
   "optionalDependencies": {
-    "microtime": "2.0.0",
+    "microtime": "2.1.1",
     "event-loop-stats": "1.0.0",
     "gc-stats": "1.0.0"
   },
@@ -79,14 +79,14 @@
     "lodash": "4.11.1",
     "memcached": "2.2.1",
     "mocha": "2.4.5",
-    "mongodb": "2.1.16",
-    "mongoose": "4.4.13",
+    "mongodb": "2.1.18",
+    "mongoose": "4.4.14",
     "mysql": "2.10.2",
     "nock": "8.0.0",
-    "pg": "4.5.3",
+    "pg": "4.5.5",
     "pg-native": "1.10.0",
     "pre-commit": "1.1.2",
-    "redis": "2.6.0-1",
+    "redis": "2.6.0-2",
     "semantic-release": "4.3.5",
     "sinon": "1.17.3",
     "sinon-chai": "2.8.0",
