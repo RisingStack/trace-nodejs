@@ -1,6 +1,6 @@
 'use strict'
 
-var TRACE_API_KEY_TEST = 'api-key'
+var TRACE_API_KEY_TEST = 'headers.payload.signature'
 var TRACE_SERVICE_NAME_TEST = 'service-name'
 
 var childProcessTest = require('./utils/childProcessTest')
