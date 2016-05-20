@@ -10,5 +10,9 @@
    },
    ignorePaths: [
      '/healtcheck'
+   ],
+   ignoreStatusCodes: [
+     401,
+     403
    ]
  }

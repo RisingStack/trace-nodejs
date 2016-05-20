@@ -56,6 +56,10 @@ module.exports = {
   },
   ignorePaths: [
     '/healthcheck'
+  ],
+  ignoreStatusCodes: [
+    401,
+    404
   ]
 }
 ```
