@@ -63,6 +63,9 @@ module.exports = {
   ],
   ignoreOutgoingHosts: [
     'google.com'
+  ],
+  disableInstrumentations: [
+    'mongodb'
   ]
 }
 ```

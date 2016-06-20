@@ -47,6 +47,7 @@
     "lodash.defaults": "4.0.1",
     "lodash.flatmap": "4.3.0",
     "lodash.isnumber": "3.0.3",
+    "lodash.remove": "4.5.0",
     "node-uuid": "1.4.7",
     "qs": "6.2.0",
     "semver": "5.1.0",
