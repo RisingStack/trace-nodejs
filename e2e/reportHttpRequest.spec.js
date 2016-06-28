@@ -38,6 +38,11 @@ test('should report http requests', function (t) {
     TRACE_API_KEY_TEST,
     42,
     Number.MAX_SAFE_INTEGER)
+  serviceMocks.mockControlRequest(
+    TRACE_COLLECTOR_API_URL,
+    TRACE_API_KEY_TEST,
+    42,
+    Number.MAX_SAFE_INTEGER)
   serviceMocks.mockHttpTransactionRequest(
     TRACE_COLLECTOR_API_URL,
     TRACE_API_KEY_TEST,

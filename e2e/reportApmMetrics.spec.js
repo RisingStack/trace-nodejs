@@ -33,6 +33,11 @@ test('should report apm metrics', function (t) {
     TRACE_API_KEY_TEST,
     42,
     Number.MAX_SAFE_INTEGER)
+  serviceMocks.mockControlRequest(
+    TRACE_COLLECTOR_API_URL,
+    TRACE_API_KEY_TEST,
+    42,
+    Number.MAX_SAFE_INTEGER)
   serviceMocks.mockApmMetricsRequest(
     TRACE_COLLECTOR_API_URL,
     TRACE_API_KEY_TEST,
