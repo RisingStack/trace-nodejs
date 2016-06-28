@@ -52,7 +52,8 @@
     "node-uuid": "1.4.7",
     "qs": "6.2.0",
     "semver": "5.1.0",
-    "sync-request": "3.0.1"
+    "sync-request": "3.0.1",
+    "v8-profiler": "5.6.5"
   },
   "optionalDependencies": {
     "microtime": "2.1.1",
