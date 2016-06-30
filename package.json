@@ -30,7 +30,8 @@
     "test-e2e": "node ./e2e | tap-spec",
     "cover": "istanbul cover _mocha $(find ./lib -name \"*.spec.js\" -not -path \"./node_modules/*\"); open coverage/lcov-report/index.html",
     "changelog": "conventional-changelog -p angular -o CHANGELOG.md -r 500",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "install": "npm i v8-profiler --build-from-source || exit 0"
   },
   "repository": {
     "type": "git",
@@ -43,7 +44,6 @@
     "bl": "1.1.2",
     "continuation-local-storage": "3.1.7",
     "debug": "2.2.0",
-    "heapdump": "0.3.7",
     "lodash.assign": "4.0.9",
     "lodash.defaults": "4.0.1",
     "lodash.flatmap": "4.3.0",
@@ -57,6 +57,7 @@
   "optionalDependencies": {
     "microtime": "2.1.1",
     "event-loop-stats": "1.0.0",
+    "heapdump": "0.3.7",
     "gc-stats": "1.0.0",
     "v8-profiler": "5.6.5"
   },
