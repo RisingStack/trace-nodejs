@@ -57,7 +57,6 @@
   "optionalDependencies": {
     "microtime": "2.1.1",
     "event-loop-stats": "1.0.0",
-    "heapdump": "0.3.7",
     "gc-stats": "1.0.0",
     "v8-profiler": "5.6.5"
   },
