@@ -98,7 +98,7 @@ this method are not subject to sampling, so it will be collected all the time.
 trace.reportError('mysql_error', new Error('connection refused'));
 ```
 
-Throws an error if first parameter is not a String.
+Throws an error if first parameter is not a String or the second parameter is not an Error object.
 
 ### trace.getTransactionId()
 
