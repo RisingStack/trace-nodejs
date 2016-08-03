@@ -2,89 +2,82 @@
 
 var nock = require('nock')
 
-/**
- * mockServiceKeyRequest - creates an HTTP mock for the trace api call to the /service endpoint
- *
- * @param  {string} url        the url of the service
- * @param  {string} apiKey     the API key that should be sent along the authorization header.
- * @param  {function} callback a callback to be executed when the request arrived
- * @return {object}            the mock object
- */
-function mockServiceKeyRequest (url, apiKey, callback) {
-  return nock(url, {
+function mockServiceKeyRequest (opts) {
+  return nock(opts.url, {
     reqheaders: {
-      'Authorization': 'Bearer ' + apiKey
+      'Authorization': 'Bearer ' + opts.apiKey
     }
   })
     .post('/v2/service')
-    .reply(callback)
+    .reply(opts.callback)
 }
 
-function mockApmMetricsRequest (url, apiKey, serviceKey, maxTimes, callback) {
-  return nock(url, {
+function mockApmMetricsRequest (opts) {
+  return nock(opts.url, {
     reqheaders: {
-      'Authorization': 'Bearer ' + apiKey
+      'Authorization': 'Bearer ' + opts.apiKey
     }
   })
-    .post('/service/42/apm-metrics')
-    .times(maxTimes)
-    .reply(callback || 200)
+    .post('/service/' + opts.serviceKey + '/apm-metrics')
+    .times(opts.maxTimes || 1)
+    .reply(opts.callback || 200)
 }
 
-function mockRpmMetricsRequest (url, apiKey, serviceKey, maxTimes, callback) {
-  return nock(url, {
+function mockRpmMetricsRequest (opts) {
+  return nock(opts.url, {
     reqheaders: {
-      'Authorization': 'Bearer ' + apiKey
+      'Authorization': 'Bearer ' + opts.apiKey
     }
   })
-    .post('/service/42/rpm-metrics')
-    .times(maxTimes)
-    .reply(callback || 200)
+    .post('/service/' + opts.serviceKey + '/rpm-metrics')
+    .times(opts.maxTimes || 1)
+    .reply(opts.callback || 200)
 }
 
-function mockExternalEdgeMetricsRequest (url, apiKey, serviceKey, maxTimes, callback) {
-  return nock(url, {
+function mockExternalEdgeMetricsRequest (opts) {
+  return nock(opts.url, {
     reqheaders: {
-      'Authorization': 'Bearer ' + apiKey
+      'Authorization': 'Bearer ' + opts.apiKey
     }
   })
-    .post('/service/42/edge-external')
-    .times(maxTimes)
-    .reply(callback || 200)
+    .post('/service/' + opts.serviceKey + '/edge-external')
+    .times(opts.maxTimes || 1)
+    .reply(opts.callback || 200)
 }
 
-function mockIncomingEdgeMetricsRequest (url, apiKey, serviceKey, maxTimes, callback) {
-  return nock(url, {
+function mockIncomingEdgeMetricsRequest (opts) {
+  return nock(opts.url, {
     reqheaders: {
-      'Authorization': 'Bearer ' + apiKey
+      'Authorization': 'Bearer ' + opts.apiKey
     }
   })
-    .post('/service/42/edge-incoming')
-    .times(maxTimes)
-    .reply(callback || 200)
+    .post('/service/' + opts.serviceKey + '/edge-incoming')
+    .times(opts.maxTimes || 1)
+    .reply(opts.callback || 200)
 }
 
-function mockControlRequest (url, apiKey, serviceKey, maxTimes, callback) {
-  return nock(url, {
+function mockControlRequest (opts) {
+  return nock(opts.url, {
     reqheaders: {
-      'Authorization': 'Bearer ' + apiKey
+      'Authorization': 'Bearer ' + opts.apiKey
     }
   })
-    .post('/service/42/control')
-    .times(maxTimes)
-    .reply(callback || 200, {
+    .post('/service/' + opts.serviceKey + '/control')
+    .times(opts.maxTimes || 1)
+    .reply(opts.callback || 200, {
       commands: []
     })
 }
 
-function mockHttpTransactionRequest (url, apiKey, callback) {
-  return nock(url, {
+function mockTraceRequest (opts) {
+  return nock(opts.url, {
     reqheaders: {
-      'Authorization': 'Bearer ' + apiKey
+      'Authorization': 'Bearer ' + opts.apiKey
     }
   })
     .post('/v2/service/sample')
-    .reply(callback || 200)
+    .times(opts.maxTimes || 1)
+    .reply(opts.callback || 200)
 }
 
 module.exports = {
@@ -93,6 +86,6 @@ module.exports = {
   mockRpmMetricsRequest: mockRpmMetricsRequest,
   mockExternalEdgeMetricsRequest: mockExternalEdgeMetricsRequest,
   mockIncomingEdgeMetricsRequest: mockIncomingEdgeMetricsRequest,
-  mockHttpTransactionRequest: mockHttpTransactionRequest,
+  mockTraceRequest: mockTraceRequest,
   mockControlRequest: mockControlRequest
 }
