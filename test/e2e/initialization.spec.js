@@ -70,6 +70,7 @@ test('should get service key',
         t.equal(requestBody.version, '2', 'schema version ok')
         t.equal(requestBody.collector.version, pkg.version, 'collector version ok')
         t.end()
+        process.exit(0)
       }
     })
     require('@risingstack/trace')

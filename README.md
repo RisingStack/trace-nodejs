@@ -109,12 +109,34 @@ current logging systems.
 var transactionId = trace.getTransactionId();
 ```
 
+### trace.recordMetric(name, value)
+
+This method can be used to record custom metrics values.
+
+```javascript
+trace.recordMetric('user/imageUpload', 6)
+```
+
+The name must have the following format: `<Category>/<Name>`
+The value must be a number.
+
+### trace.incrementMetric(name, [amount])
+
+This method can be used to record increment-only type of metrics.
+
+```javascript
+trace.incrementMetric('user/signup')
+```
+
+The name must have the following format: `<Category>/<Name>`
+
 ## Compatibility with Node versions
 
 * node v0.10@latest
 * node v0.12@latest
 * node v4@latest
 * node v5@latest
+* node v6@latest
 
 ## Migrating from 1.x to 2.x
 
