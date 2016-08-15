@@ -1,9 +1,9 @@
 'use strict'
 
-var wrapper = require('./mysql')
+var wrapper = require('@risingstack/trace/lib/instrumentations/mysql')
 var expect = require('chai').expect
-var Shimmer = require('../utils/shimmer')
-var utils = require('./utils')
+var Shimmer = require('@risingstack/trace/lib/utils/shimmer')
+var utils = require('@risingstack/trace/lib/instrumentations/utils')
 
 describe('The mysql wrapper', function () {
   var CONNECTION_OPERATIONS = [

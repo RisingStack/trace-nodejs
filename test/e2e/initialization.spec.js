@@ -5,9 +5,8 @@ require('string.prototype.startswith')
 var sinon = require('sinon')
 var test = require('./utils/test')
 var serviceMocks = require('./utils/serviceMocks')
-var pkg = require('../package.json')
+var pkg = require('@risingstack/trace/package.json')
 
-var TRACE_MODULE = '..'
 var TRACE_COLLECTOR_API_URL = 'https://trace-collector-api.risingstack.com'
 var TRACE_API_KEY = 'headers.payload.signature'
 var TRACE_SERVICE_NAME = 'service-name'
@@ -25,7 +24,7 @@ test('should print error on missing service name',
     t.plan(3)
     var sandbox = sinon.sandbox.create()
     var consoleErrorStub = sandbox.stub(console, 'error')
-    require(TRACE_MODULE)
+    require('@risingstack/trace')
     t.pass('does not crash')
     t.ok(consoleErrorStub.called, 'console.error has been called')
     t.ok(consoleErrorStub.args[0].join(' ').startsWith('error: [trace] Missing service name'), 'message indicates missing service name')
@@ -44,7 +43,7 @@ test('should print error on missing API key',
     t.plan(3)
     var sandbox = sinon.sandbox.create()
     var consoleErrorStub = sandbox.stub(console, 'error')
-    require(TRACE_MODULE)
+    require('@risingstack/trace')
     t.pass('does not crash')
     t.ok(consoleErrorStub.called, 'console.error has been called')
     t.ok(consoleErrorStub.args[0].join(' ').startsWith('error: [trace] Missing API key'), 'message indicates missing API key')
@@ -73,5 +72,5 @@ test('should get service key',
         t.end()
       }
     })
-    require(TRACE_MODULE)
+    require('@risingstack/trace')
   })

@@ -5,7 +5,6 @@ var request = require('superagent')
 var test = require('./utils/test')
 var serviceMocks = require('./utils/serviceMocks')
 
-var TRACE_MODULE = '..'
 var TRACE_COLLECTOR_API_URL = 'https://trace-collector-api.risingstack.com'
 var TRACE_API_KEY = 'headers.payload.signature'
 var TRACE_SERVICE_NAME = 'service-name'
@@ -52,7 +51,7 @@ apiCalls.forEach(function (name) {
           process.exit()
         }
       })
-      require(TRACE_MODULE)
+      require('@risingstack/trace')
       t.pass('Trace loaded into server')
       // http server
       var app = express()

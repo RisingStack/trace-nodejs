@@ -1,0 +1,35 @@
+{
+  "private": "true",
+  "name": "@risingstack/trace-tests-instrumentation",
+  "scripts": {
+    "test-cls": "mocha $(find . -name \"*.spec.cls.js\" -not -path \"./node_modules/*\")",
+    "test-e2e": "NODE_ENV=test mocha $(find . -name \"*.spec.js\" -not -path \"./node_modules/*\")"
+  },
+  "devDependencies": {
+    "@risingstack/trace": "../..",
+    "amqplib": "0.4.1",
+    "bluebird": "3.3.5",
+    "body-parser": "1.15.1",
+    "bookshelf": "0.9.5",
+    "cassandra-driver": "3.0.2",
+    "chai": "3.5.0",
+    "freshy": "^1.0.2",
+    "ioredis": "1.15.1",
+    "knex": "0.11.3",
+    "koa": "1.2.0",
+    "lodash.defaultsdeep": "^4.5.1",
+    "memcached": "2.2.1",
+    "mocha": "3.0.0",
+    "mongodb": "2.1.18",
+    "mongoose": "4.4.17",
+    "mysql": "2.10.2",
+    "nock": "8.0.0",
+    "pg": "4.5.5",
+    "pg-native": "1.10.0",
+    "redis": "2.5.3",
+    "sinon": "1.17.4",
+    "sinon-chai": "2.8.0",
+    "superagent": "1.8.3",
+    "supertest": "1.2.0"
+  }
+}

@@ -1,7 +1,9 @@
 coverage
 .travis.yml
+.circle.yml
 test
 example
+scripts
 .idea
 *.spec.js
 *.spec.e2e.js

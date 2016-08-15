@@ -1,9 +1,9 @@
 'use strict'
 
 var expect = require('chai').expect
-var wrapper = require('./pg')
-var Shimmer = require('../utils/shimmer')
-var utils = require('./utils')
+var wrapper = require('@risingstack/trace/lib/instrumentations/pg')
+var Shimmer = require('@risingstack/trace/lib/utils/shimmer')
+var utils = require('@risingstack/trace/lib/instrumentations/utils')
 
 describe('pg module wrapper', function () {
   beforeEach(function () {

@@ -1,0 +1,19 @@
+machine:
+  node:
+    version: 4.4.4
+  environment:
+    NODE_VERSIONS: 0.10 0.12 4 5 6
+    PROJECT_ROOT: $HOME/$CIRCLE_PROJECT_REPONAME
+    SILENT: 1
+
+dependencies:
+  pre:
+    - echo $PWD
+    - ./scripts/node-matrix.sh ./scripts/install-node.sh
+  override:
+    - exit 0
+
+test:
+  override:
+    - ./scripts/node-matrix.sh ./scripts/prepare.sh ./scripts/test-unit.sh ./scripts/test-e2e.sh:
+        parallel: true
