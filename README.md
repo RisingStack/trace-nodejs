@@ -132,7 +132,7 @@ The name must have the following format: `<Category>/<Name>`
 
 ### trace.stop()
 
-This method gracefully shutdown trace.
+This method gracefully stops trace.
 
 ```javascript
 trace.stop()
