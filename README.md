@@ -130,6 +130,17 @@ trace.incrementMetric('user/signup')
 
 The name must have the following format: `<Category>/<Name>`
 
+### trace.stop()
+
+This method gracefully shutdown trace.
+
+```javascript
+trace.stop()
+```
+
+Note: There is no way to restart trace after calling this method. You should end your process after calling this
+method.
+
 ## Compatibility with Node versions
 
 * node v0.10@latest
