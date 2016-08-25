@@ -66,7 +66,8 @@ module.exports = {
   ],
   disableInstrumentations: [
     'mongodb'
-  ]
+  ],
+  proxy: 'http://168.63.76.32:3128'
 }
 ```
 
