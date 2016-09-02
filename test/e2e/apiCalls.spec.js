@@ -4,6 +4,7 @@ var express = require('express')
 var request = require('superagent')
 var test = require('./utils/test')
 var serviceMocks = require('./utils/serviceMocks')
+var zlib = require('zlib')
 
 var TRACE_COLLECTOR_API_URL = 'https://trace-collector-api.risingstack.com'
 var TRACE_API_KEY = 'headers.payload.signature'
@@ -28,8 +29,8 @@ var apiCalls = [
   'RpmMetrics',
   'ApmMetrics',
   'ExternalEdgeMetrics',
-  'IncomingEdgeMetrics',
-  'Trace'
+  'IncomingEdgeMetrics'
+  // 'Trace'
 ]
 
 apiCalls.forEach(function (name) {
@@ -50,10 +51,25 @@ apiCalls.forEach(function (name) {
         apiKey: TRACE_API_KEY,
         serviceKey: TEST_TRACE_SERVICE_KEY,
         callback: function (uri, requestBody) {
+          function end () {
+            t.end()
+            process.exit()
+          }
           t.pass('collector sends ' + name)
-          t.ok(typeof requestBody === 'object', 'requestBody is object')
-          t.end()
-          process.exit()
+          if (typeof requestBody === 'object') {
+            t.pass('requestBody is valid JSON')
+            end()
+          } else {
+            var buffer = new Buffer(requestBody, 'hex')
+            zlib.gunzip(buffer, function (err, result) {
+              if (err) {
+                t.fail('Error uncompressing')
+              }
+              JSON.parse(result.toString())
+              t.pass('uncompressed string is valid JSON')
+              end()
+            })
+          }
         }
       })
       require('@risingstack/trace')
