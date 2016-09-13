@@ -12,6 +12,7 @@ var TRACE_SERVICE_NAME = 'service-name'
 var TEST_TRACE_SERVICE_KEY = 42
 var TEST_TIMEOUT = 1000
 var TEST_WEB_SERVER_PORT = process.env.TEST_WEBSERVER_PORT || 44332
+var TEST_MAX_CALLS = 1
 
 var cpOpts = {
   env: {
@@ -39,6 +40,7 @@ apiCalls.forEach(function (name) {
       isolate: 'child-process',
       childProcessOpts: cpOpts
     }, function (t) {
+      var timesCalled = 0
       serviceMocks.mockServiceKeyRequest({
         url: TRACE_COLLECTOR_API_URL,
         apiKey: TRACE_API_KEY,
@@ -51,14 +53,18 @@ apiCalls.forEach(function (name) {
         apiKey: TRACE_API_KEY,
         serviceKey: TEST_TRACE_SERVICE_KEY,
         callback: function (uri, requestBody) {
-          function end () {
-            t.end()
-            process.exit()
+          function ok () {
+            if (++timesCalled < TEST_MAX_CALLS) {
+              t.pass('Successfully called ' + timesCalled + ' times.')
+            } else {
+              t.end()
+              process.exit()
+            }
           }
           t.pass('collector sends ' + name)
           if (typeof requestBody === 'object') {
             t.pass('requestBody is valid JSON')
-            end()
+            ok()
           } else {
             var buffer = new Buffer(requestBody, 'hex')
             zlib.gunzip(buffer, function (err, result) {
@@ -67,7 +73,7 @@ apiCalls.forEach(function (name) {
               }
               JSON.parse(result.toString())
               t.pass('uncompressed string is valid JSON')
-              end()
+              ok()
             })
           }
         }
