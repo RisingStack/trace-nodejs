@@ -22,33 +22,30 @@ var env = {
   TRACE_COLLECTOR_API_URL: 'http://127.0.0.1:' + TEST_WEB_SERVER_PORT
 }
 
-test('should report crash', function (t) {
-  if (semver.satisfies(process.version, '>= 6')) {
-    t.plan(2)
-    var app = express()
-    app.use(bodyParser.json())
-    app.post('/transaction-events', function (req, res) {
-      var event = req.body.e.find(function (e) {
-        return e.t === 'err' && e.d.t === 'system-error'
-      })
-      t.ok(event != null, 'Error event exists')
-      t.end()
-      process.exit(0)
+test('should report crash', {
+  skip: !semver.satisfies(process.version, '>= 6')
+}, function (t) {
+  t.plan(2)
+  var app = express()
+  app.use(bodyParser.json())
+  app.post('/transaction-events', function (req, res) {
+    var event = req.body.e.find(function (e) {
+      return e.t === 'err' && e.d.t === 'system-error'
     })
-    app.listen(TEST_WEB_SERVER_PORT, function (err) {
-      t.error(err, 'server starts listening at ' + TEST_WEB_SERVER_PORT)
-
-      spawnSync('node', [path.join(__dirname, 'testee.js')], {
-
-        env: defaultsDeep({}, env, process.env)
-      })
-      setTimeout(function () {
-        t.fail('test timed out without completing')
-        process.exit(1)
-      }, TEST_TIMEOUT)
-    })
-  } else {
-    t.pass('Test does not apply for this version')
+    t.ok(event != null, 'Error event exists')
     t.end()
-  }
+    process.exit(0)
+  })
+  app.listen(TEST_WEB_SERVER_PORT, function (err) {
+    t.error(err, 'server starts listening at ' + TEST_WEB_SERVER_PORT)
+
+    spawnSync('node', [path.join(__dirname, 'testee.js')], {
+
+      env: defaultsDeep({}, env, process.env)
+    })
+    setTimeout(function () {
+      t.fail('test timed out without completing')
+      process.exit(1)
+    }, TEST_TIMEOUT)
+  })
 })
