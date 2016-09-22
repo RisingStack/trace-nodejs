@@ -30,13 +30,17 @@ var apiCalls = [
   'RpmMetrics',
   'ApmMetrics',
   'ExternalEdgeMetrics',
-  'IncomingEdgeMetrics'
-  // 'Trace'
+  'IncomingEdgeMetrics',
+  'Trace'
 ]
 
 apiCalls.forEach(function (name) {
   test('should report ' + name,
     {
+      // FIXME: I patched nock, so it can gunzip requests on appropriate
+      // content-encoding headers, however it uses the sync API due to
+      // design limitations in nock.
+      skip: name == 'Trace' && !zlib.gunzipSync,
       isolate: 'child-process',
       childProcessOpts: cpOpts
     }, function (t) {
