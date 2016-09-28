@@ -49,7 +49,7 @@ describe('pg module wrapper', function () {
           qryArguments,
           fakeAgent,
           {
-            host: 'localhost',
+            host: 'localhost:5432',
             method: 'SELECT',
             protocol: 'pg',
             url: 'postgres'
@@ -89,7 +89,7 @@ describe('pg module wrapper', function () {
           qryArguments,
           fakeAgent,
           {
-            host: 'localhost',
+            host: 'localhost:5432',
             method: 'SELECT',
             protocol: 'pg',
             url: 'postgres'
