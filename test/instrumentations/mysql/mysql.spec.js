@@ -122,4 +122,50 @@ describe('The mysql wrapper', function () {
 
     expect(shimmerWrapStub).to.have.been.called
   })
+
+  it('should not leak credentials', function (done) {
+    var sandbox = this.sandbox
+    var fakeWrapQuery = sandbox.stub(utils, 'wrapQuery')
+    var fakeAgent = { clearly: 'a mock' }
+
+    var mysql = require('mysql')
+
+    wrapper(mysql, fakeAgent)
+
+    // This is tricky. We have to stub exactly after wrapping, and before
+    // createConnection to catch the wrapping of the query operation
+    var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, path, name, cb) {
+      expect(name).to.eql(CONNECTION_OPERATIONS)
+      nodule.connect(function (err) {
+        if (err) {
+          console.error('could not connect to mysql: install mysql or check \'mysql -uroot\' in console', err)
+          expect(err).to.not.exist
+          done()
+        }
+        var queryStr = 'SELECT 1 + 1 AS solution'
+        var queryArguments = [queryStr]
+        cb(nodule.query, 'query').apply(nodule, queryArguments)
+        expect(fakeWrapQuery).to.have.been.calledWith(
+          nodule.query,
+          queryArguments,
+          fakeAgent,
+          {
+            host: 'localhost',
+            method: 'SELECT',
+            protocol: 'mysql',
+            url: 'mysql://password_test@localhost:3306/information_schema'
+          })
+        done()
+      })
+    })
+
+    mysql.createConnection({
+      host: process.env.MYSQL_HOST || 'localhost', //
+      user: process.env.MYSQL_USER || 'password_test', // these should be
+      password: process.env.MYSQL_PASSWORD || 'password', // default install settings
+      database: process.env.MYSQL_DATABASE || 'information_schema'
+    })
+
+    expect(shimmerWrapStub).to.have.been.called
+  })
 })
