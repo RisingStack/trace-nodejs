@@ -1,13 +1,13 @@
 'use strict'
 
 var expect = require('chai').expect
-var wrapper = require('@risingstack/trace/lib/instrumentations/pg')
+var wrapper = require('@risingstack/trace/lib/instrumentations/pg').instrumentations[0].post
 var Shimmer = require('@risingstack/trace/lib/utils/shimmer')
 var utils = require('@risingstack/trace/lib/instrumentations/utils')
 
 describe('pg module wrapper', function () {
   beforeEach(function () {
-    Shimmer.unwrapAll()
+    delete require.cache[require.resolve('pg')]
   })
   it('should wrap pg.Client.query', function () {
     var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap')
@@ -19,7 +19,6 @@ describe('pg module wrapper', function () {
 
     expect(shimmerWrapStub).to.have.been.calledWith(
       pg.Client.prototype,
-      'pg.Client.prototype',
       'query'
     )
   })
@@ -40,7 +39,7 @@ describe('pg module wrapper', function () {
         throw err
       }
 
-      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, path, name, cb) {
+      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
         expect(cb).to.be.a('function')
         var qryArguments = [qryString]
         cb(client.query).apply(client, qryArguments)
@@ -80,7 +79,7 @@ describe('pg module wrapper', function () {
         throw err
       }
 
-      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, path, name, cb) {
+      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
         expect(cb).to.be.a('function')
         var qryArguments = [qryString]
         cb(client.query).apply(client, qryArguments)

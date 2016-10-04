@@ -8,9 +8,9 @@ var Shimmer = require('@risingstack/trace/lib/utils/shimmer')
 var instrumentedCommands = require('@risingstack/trace/lib/instrumentations/utils').redisTools.instrumentedCommands
 
 describe('The redis wrapper module', function () {
-  beforeEach(function () {
-    Shimmer.unwrapAll()
-  })
+  // beforeEach(function () {
+  //   delete require.cache[require.resolve('redis')]
+  // })
   it('should call Shimmer.wrap with expected arguments', function () {
     var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap')
 
@@ -27,13 +27,11 @@ describe('The redis wrapper module', function () {
 
     expect(shimmerWrapStub).to.have.been.calledWith(
       redis.RedisClient.prototype,
-      'redis.RedisClient.prototype',
       _instrumentedCommands.concat(['multi'])
     )
 
     expect(shimmerWrapStub).to.have.been.calledWith(
       redis.Multi.prototype,
-      'redis.Multi.prototype',
       _instrumentedCommands
     )
   })
@@ -44,8 +42,8 @@ describe('The redis wrapper module', function () {
 
     var redis = require('redis')
 
-    var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap', function (nodule, path, name, cb) {
-      if (path === 'redis.RedisClient.prototype') {
+    var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+      if (nodule === redis.RedisClient.prototype) {
         expect(cb).to.be.a('function')
         var redisInstance = redis.createClient()
         var commandArguments = ['mySortedSet', 42]
@@ -77,8 +75,8 @@ describe('The redis wrapper module', function () {
 
     var redis = require('redis')
 
-    var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, path, name, cb) {
-      if (path === 'redis.RedisClient.prototype') {
+    var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+      if (nodule === redis.RedisClient.prototype) {
         expect(cb).to.be.a('function')
         var redisInstance = redis.createClient()
         var wrappedMulti = cb(redisInstance.multi, 'multi').call(redisInstance)
@@ -101,8 +99,8 @@ describe('The redis wrapper module', function () {
 
     var redis = require('redis')
 
-    var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, path, name, cb) {
-      if (path === 'redis.RedisClient.prototype') {
+    var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+      if (nodule === redis.RedisClient.prototype) {
         expect(cb).to.be.a('function')
         var redisInstance = redis.createClient()
         var originalExec = redisInstance.multi().exec // not elegant but works
@@ -135,8 +133,8 @@ describe('The redis wrapper module', function () {
 
     var redis = require('redis')
 
-    var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap', function (nodule, path, name, cb) {
-      if (path === 'redis.Multi.prototype') {
+    var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+      if (nodule === redis.Multi.prototype) {
         var redisInstance = redis.createClient()
         var multiInstance = redisInstance.multi()
         multiInstance.__trace = []

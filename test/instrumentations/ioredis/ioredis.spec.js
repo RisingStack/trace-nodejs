@@ -9,7 +9,7 @@ var instrumentedCommands = utils.redisTools.instrumentedCommands
 
 describe('ioredis module wrapper', function () {
   beforeEach(function () {
-    Shimmer.unwrapAll()
+    delete require.cache[require.resolve('ioredis')]
   })
 
   it('should call Shimmer.wrap with expected arguments', function () {
@@ -28,7 +28,6 @@ describe('ioredis module wrapper', function () {
 
     expect(shimmerWrapStub).to.have.been.calledWith(
       redis.prototype,
-      'redis.prototype',
       _instrumentedCommands
     )
   })
@@ -38,7 +37,7 @@ describe('ioredis module wrapper', function () {
 
     var Redis = require('ioredis')
 
-    var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap', function (nodule, path, name, cb) {
+    var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
       expect(cb).to.be.a('function')
       var redisInstance = new Redis()
       var commandArguments = ['mySortedSet', 42]
@@ -70,7 +69,7 @@ describe('ioredis module wrapper', function () {
 
     var Redis = require('ioredis')
 
-    var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap', function (nodule, path, name, cb) {
+    var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
       expect(cb).to.be.a('function')
       var redisInstance = new Redis()
       var dummyCallback = function () {}
