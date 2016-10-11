@@ -49,6 +49,7 @@
     "lodash.defaults": "4.2.0",
     "lodash.find": "4.6.0",
     "lodash.flatmap": "4.5.0",
+    "lodash.get": "4.4.2",
     "lodash.isnumber": "3.0.3",
     "node-uuid": "1.4.7",
     "qs": "6.2.1",
