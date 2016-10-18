@@ -75,3 +75,27 @@ test('should get service key',
     })
     require('@risingstack/trace')
   })
+
+test('should stop', {
+  isolate: 'child-process',
+  childProcessOpts: {
+    env: {
+      TRACE_API_KEY: TRACE_API_KEY,
+      TRACE_SERVICE_NAME: TRACE_SERVICE_NAME,
+      TRACE_COLLECT_INTERVAL: 100
+    }
+  }
+}, function (t) {
+  t.plan(1)
+  serviceMocks.mockServiceKeyRequest({
+    url: TRACE_COLLECTOR_API_URL,
+    apiKey: TRACE_API_KEY,
+    callback: function (uri, requestBody) {
+    }
+  })
+  var trace = require('@risingstack/trace')
+  trace.stop(function (err) {
+    t.notOk(err, 'no error')
+    t.end()
+  })
+})
