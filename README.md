@@ -136,8 +136,9 @@ The name must have the following format: `<Category>/<Name>`
 This method gracefully stops trace.
 
 ```javascript
-trace.stop()
+trace.stop(cb)
 ```
+Accepts a node-style callback to be called when trace stopped.
 
 Note: There is no way to restart trace after calling this method. You should end your process after calling this
 method.
