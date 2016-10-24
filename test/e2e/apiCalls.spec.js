@@ -16,7 +16,11 @@ var cpOpts = {
   env: {
     TRACE_API_KEY: TRACE_API_KEY,
     TRACE_SERVICE_NAME: TRACE_SERVICE_NAME,
-    TRACE_COLLECT_INTERVAL: 100
+    TRACE_COLLECT_INTERVAL: 100,
+    TRACE_UPDATE_INTERVAL: 200,
+    TRACE_IGNORE_HEADERS: JSON.stringify({
+      'ignore-me': '1'
+    })
   }
 }
 
@@ -47,6 +51,7 @@ apiCalls.forEach(function (name) {
         serviceKey: TEST_TRACE_SERVICE_KEY,
         callback: function (uri, requestBody) {
           t.pass('collector sends ' + name)
+          t.ok(typeof requestBody === 'object', 'requestBody is object')
           t.end()
           process.exit()
         }
@@ -55,7 +60,16 @@ apiCalls.forEach(function (name) {
       t.pass('Trace loaded into server')
       // http server
       var app = express()
+      app.get('/test2', function (req, res) {
+        res.send('test2')
+      })
       app.get('/test', function (req, res) {
+        request
+          .get('127.0.0.1:' + TEST_WEB_SERVER_PORT + '/test2')
+          .set('ignore-me', '1') // set in IGNORE_HEADERS, looks external
+          .end(function (err) {
+            t.error(err, 'client sends request to /test2 with that should look external')
+          })
         res.send('test')
       })
       app.listen(TEST_WEB_SERVER_PORT, function (err) {

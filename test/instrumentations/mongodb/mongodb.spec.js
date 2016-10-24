@@ -9,6 +9,39 @@ var mongodb = require('mongodb')
 var url = 'mongodb://localhost:27017/trace-collector-test'
 
 describe('mongo module wrapper', function () {
+  var fakeAgent
+
+  beforeEach(function () {
+    fakeAgent = {
+      incomingEdgeMetrics: {
+        report: this.sandbox.spy()
+      },
+      tracer: {
+        collector: {
+          mustCollectSeverity: 9,
+          defaultSeverity: 0,
+          clientRecv: this.sandbox.spy(),
+          clientSend: this.sandbox.stub().returns({
+            briefcase: {},
+            duffelBag: {
+              timestamp: 0
+            }
+          })
+        }
+      },
+      storage: {
+        get: this.sandbox.spy()
+      },
+      externalEdgeMetrics: {
+        report: this.sandbox.spy(),
+        EDGE_STATUS: {
+          OK: 1,
+          NOT_OK: 0
+        }
+      }
+    }
+  })
+
   afterEach(function (done) {
     shimmer.unwrap(mongodb.Collection.prototype, COLLECTION_OPERATIONS)
     mongodb.MongoClient.connect(url)
@@ -26,21 +59,6 @@ describe('mongo module wrapper', function () {
 
   describe('callback api', function () {
     it('should call original with provided arguments', function (done) {
-      var fakeAgent = {
-        generateCommId: function () {
-          return 1
-        },
-        getMicrotime: function () {
-          return Date.now() * 1000
-        },
-        getRequestId: function () {
-          return 'requestId'
-        },
-        clientSend: function () {
-        },
-        clientReceive: function () {
-        }
-      }
       var originalSpy = this.sandbox.spy(mongodb.Collection.prototype, 'insertOne')
       var wrappedMongo = wrapper(mongodb, fakeAgent)
 
@@ -66,22 +84,6 @@ describe('mongo module wrapper', function () {
     })
 
     it('should let original call provided callback', function (done) {
-      var fakeAgent = {
-        generateCommId: function () {
-          return 1
-        },
-        getMicrotime: function () {
-          return Date.now() * 1000
-        },
-        getRequestId: function () {
-          return 'requestId'
-        },
-        clientSend: function () {
-        },
-        clientReceive: function () {
-        }
-      }
-      var originalSpy = this.sandbox.spy(mongodb.Collection.prototype, 'insertOne')
       var wrappedMongo = wrapper(mongodb, fakeAgent)
       var wrapQuerySpy = this.sandbox.spy(utils, 'wrapQuery')
 
@@ -104,21 +106,6 @@ describe('mongo module wrapper', function () {
     })
 
     it('should let original call provided callback when no options are passed', function (done) {
-      var fakeAgent = {
-        generateCommId: function () {
-          return 1
-        },
-        getMicrotime: function () {
-          return Date.now() * 1000
-        },
-        getRequestId: function () {
-          return 'requestId'
-        },
-        clientSend: function () {
-        },
-        clientReceive: function () {
-        }
-      }
       var wrappedMongo = wrapper(mongodb, fakeAgent)
       var wrapQuerySpy = this.sandbox.spy(utils, 'wrapQuery')
 
@@ -141,21 +128,6 @@ describe('mongo module wrapper', function () {
     })
 
     it('should call aggregate callback if below 2.0.0 and no cursor descriptor is provided', function (done) {
-      var fakeAgent = {
-        generateCommId: function () {
-          return 1
-        },
-        getMicrotime: function () {
-          return Date.now() * 1000
-        },
-        getRequestId: function () {
-          return 'requestId'
-        },
-        clientSend: function () {
-        },
-        clientReceive: function () {
-        }
-      }
       var wrappedMongo = wrapper(mongodb, fakeAgent)
       var wrapQuerySpy = this.sandbox.spy(utils, 'wrapQuery')
 
@@ -189,21 +161,6 @@ describe('mongo module wrapper', function () {
     })
 
     it('should call aggregate callback if above 2.0.0 and a callback is provided', function (done) {
-      var fakeAgent = {
-        generateCommId: function () {
-          return 1
-        },
-        getMicrotime: function () {
-          return Date.now() * 1000
-        },
-        getRequestId: function () {
-          return 'requestId'
-        },
-        clientSend: function () {
-        },
-        clientReceive: function () {
-        }
-      }
       var wrappedMongo = wrapper(mongodb, fakeAgent, { version: '2.0.0' })
       var wrapQuerySpy = this.sandbox.spy(utils, 'wrapQuery')
 
@@ -239,22 +196,6 @@ describe('mongo module wrapper', function () {
 
   describe('promise api', function () {
     it('should call original with provided arguments', function (done) {
-      var fakeAgent = {
-        generateCommId: function () {
-          return 1
-        },
-        getMicrotime: function () {
-          return Date.now() * 1000
-        },
-        getRequestId: function () {
-          return 'requestId'
-        },
-        clientSend: function () {
-        },
-        clientReceive: function () {
-        }
-      }
-
       var originalSpy = this.sandbox.spy(mongodb.Collection.prototype, 'insertOne')
       var wrapQuerySpy = this.sandbox.spy(utils, 'wrapQuery')
       var wrappedMongo = wrapper(mongodb, fakeAgent, { version: '2.0.0' })
@@ -276,22 +217,6 @@ describe('mongo module wrapper', function () {
     })
 
     it('should let original return Promise', function (done) {
-      var fakeAgent = {
-        generateCommId: function () {
-          return 1
-        },
-        getMicrotime: function () {
-          return Date.now() * 1000
-        },
-        getRequestId: function () {
-          return 'requestId'
-        },
-        clientSend: function () {
-        },
-        clientReceive: function () {
-        }
-      }
-
       var wrapQuerySpy = this.sandbox.spy(utils, 'wrapQuery')
       var wrappedMongo = wrapper(mongodb, fakeAgent, { version: '2.0.0' })
 
@@ -313,22 +238,6 @@ describe('mongo module wrapper', function () {
 
   describe('stream api', function () {
     it('should call original with provided arguments', function (done) {
-      var fakeAgent = {
-        generateCommId: function () {
-          return 1
-        },
-        getMicrotime: function () {
-          return Date.now() * 1000
-        },
-        getRequestId: function () {
-          return 'requestId'
-        },
-        clientSend: function () {
-        },
-        clientReceive: function () {
-        }
-      }
-
       var originalSpy = this.sandbox.spy(mongodb.Collection.prototype, 'find')
       var wrapQuerySpy = this.sandbox.spy(utils, 'wrapQuery')
       var wrappedMongo = wrapper(mongodb, fakeAgent, { version: '2.0.0' })
@@ -349,22 +258,6 @@ describe('mongo module wrapper', function () {
     })
 
     it('should return a stream for find', function (done) {
-      var fakeAgent = {
-        generateCommId: function () {
-          return 1
-        },
-        getMicrotime: function () {
-          return Date.now() * 1000
-        },
-        getRequestId: function () {
-          return 'requestId'
-        },
-        clientSend: function () {
-        },
-        clientReceive: function () {
-        }
-      }
-
       var wrapQuerySpy = this.sandbox.spy(utils, 'wrapQuery')
       var wrappedMongo = wrapper(mongodb, fakeAgent, { version: '2.0.0' })
 
@@ -383,22 +276,6 @@ describe('mongo module wrapper', function () {
     })
 
     it('should return a stream for aggregate if no callback is provided above 2.0.0', function (done) {
-      var fakeAgent = {
-        generateCommId: function () {
-          return 1
-        },
-        getMicrotime: function () {
-          return Date.now() * 1000
-        },
-        getRequestId: function () {
-          return 'requestId'
-        },
-        clientSend: function () {
-        },
-        clientReceive: function () {
-        }
-      }
-
       var wrapQuerySpy = this.sandbox.spy(utils, 'wrapQuery')
       var wrappedMongo = wrapper(mongodb, fakeAgent, { version: '2.0.0' })
 
@@ -417,22 +294,6 @@ describe('mongo module wrapper', function () {
     })
 
     it('should return a stream for aggregate if cursor descriptor is provided below 2.0.0', function (done) {
-      var fakeAgent = {
-        generateCommId: function () {
-          return 1
-        },
-        getMicrotime: function () {
-          return Date.now() * 1000
-        },
-        getRequestId: function () {
-          return 'requestId'
-        },
-        clientSend: function () {
-        },
-        clientReceive: function () {
-        }
-      }
-
       var wrapQuerySpy = this.sandbox.spy(utils, 'wrapQuery')
       var wrappedMongo = wrapper(mongodb, fakeAgent)
 
@@ -451,22 +312,6 @@ describe('mongo module wrapper', function () {
     })
 
     it('should let toArray work', function (done) {
-      var fakeAgent = {
-        generateCommId: function () {
-          return 1
-        },
-        getMicrotime: function () {
-          return Date.now() * 1000
-        },
-        getRequestId: function () {
-          return 'requestId'
-        },
-        clientSend: function () {
-        },
-        clientReceive: function () {
-        }
-      }
-
       var wrapQuerySpy = this.sandbox.spy(utils, 'wrapQuery')
       var wrappedMongo = wrapper(mongodb, fakeAgent)
       var collection
@@ -495,22 +340,6 @@ describe('mongo module wrapper', function () {
     })
 
     it('should not allow data loss', function (done) {
-      var fakeAgent = {
-        generateCommId: function () {
-          return 1
-        },
-        getMicrotime: function () {
-          return Date.now() * 1000
-        },
-        getRequestId: function () {
-          return 'requestId'
-        },
-        clientSend: function () {
-        },
-        clientReceive: function () {
-        }
-      }
-
       var wrapQuerySpy = this.sandbox.spy(utils, 'wrapQuery')
       var wrappedMongo = wrapper(mongodb, fakeAgent, { version: '2.0.0' })
 
