@@ -59,19 +59,25 @@ function test (name_, opts_, cb_) {
         TEST_NAME: testName,
         TEST_ISOLATE: 'child-process'
       }, process.env)
+      var res
       if (spawnSync) {
-        spawnSync(process.argv[0], process.argv.slice(1), defaultsDeep(
+        res = spawnSync(process.argv[0], process.argv.slice(1), defaultsDeep(
           { stdio: ['ignore', process.stdout, process.stderr] },
           args.opts.childProcessOpts,
           { env: childEnv })
         )
       } else {
-        var res = spawnSyncFallback(process.argv[0], process.argv.slice(1), defaultsDeep(
+        res = spawnSyncFallback(process.argv[0], process.argv.slice(1), defaultsDeep(
           { stdio: ['ignore', 'pipe', 'ignore'] },
           args.opts.childProcessOpts,
           { env: childEnv })
         )
         process.stdout.write(res.stdout) // very performant
+      }
+      if (res.status !== 0) {
+        tape(name_, opts_, function (t) {
+          t.fail('child process exited with ' + res.status)
+        })
       }
     } else {
       tape(name_, opts_, cb_)

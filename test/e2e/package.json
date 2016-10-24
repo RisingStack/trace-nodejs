@@ -6,10 +6,12 @@
   },
   "devDependencies": {
     "@risingstack/trace": "../../",
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "lodash.defaultsdeep": "^4.5.1",
     "nock": "9.0.2",
     "sinon": "1.17.6",
+    "semver": "^5.3.0",
     "spawn-sync": "^1.0.15",
     "string.prototype.startswith": "^0.2.0",
     "superagent": "3.2.1",
