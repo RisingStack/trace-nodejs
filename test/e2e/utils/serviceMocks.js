@@ -75,7 +75,7 @@ function mockTraceRequest (opts) {
       'Authorization': 'Bearer ' + opts.apiKey
     }
   })
-    .post('/v2/service/sample')
+    .post('/transaction-events')
     .times(opts.maxTimes || 1)
     .reply(opts.callback || 200)
 }
