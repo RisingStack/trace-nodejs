@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -e
-source $PROJECT_ROOT/scripts/nvm.sh
-source $PROJECT_ROOT/scripts/util.sh
+source ./scripts/util/env-essential.sh
+source ./scripts/util/env-node.sh
+source ./scripts/util/silent.sh
 
 nvm use $NODE_VERSION
 

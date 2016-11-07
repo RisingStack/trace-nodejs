@@ -3,10 +3,8 @@ FROM ubuntu:trusty
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 ENV NODE_VERSIONS 0.10 0.12 4 5 6
-ENV PROJECT_ROOT $HOME
 ENV SILENT 1
 ENV NVM_DIR $HOME/.nvm
-
 
 COPY . .
 
