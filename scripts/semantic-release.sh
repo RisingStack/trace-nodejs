@@ -3,8 +3,6 @@ set -e
 source ./scripts/util/env-essential.sh
 source ./scripts/util/env-node.sh
 
-nvm use $NODE_VERSION
-
 if [[ -z $IS_CI ]]; then
     echo "Not running in CI. Release skipped"
 elif [[ $PROJECT_REPONAME -ne $RELEASE_REPONAME ]]; then
