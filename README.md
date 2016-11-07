@@ -1,7 +1,19 @@
-![Trace logo](https://cloud.githubusercontent.com/assets/1764512/8830445/83e8263c-309c-11e5-9f7f-aa3420e9b2f0.png)
+![Trace logo](https://s3-eu-west-1.amazonaws.com/risingstack-resources/trace_by_risingstack.png)
+
+[![Build status](https://img.shields.io/circleci/project/github/RisingStack/trace-nodejs.svg)](https://circleci.com/gh/RisingStack/trace-nodejs)
+[![npm version](https://img.shields.io/npm/v/@risingstack/trace.svg)](https://www.npmjs.com/package/@risingstack/trace)
+[![Website](https://img.shields.io/website-up-down-green-red/https/trace.risingstack.com.svg)](https://trace.risingstack.com)
+[![Slack Status](https://trace-slack.risingstack.com/badge.svg)](https://trace-slack.risingstack.com)
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![Twitter URL](https://img.shields.io/twitter/url/https/trace.risingstack.com.svg?style=social)](https://twitter.com/TraceAPM)
 ***
-[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
-[ ![Codeship Status for RisingStack/trace-nodejs](https://codeship.com/projects/8322f860-3ac7-0133-8753-0e111daba52d/status?branch=master)](https://codeship.com/projects/101987)
+[App](https://trace.risingstack.com/app) | [Documentation](https://trace-docs.risingstack.com/) | [Status page](https://trace-status.risingstack.com/) | [Case study](https://blog.risingstack.com/case-study-node-js-memory-leak-in-ghost/)
+***
+
+
+
+
+
 
 ## Installation and usage
 
