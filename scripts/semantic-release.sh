@@ -10,5 +10,19 @@ elif [ "$PROJECT_REPONAME" != "$RELEASE_REPONAME" ]; then
 elif [ "$CURRENT_BRANCH" != "$RELEASE_BRANCH" ]]; then
     echo "Branch is not $RELEASE_BRANCH. Release skipped"
 else
-    CI=true npm run semantic-release
+    mkdir -p .tmp
+    tmpfile=semantic-release-$(date +'%Y%m%d%H%M%S')
+    set +e
+    CI=true npm run semantic-release-pre 2> .tmp/$tmpfile
+    if [ "$?" -ne "0" ]; then
+        grep -oE 'ENOCHANGE (.+)$' .tmp/$tmpfile
+        if [ "$?" -ne "0" ]; then
+            echo "Semantic release failed. Reason:"
+            cat .tmp/$tmpfile
+            exit 1
+        fi
+    fi
+    set -e
+    npm publish
+    CI=true npm run semantic-release-post
 fi
