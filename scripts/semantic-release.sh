@@ -20,6 +20,8 @@ else
             echo "Semantic release failed. Reason:"
             cat .tmp/$tmpfile
             exit 1
+        else
+            exit 0 # No changes, exit
         fi
     fi
     set -e
