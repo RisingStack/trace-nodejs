@@ -7,7 +7,7 @@ if [[ -z $IS_CI ]]; then
     echo "Not running in CI. Release skipped"
 elif [ "$PROJECT_REPONAME" != "$RELEASE_REPONAME" ]; then
     echo "Project repo is not $RELEASE_REPONAME. Release skipped"
-elif [ "$CURRENT_BRANCH" != "$RELEASE_BRANCH" ]]; then
+elif [ "$CURRENT_BRANCH" != "$RELEASE_BRANCH" ]; then
     echo "Branch is not $RELEASE_BRANCH. Release skipped"
 else
     mkdir -p .tmp
