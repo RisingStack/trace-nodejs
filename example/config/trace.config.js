@@ -4,7 +4,7 @@
 
  module.exports = {
    serviceName: 'your-awesome-app',
-   apiKey: 'KEEP_ME_SECRET',
+   apiKey: 'KEEP.ME.SECRET',
    ignoreHeaders: {
      'user-agent': ['007']
    },
