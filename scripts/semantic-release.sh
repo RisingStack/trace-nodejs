@@ -5,6 +5,8 @@ source ./scripts/util/env-node.sh
 
 if [[ -z $IS_CI ]]; then
     echo "Not running in CI. Release skipped"
+elif [[ -n $DISABLE_AUTORELEASE ]]; then # Usually set be CI environment
+    echo "Autorelease disabled. Release skipped"
 elif [ "$PROJECT_REPONAME" != "$RELEASE_REPONAME" ]; then
     echo "Project repo is not $RELEASE_REPONAME. Release skipped"
 elif [ "$CURRENT_BRANCH" != "$RELEASE_BRANCH" ]; then
