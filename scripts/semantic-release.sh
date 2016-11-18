@@ -5,7 +5,7 @@ source ./scripts/util/env-node.sh
 
 if [[ -z $IS_CI ]]; then
     echo "Not running in CI. Release skipped"
-elif [[ -n $DISABLE_AUTORELEASE ]]; then # Usually set be CI environment
+elif [[ -n $DISABLE_AUTORELEASE ]]; then # Set by CI environment
     echo "Autorelease disabled. Release skipped"
 elif [ "$PROJECT_REPONAME" != "$RELEASE_REPONAME" ]; then
     echo "Project repo is not $RELEASE_REPONAME. Release skipped"
@@ -27,6 +27,20 @@ else
         fi
     fi
     set -e
+    if [[ -z "$DISABLE_BUMP" ]] && [[ -n "$REPOSITORY_PUSH_URL" ]]; then
+        version=$(node -e "console.log(require('./package.json').version)")
+        git remote add up "$REPOSITORY_PUSH_URL"
+        git config user.email "info@risingstack.com"
+        git config user.name "risingbot"
+        git config push.default simple
+        git add package.json
+        if ! git commit -m "chore(bump): v$version" >/dev/null 2>&1 ; then
+            echo "package.json already @ v$version"
+        else
+            git push --set-upstream up wip/release-fix >/dev/null 2>&1
+            echo "Changes pushed to remote"
+        fi
+    fi
     npm publish
     CI=true npm run semantic-release-post
 fi
