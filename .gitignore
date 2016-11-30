@@ -1,10 +1,31 @@
-npm-debug.log
+# npm
+*.tgz
 node_modules
-trace.log
-trace_*
+.npm
+npm-debug.log*
+
+# misc tooling
+.node_repl_history
 coverage
 .tmp
+.yarn-integrity
+.eslintcache
+pids
+*.pid
+*.seed
+*.pid.lock
+
 # Logs
 logs
 *.log
-npm-debug.log*
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.DS_Store
+
+# IDEs
+.idea
+*.iml
+.vscode

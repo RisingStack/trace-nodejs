@@ -1,9 +1,46 @@
-coverage
-.travis.yml
-.circle.yml
-test
-example
+# Shared config, build files, tests and examples
+circle.yml
+.npmignore
+.editorconfig
+.eslintignore
+.eslintrc.json
 scripts
-.idea
+test
 *.spec.js
 *.spec.e2e.js
+example
+
+# .gitignore contents
+# ------------------
+
+# npm
+*.tgz
+node_modules
+.npm
+npm-debug.log*
+
+# misc tooling
+.node_repl_history
+coverage
+.tmp
+.yarn-integrity
+.eslintcache
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Logs
+logs
+*.log
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.DS_Store
+
+# IDEs
+.idea
+*.iml
+.vscode
