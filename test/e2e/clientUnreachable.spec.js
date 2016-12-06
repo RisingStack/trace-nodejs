@@ -10,8 +10,8 @@ var TRACE_COLLECTOR_API_URL = 'https://trace-collector-api.risingstack.com'
 var TRACE_API_KEY = 'headers.payload.signature'
 var TRACE_SERVICE_NAME = 'service-name'
 var TEST_TRACE_SERVICE_KEY = 42
-var TEST_TIMEOUT = 3000
 var TEST_WEB_SERVER_PORT = process.env.TEST_WEBSERVER_PORT || 44332
+var TEST_TIMEOUT = 10000
 
 var cpOpts = {
   env: {
@@ -33,6 +33,7 @@ test('client Unreachable',
     // design limitations in nock.
     skip: !zlib.gunzipSync,
     isolate: 'child-process',
+    timeout: TEST_TIMEOUT,
     childProcessOpts: cpOpts
   }, function (t) {
     var timesCalled = 0
@@ -48,7 +49,7 @@ test('client Unreachable',
       apiKey: TRACE_API_KEY,
       serviceKey: TEST_TRACE_SERVICE_KEY,
       callback: function (uri, requestBody) {
-        t.pass() // TODO check events
+        t.pass('events ok') // TODO check events
         t.end()
         process.exit(0)
       }
@@ -75,8 +76,4 @@ test('client Unreachable',
           t.error(err, 'client sends request to /test')
         })
     })
-    setTimeout(function () {
-      t.fail('test timed out without completing')
-      process.exit(1)
-    }, TEST_TIMEOUT)
   })

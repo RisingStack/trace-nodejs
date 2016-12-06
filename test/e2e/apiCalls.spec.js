@@ -10,9 +10,9 @@ var TRACE_COLLECTOR_API_URL = 'https://trace-collector-api.risingstack.com'
 var TRACE_API_KEY = 'headers.payload.signature'
 var TRACE_SERVICE_NAME = 'service-name'
 var TEST_TRACE_SERVICE_KEY = 42
-var TEST_TIMEOUT = 1000
 var TEST_WEB_SERVER_PORT = process.env.TEST_WEBSERVER_PORT || 44332
 var TEST_MAX_CALLS = 1
+var TEST_TIMEOUT = 10000
 
 var cpOpts = {
   env: {
@@ -37,11 +37,9 @@ var apiCalls = [
 apiCalls.forEach(function (name) {
   test('should report ' + name,
     {
-      // FIXME: I patched nock, so it can gunzip requests on appropriate
-      // content-encoding headers, however it uses the sync API due to
-      // design limitations in nock.
-      skip: name == 'Trace' && !zlib.gunzipSync,
+      skip: name === 'Trace' && !zlib.gunzipSync,
       isolate: 'child-process',
+      timeout: TEST_TIMEOUT,
       childProcessOpts: cpOpts
     }, function (t) {
       var timesCalled = 0
@@ -108,9 +106,5 @@ apiCalls.forEach(function (name) {
             t.error(err, 'client sends request to /test')
           })
       })
-      setTimeout(function () {
-        t.fail('test timed out without completing')
-        process.exit(1)
-      }, TEST_TIMEOUT)
     })
 })

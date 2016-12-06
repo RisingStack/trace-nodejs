@@ -43,42 +43,57 @@ function childProcessTest (name_, opts_, cb_, args, fn) {
 
 function test (name_, opts_, cb_) {
   var args = getTestArgs(name_, opts_, cb_)
-  if (process.env.TEST_ISOLATE === 'child-process') {
-    childProcessTest(name_, opts_, cb_, args, tape.only)
+  if (args.skip) {
+    test.skip(name_, opts_, cb_)
+  } else if (args.only) {
+    test.only(name_, opts_, cb_)
+  } else if (process.env.TEST_ISOLATE === 'child-process') {
+    childProcessTest(name_ + ' (child process running in ' + process.pid + ')', opts_, cb_, args, tape.only)
   } else {
     if (args.opts.isolate === 'child-process') {
-      var testName
-      if (args.name !== '(anonymous)') {
-        testName = args.name
-      } else {
-        var sha1 = crypto.createHash('sha1')
-        sha1.update(String(args.cb))
-        testName = sha1.digest()
-      }
-      var childEnv = defaultsDeep({
-        TEST_NAME: testName,
-        TEST_ISOLATE: 'child-process'
-      }, process.env)
-      var res
-      if (spawnSync) {
-        res = spawnSync(process.argv[0], process.argv.slice(1), defaultsDeep(
-          { stdio: ['ignore', process.stdout, process.stderr] },
-          args.opts.childProcessOpts,
-          { env: childEnv })
-        )
-      } else {
-        res = spawnSyncFallback(process.argv[0], process.argv.slice(1), defaultsDeep(
-          { stdio: ['ignore', 'pipe', 'ignore'] },
-          args.opts.childProcessOpts,
-          { env: childEnv })
-        )
-        process.stdout.write(res.stdout) // very performant
-      }
-      if (res.status !== 0) {
-        tape(name_, opts_, function (t) {
-          t.fail('child process exited with ' + res.status)
-        })
-      }
+      tape(name_, defaultsDeep(opts_, { timeout: 10000 }), function (t) {
+        var testName
+        if (args.name !== '(anonymous)') {
+          testName = args.name
+        } else {
+          var sha1 = crypto.createHash('sha1')
+          sha1.update(String(args.cb))
+          testName = sha1.digest()
+        }
+        var childEnv = defaultsDeep({
+          TEST_NAME: testName,
+          TEST_ISOLATE: 'child-process'
+        }, process.env)
+        var res
+        if (spawnSync) {
+          try {
+            res = spawnSync(process.argv[0], process.argv.slice(1), defaultsDeep(
+              { stdio: ['ignore', process.stdout, process.stderr] },
+              args.opts.childProcessOpts,
+              { env: childEnv })
+            )
+          } catch (err) {
+            t.fail('child process thrown exception: ' + err)
+          }
+        } else {
+          try {
+            res = spawnSyncFallback(process.argv[0], process.argv.slice(1), defaultsDeep(
+              { stdio: ['ignore', 'pipe', 'ignore'] },
+              args.opts.childProcessOpts,
+              { env: childEnv })
+            )
+            process.stdout.write(res.stdout) // very performant
+          } catch (err) {
+            t.fail('child process thrown exception: ' + err)
+          }
+        }
+        if (res.status !== 0) {
+          t.fail('child process failed with ' + res.status)
+        } else {
+          t.pass('child process succeeded')
+        }
+        t.end()
+      })
     } else {
       tape(name_, opts_, cb_)
     }
