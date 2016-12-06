@@ -9,8 +9,8 @@ var TRACE_COLLECTOR_API_URL = 'https://trace-collector-api.risingstack.com'
 var TRACE_API_KEY = 'headers.payload.signature'
 var TRACE_SERVICE_NAME = 'service-name'
 var TEST_TRACE_SERVICE_KEY = 42
-var TEST_TIMEOUT = 1000
 var TEST_WEB_SERVER_PORT = process.env.TEST_WEBSERVER_PORT || 44332
+var TEST_TIMEOUT = 10000
 
 var cpOpts = {
   env: {
@@ -23,6 +23,7 @@ var cpOpts = {
 
 test('should be in a transaction',
   {
+    timeout: TEST_TIMEOUT,
     isolate: 'child-process',
     childProcessOpts: cpOpts
   }, function (t) {
@@ -52,8 +53,4 @@ test('should be in a transaction',
           t.error(err, 'client sends request to /test')
         })
     })
-    setTimeout(function () {
-      t.fail('test timed out without completing')
-      process.exit(1)
-    }, TEST_TIMEOUT)
   })

@@ -2,7 +2,7 @@
   "private": "true",
   "name": "@risingstack/trace-tests-e2e",
   "scripts": {
-    "test": "tape $(find . -name \"*.spec.js\" -not -path \"./node_modules/*\") | tap-spec"
+    "test": "tape $(find . -name \"*.spec.js\" -not -path \"./node_modules/*\")"
   },
   "devDependencies": {
     "@risingstack/trace": "../../",

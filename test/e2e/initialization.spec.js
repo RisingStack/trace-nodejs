@@ -10,10 +10,12 @@ var pkg = require('@risingstack/trace/package.json')
 var TRACE_COLLECTOR_API_URL = 'https://trace-collector-api.risingstack.com'
 var TRACE_API_KEY = 'headers.payload.signature'
 var TRACE_SERVICE_NAME = 'service-name'
+var TEST_TIMEOUT = 10000
 
 test('should print error on missing service name',
   {
     isolate: 'child-process',
+    timeout: TEST_TIMEOUT,
     childProcessOpts: {
       env: {
         TRACE_API_KEY: TRACE_API_KEY,
@@ -21,18 +23,19 @@ test('should print error on missing service name',
       }
     }
   }, function (t) {
-    t.plan(3)
     var sandbox = sinon.sandbox.create()
     var consoleErrorStub = sandbox.stub(console, 'error')
     require('@risingstack/trace')
     t.pass('does not crash')
     t.ok(consoleErrorStub.called, 'console.error has been called')
     t.ok(consoleErrorStub.args[0].join(' ').startsWith('error: [trace] Missing service name'), 'message indicates missing service name')
-    sandbox.restore()
+    t.end()
+    process.exit(0)
   })
 test('should print error on missing API key',
   {
     isolate: 'child-process',
+    timeout: TEST_TIMEOUT,
     childProcessOpts: {
       env: {
         TRACE_SERVICE_NAME: TRACE_SERVICE_NAME,
@@ -40,19 +43,21 @@ test('should print error on missing API key',
       }
     }
   }, function (t) {
-    t.plan(3)
     var sandbox = sinon.sandbox.create()
     var consoleErrorStub = sandbox.stub(console, 'error')
     require('@risingstack/trace')
     t.pass('does not crash')
     t.ok(consoleErrorStub.called, 'console.error has been called')
     t.ok(consoleErrorStub.args[0].join(' ').startsWith('error: [trace] Missing API key'), 'message indicates missing API key')
+    t.end()
     sandbox.restore()
+    process.exit(0)
   })
 
 test('should get service key',
   {
     isolate: 'child-process',
+    timeout: TEST_TIMEOUT,
     childProcessOpts: {
       env: {
         TRACE_API_KEY: TRACE_API_KEY,
@@ -78,6 +83,7 @@ test('should get service key',
 
 test('should stop', {
   isolate: 'child-process',
+  timeout: TEST_TIMEOUT,
   childProcessOpts: {
     env: {
       TRACE_API_KEY: TRACE_API_KEY,
@@ -86,7 +92,6 @@ test('should stop', {
     }
   }
 }, function (t) {
-  t.plan(1)
   serviceMocks.mockServiceKeyRequest({
     url: TRACE_COLLECTOR_API_URL,
     apiKey: TRACE_API_KEY,
