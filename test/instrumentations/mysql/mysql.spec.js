@@ -132,7 +132,7 @@ describe('The mysql wrapper', function () {
 
     // This is tricky. We have to stub exactly after wrapping, and before
     // createConnection to catch the wrapping of the query operation
-    var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, path, name, cb) {
+    var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
       expect(name).to.eql(CONNECTION_OPERATIONS)
       nodule.connect(function (err) {
         if (err) {
