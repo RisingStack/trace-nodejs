@@ -4,3 +4,7 @@ trace.log
 trace_*
 coverage
 .tmp
+# Logs
+logs
+*.log
+npm-debug.log*
