@@ -57,10 +57,10 @@
     "lodash.get": "4.4.2",
     "lodash.isnumber": "3.0.3",
     "lodash.uniq": "4.5.0",
-    "node-uuid": "1.4.7",
     "qs": "6.3.0",
     "semver": "5.3.0",
-    "sync-request": "3.0.1"
+    "sync-request": "3.0.1",
+    "uuid": "^3.0.1"
   },
   "optionalDependencies": {
     "microtime": "2.1.2",
