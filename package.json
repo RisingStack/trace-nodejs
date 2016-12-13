@@ -17,7 +17,7 @@
   ],
   "release": {
     "verifyConditions": {
-      "path": "./node_modules/semantic-release/dist/lib/plugin-noop.js"
+      "path":  "./node_modules/semantic-release/src/lib/plugin-noop.js"
     }
   },
   "main": "lib/index.js",
