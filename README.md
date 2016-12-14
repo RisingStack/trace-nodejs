@@ -10,9 +10,9 @@
 [App](https://trace.risingstack.com/app) | [Documentation](https://trace-docs.risingstack.com/) | [Status page](https://trace-status.risingstack.com/) | [Case study](https://blog.risingstack.com/case-study-node-js-memory-leak-in-ghost/)
 ***
 
+## ⚠️ Breaking change
 
-
-
+With version 3.x.x we have dropped support for Node v0.10. This means that future releases under this major version might contain code changes that are incompatible with Node.js v0.10 to an extent of crashing your application. Please consider updating to a newer runtime, especially that the [maintenance of v0.10 has already ended](node-lts). See our compatibility table below.
 
 
 ## Installation and usage
@@ -157,13 +157,14 @@ method.
 
 ## Compatibility with Node versions
 
-* node v0.10@latest
 * node v0.12@latest
 * node v4@latest
 * node v5@latest
 * node v6@latest
 
-## Migrating from 1.x to 2.x
+## Migrating from previous versions
+
+### Versions below 2.x
 
 The `trace.config.js` file changed, and has the following format:
 
@@ -175,3 +176,10 @@ module.exports = {
 ```
 
 Also, from `2.x` you can specify these values using only environment variables: `TRACE_SERVICE_NAME` and `TRACE_API_KEY`.
+
+### Versions below 3.x
+
+We dropped support for Node v0.10. [Update your runtime](node) to a more recent version to continue using Trace.
+
+[node]: https://nodejs.org/en/
+[node-lts]: https://github.com/nodejs/LTS#lts-schedule
