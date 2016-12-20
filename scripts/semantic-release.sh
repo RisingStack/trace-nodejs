@@ -37,7 +37,7 @@ else
         if ! git commit -m "chore(bump): v$version" >/dev/null 2>&1 ; then
             echo "package.json already @ v$version"
         else
-            git push --set-upstream up wip/release-fix >/dev/null 2>&1
+            git push up $CURRENT_BRANCH >/dev/null 2>&1
             echo "Changes pushed to remote"
         fi
     fi
