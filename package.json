@@ -43,9 +43,9 @@
     "url": "https://github.com/RisingStack/trace-nodejs/issues"
   },
   "dependencies": {
-    "bl": "1.1.2",
+    "bl": "1.2.0",
     "continuation-local-storage": "3.2.0",
-    "debug": "2.3.3",
+    "debug": "2.6.0",
     "https-proxy-agent": "1.0.0",
     "js-yaml": "3.7.0",
     "json-stringify-safe": "5.0.1",
@@ -66,7 +66,7 @@
     "microtime": "2.1.2",
     "event-loop-stats": "1.0.0",
     "gc-stats": "1.0.0",
-    "v8-profiler": "5.6.5"
+    "@risingstack/v8-profiler": "5.7.0"
   },
   "devDependencies": {
     "chai": "3.5.0",
