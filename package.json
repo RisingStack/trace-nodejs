@@ -1,6 +1,6 @@
 {
   "name": "@risingstack/trace",
-  "version": "2.33.0",
+  "version": "3.1.0-beta.0",
   "author": "RisingStack, Inc.",
   "license": "SEE LICENSE IN LICENSE",
   "contributors": "RisingStack",
@@ -17,7 +17,7 @@
   ],
   "release": {
     "verifyConditions": {
-      "path":  "./node_modules/semantic-release/src/lib/plugin-noop.js"
+      "path": "./node_modules/semantic-release/src/lib/plugin-noop.js"
     }
   },
   "main": "lib/index.js",
