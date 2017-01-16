@@ -161,6 +161,7 @@ method.
 * node v4@latest
 * node v5@latest
 * node v6@latest
+* node v7@latest
 
 ## Migrating from previous versions
 
