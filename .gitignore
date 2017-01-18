@@ -29,3 +29,7 @@ Desktop.ini
 .idea
 *.iml
 .vscode
+
+# RCs
+.nvmrc
+.npmrc
