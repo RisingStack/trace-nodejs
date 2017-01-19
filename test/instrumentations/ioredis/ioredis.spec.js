@@ -47,11 +47,11 @@ describe('ioredis module wrapper', function () {
         commandArguments,
         fakeAgent,
         {
+          continuationMethod: 'promise',
           host: 'localhost:6379',
           method: 'zadd',
           protocol: 'redis',
-          url: 'unknown',
-          returnsPromise: true
+          url: 'unknown'
         })
     })
 
@@ -80,11 +80,11 @@ describe('ioredis module wrapper', function () {
         commandArguments,
         fakeAgent,
         {
+          continuationMethod: 'callback',
           host: 'localhost:6379',
           method: 'zadd',
           protocol: 'redis',
-          url: 'unknown',
-          returnsPromise: false
+          url: 'unknown'
         })
     })
 

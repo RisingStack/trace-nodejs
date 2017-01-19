@@ -53,6 +53,7 @@ describe('The redis wrapper module', function () {
           commandArguments,
           fakeAgent,
           {
+            continuationMethod: 'callback',
             host: '127.0.0.1:6379',
             method: 'zadd',
             protocol: 'redis',
@@ -112,6 +113,7 @@ describe('The redis wrapper module', function () {
           [],
           fakeAgent,
           {
+            continuationMethod: 'callback',
             host: '127.0.0.1:6379',
             method: 'multi: sadd, zrem, info',
             protocol: 'redis',

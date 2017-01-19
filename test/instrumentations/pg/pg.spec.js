@@ -105,7 +105,7 @@ describe('pg module wrapper', function () {
     })
   })
 
-  it('should wrap event emitter if no callback is provided for Client.query', function () {
+  it('should wrap event emitter if no callback is provided for Client.query', function (done) {
     var sandbox = this.sandbox
     var fakeWrapQuery = sandbox.stub(utils, 'wrapQuery')
     var fakeAgent = { clearly: 'a mock' }
@@ -145,7 +145,7 @@ describe('pg module wrapper', function () {
     })
   })
 
-  it('should wrap event emitter if no callback is provided for native.Client.query', function () {
+  it('should wrap event emitter if no callback is provided for native.Client.query', function (done) {
     var sandbox = this.sandbox
     var fakeWrapQuery = sandbox.stub(utils, 'wrapQuery')
     var fakeAgent = { clearly: 'a mock' }

@@ -63,6 +63,7 @@ describe('The mysql wrapper', function () {
           queryArguments,
           fakeAgent,
           {
+            continuationMethod: null,
             host: 'localhost',
             method: 'SELECT',
             protocol: 'mysql',
@@ -103,6 +104,7 @@ describe('The mysql wrapper', function () {
         queryArguments,
         fakeAgent,
         {
+          continuationMethod: null,
           host: 'localhost',
           method: 'SELECT',
           protocol: 'mysql',
@@ -148,6 +150,7 @@ describe('The mysql wrapper', function () {
           queryArguments,
           fakeAgent,
           {
+            continuationMethod: null,
             host: 'localhost',
             method: 'SELECT',
             protocol: 'mysql',
