@@ -22,7 +22,11 @@ describe('mongo module wrapper', function () {
           defaultSeverity: 0,
           clientRecv: this.sandbox.spy(),
           clientSend: this.sandbox.stub().returns({
-            briefcase: {},
+            briefcase: {
+              csCtx: {
+                communicationId: 1
+              }
+            },
             duffelBag: {
               timestamp: 0
             }
