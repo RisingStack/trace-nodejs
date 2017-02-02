@@ -34,6 +34,17 @@ function mockRpmMetricsRequest (opts) {
     .reply(opts.callback || 200)
 }
 
+function mockCustomMetricsRequest (opts) {
+  return nock(opts.url, {
+    reqheaders: {
+      'Authorization': 'Bearer ' + opts.apiKey
+    }
+  })
+    .post('/service/' + opts.serviceKey + '/custom-metrics')
+    .times(opts.maxTimes || 1)
+    .reply(opts.callback || 200)
+}
+
 function mockExternalEdgeMetricsRequest (opts) {
   return nock(opts.url, {
     reqheaders: {
@@ -84,6 +95,7 @@ module.exports = {
   mockServiceKeyRequest: mockServiceKeyRequest,
   mockApmMetricsRequest: mockApmMetricsRequest,
   mockRpmMetricsRequest: mockRpmMetricsRequest,
+  mockCustomMetricsRequest: mockCustomMetricsRequest,
   mockExternalEdgeMetricsRequest: mockExternalEdgeMetricsRequest,
   mockIncomingEdgeMetricsRequest: mockIncomingEdgeMetricsRequest,
   mockTraceRequest: mockTraceRequest,

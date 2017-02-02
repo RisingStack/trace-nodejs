@@ -1,3 +1,4 @@
+var assign = require('lodash.assign')
 var defaultsDeep = require('lodash.defaultsdeep')
 var tape = require('tape')
 var spawnSync = require('child_process').spawnSync
@@ -95,6 +96,7 @@ function test (name_, opts_, cb_) {
         t.end()
       })
     } else {
+      assign(process.env, opts_.childProcessOpts.env)
       tape(name_, opts_, cb_)
     }
   }
@@ -105,7 +107,7 @@ test.skip = function (name_, opts_, cb_) {
   if (process.env.TEST_ISOLATE === 'child-process') {
     childProcessTest(name_, opts_, cb_, args, tape.skip)
   } else {
-    tape.skip(name_, opts_, cb_)
+    test(name_, opts_, cb_)
   }
 }
 
@@ -114,7 +116,7 @@ test.only = function (name_, opts_, cb_) {
   if (process.env.TEST_ISOLATE === 'child-process') {
     childProcessTest(name_, opts_, cb_, args, tape.only)
   } else {
-    tape.only(name_, opts_, cb_)
+    test(name_, opts_, cb_)
   }
 }
 

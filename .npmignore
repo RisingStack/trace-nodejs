@@ -8,6 +8,7 @@ scripts
 test
 *.spec.js
 *.spec.e2e.js
+*.mock.js
 example
 
 # .gitignore contents
