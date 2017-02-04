@@ -3,8 +3,10 @@ var wrapper = require('@risingstack/trace/lib/instrumentations/mongodb').instrum
 var COLLECTION_OPERATIONS = require('@risingstack/trace/lib/instrumentations/mongodb')._COLLECTION_OPERATIONS
 var utils = require('@risingstack/trace/lib/instrumentations/utils')
 var shimmer = require('@risingstack/trace/lib/utils/shimmer.js')
+
 var expect = require('chai').expect
 var mongodb = require('mongodb')
+require('../test-setup.spec.js')
 
 var url = 'mongodb://localhost:27017/trace-collector-test'
 

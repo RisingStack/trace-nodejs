@@ -1,5 +1,7 @@
 'use strict'
 
+require('../test-setup.spec.js')
+
 var expect = require('chai').expect
 var wrapper = require('@risingstack/trace/lib/instrumentations/pg').instrumentations[0].post
 var Shimmer = require('@risingstack/trace/lib/utils/shimmer')

@@ -22,6 +22,7 @@ if [[ -z $ENV_ESSENTIAL_SOURCED ]]; then
         if [[ -n "$REPOSITORY_URL" ]] && [[ -n "$GH_TOKEN" ]]; then
            export REPOSITORY_PUSH_URL=$(echo $REPOSITORY_URL | sed -r "s|https?://(.+)/|https://risingbot:$GH_TOKEN@\1/|")
         fi
+        export NODE_VERSION_FW=6
     else
         # local
         export CURRENT_BRANCH=$(git branch --no-color | awk '/\*/{ print $2 }')
@@ -35,6 +36,7 @@ if [[ -z $ENV_ESSENTIAL_SOURCED ]]; then
         export COMMIT_AUTHOR=$(git log -1 --pretty=%an)
         export REPOSITORY_URL=$(git config --get remote.origin.url)
         export REPOSITORY_PUSH_URL=$REPOSITORY_URL
+        export NODE_VERSION_FW=6
     fi
 fi
 

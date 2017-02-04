@@ -2,12 +2,14 @@ machine:
   node:
     version: 4.4.4
   environment:
+    NODE_VERSION_FW: 6
     NODE_VERSIONS: 0.12 4 5 6 7
     RELEASE_REPONAME: trace-nodejs
     RELEASE_BRANCH: master
 
 dependencies:
   pre:
+    - NODE_VERSION=$NODE_VERSION_FW ./scripts/run-ci.sh ./scripts/install-node.sh
     - ./scripts/run-ci.sh ./scripts/node-matrix.sh ./scripts/install-node.sh
   override:
     - exit 0
@@ -16,6 +18,7 @@ test:
   override:
     - ./scripts/run-ci.sh ./scripts/node-matrix.sh ./scripts/prepare.sh ./scripts/lint.sh ./scripts/test-unit.sh ./scripts/test-cover.sh ./scripts/test-e2e.sh:
         parallel: true
+    - ./scripts/run-ci.sh ./scripts/test-instrumentations.sh
 
 deployment:
   release:

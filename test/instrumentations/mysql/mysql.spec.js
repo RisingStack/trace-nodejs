@@ -1,5 +1,7 @@
 'use strict'
 
+require('../test-setup.spec.js')
+
 var wrapper = require('@risingstack/trace/lib/instrumentations/mysql')
 var expect = require('chai').expect
 var Shimmer = require('@risingstack/trace/lib/utils/shimmer')
@@ -19,7 +21,7 @@ describe('The mysql wrapper', function () {
   ]
 
   describe('Connection', function () {
-    it('should wrap mysql.createConnection and mysql.createPool', function () {
+    it('should wrap var connection = mysql.createConnection and var connection = mysql.createPool', function () {
       var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap')
 
       var mysql = require('mysql')
@@ -54,14 +56,12 @@ describe('The mysql wrapper', function () {
       var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
         expect(name).to.eql(CONNECTION_OPERATIONS)
         nodule.connect(function (err) {
-          if (err) {
-            return console.error('could not connect to mysql: install mysql or check \'mysql -uroot\' in console', err)
-          }
+          expect(err).to.not.exist
           var queryStr = 'SELECT 1 + 1 AS solution'
           var queryArguments = [queryStr, function queryCallback () {}]
-          cb(nodule.query, 'query').apply(nodule, queryArguments)
+          cb(connection.query, 'query').apply(nodule, queryArguments)
           expect(fakeWrapQuery).to.have.been.calledWith(
-            nodule.query,
+            connection.query,
             queryArguments,
             fakeAgent,
             {
@@ -75,11 +75,11 @@ describe('The mysql wrapper', function () {
         })
       })
 
-      mysql.createConnection({
+      var connection = mysql.createConnection({
         host: process.env.MYSQL_HOST || 'localhost', //
-        user: process.env.MYSQL_USER || 'root', // these should be
-        password: process.env.MYSQL_PASSWORD || '', // default install settings
-        database: process.env.MYSQL_DATABASE || 'information_schema'
+        user: 'root',
+        password: '',
+        database: 'information_schema'
       })
 
       expect(shimmerWrapStub).to.have.been.called
@@ -117,9 +117,9 @@ describe('The mysql wrapper', function () {
 
       mysql.createPool({
         host: process.env.MYSQL_HOST || 'localhost', //
-        user: process.env.MYSQL_USER || 'root', // these should be
-        password: process.env.MYSQL_PASSWORD || '', // default install settings
-        database: process.env.MYSQL_DATABASE || 'information_schema'
+        user: 'root',
+        password: '',
+        database: 'information_schema'
       })
 
       expect(shimmerWrapStub).to.have.been.called
@@ -139,16 +139,12 @@ describe('The mysql wrapper', function () {
       var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
         expect(name).to.eql(CONNECTION_OPERATIONS)
         nodule.connect(function (err) {
-          if (err) {
-            console.error('could not connect to mysql: install mysql or check \'mysql -uroot\' in console', err)
-            expect(err).to.not.exist
-            done()
-          }
+          expect(err).to.not.exist
           var queryStr = 'SELECT 1 + 1 AS solution'
           var queryArguments = [queryStr, function queryCallback () {}]
-          cb(nodule.query, 'query').apply(nodule, queryArguments)
+          cb(connection.query, 'query').apply(nodule, queryArguments)
           expect(fakeWrapQuery).to.have.been.calledWith(
-            nodule.query,
+            connection.query,
             queryArguments,
             fakeAgent,
             {
@@ -162,11 +158,11 @@ describe('The mysql wrapper', function () {
         })
       })
 
-      mysql.createConnection({
-        host: process.env.MYSQL_HOST || 'localhost', //
-        user: process.env.MYSQL_USER || 'password_test', // these should be
-        password: process.env.MYSQL_PASSWORD || 'password', // default install settings
-        database: process.env.MYSQL_DATABASE || 'information_schema'
+      var connection = mysql.createConnection({
+        host: process.env.MYSQL_HOST || 'localhost',
+        user: 'password_test',
+        password: 'secret',
+        database: 'information_schema'
       })
 
       expect(shimmerWrapStub).to.have.been.called
@@ -187,14 +183,13 @@ describe('The mysql wrapper', function () {
       var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
         expect(name).to.eql(CONNECTION_OPERATIONS)
         nodule.connect(function (err) {
-          if (err) {
-            return console.error('could not connect to mysql: install mysql or check \'mysql -uroot\' in console', err)
-          }
+          expect(err).to.not.exist
+
           var queryStr = 'SELECT 1 + 1 AS solution'
           var queryArguments = [queryStr]
-          cb(nodule.query, 'query').apply(nodule, queryArguments)
+          cb(connection.query, 'query').apply(nodule, queryArguments)
           expect(fakeWrapQuery).to.have.been.calledWith(
-            nodule.query,
+            connection.query,
             queryArguments,
             fakeAgent,
             {
@@ -208,11 +203,11 @@ describe('The mysql wrapper', function () {
         })
       })
 
-      mysql.createConnection({
+      var connection = mysql.createConnection({
         host: process.env.MYSQL_HOST || 'localhost', //
-        user: process.env.MYSQL_USER || 'root', // these should be
-        password: process.env.MYSQL_PASSWORD || '', // default install settings
-        database: process.env.MYSQL_DATABASE || 'information_schema'
+        user: 'root', // these should be
+        password: '', // default install settings
+        database: 'information_schema'
       })
 
       expect(shimmerWrapStub).to.have.been.called
@@ -250,9 +245,9 @@ describe('The mysql wrapper', function () {
 
       mysql.createPool({
         host: process.env.MYSQL_HOST || 'localhost', //
-        user: process.env.MYSQL_USER || 'root', // these should be
-        password: process.env.MYSQL_PASSWORD || '', // default install settings
-        database: process.env.MYSQL_DATABASE || 'information_schema'
+        user: 'root', // these should be
+        password: '', // default install settings
+        database: 'information_schema'
       })
 
       expect(shimmerWrapStub).to.have.been.called
@@ -272,16 +267,12 @@ describe('The mysql wrapper', function () {
       var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
         expect(name).to.eql(CONNECTION_OPERATIONS)
         nodule.connect(function (err) {
-          if (err) {
-            console.error('could not connect to mysql: install mysql or check \'mysql -uroot\' in console', err)
-            expect(err).to.not.exist
-            done()
-          }
+          expect(err).to.not.exist
           var queryStr = 'SELECT 1 + 1 AS solution'
           var queryArguments = [queryStr]
-          cb(nodule.query, 'query').apply(nodule, queryArguments)
+          cb(connection.query, 'query').apply(nodule, queryArguments)
           expect(fakeWrapQuery).to.have.been.calledWith(
-            nodule.query,
+            connection.query,
             queryArguments,
             fakeAgent,
             {
@@ -295,11 +286,11 @@ describe('The mysql wrapper', function () {
         })
       })
 
-      mysql.createConnection({
+      var connection = mysql.createConnection({
         host: process.env.MYSQL_HOST || 'localhost', //
-        user: process.env.MYSQL_USER || 'password_test', // these should be
-        password: process.env.MYSQL_PASSWORD || 'password', // default install settings
-        database: process.env.MYSQL_DATABASE || 'information_schema'
+        user: 'password_test', // these should be
+        password: 'secret', // default install settings
+        database: 'information_schema'
       })
 
       expect(shimmerWrapStub).to.have.been.called
