@@ -12,8 +12,17 @@
 
 ## ⚠️ Breaking change
 
-With version 3.x.x we have dropped support for Node v0.10. This means that future releases under this major version might contain code changes that are incompatible with Node.js v0.10 to an extent of crashing your application. Please consider updating to a newer runtime, especially that the [maintenance of v0.10 has already ended](node-lts). See our compatibility table below.
+With version 3.x.x we have dropped support for Node v0.10. This means that
+future releases under this major version might contain code changes that are
+incompatible with Node.js v0.10 to an extent of crashing your application.
+Please consider updating to a newer runtime, especially that the 
+[maintenance of v0.10 has already ended](node-lts). See our compatibility table
+below.
 
+Also, since 3.1.0 we switched to a different API backend for collecting traces
+which is incompatible with the old one. The old endpoint is still supported, but
+we would like it to be phased out eventually. Please update your agents to
+3.1.0 or newer.
 
 ## Installation and usage
 
@@ -79,9 +88,12 @@ module.exports = {
   disableInstrumentations: [
     'mongodb'
   ],
-  proxy: 'http://168.63.76.32:3128'
+  proxy: 'http://168.63.76.32:3128',
+  keepQueryParams: true
 }
 ```
+
+For the complete set of configuration options, visit the [docs](https://trace-docs.risingstack.com/docs/advanced-usage#section-available-options).
 
 *Note: Custom reporters are no longer supported in trace 2.x*
 
