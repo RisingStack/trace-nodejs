@@ -16,8 +16,11 @@ dependencies:
 
 test:
   override:
-    - ./scripts/run-ci.sh ./scripts/node-matrix.sh ./scripts/prepare.sh ./scripts/lint.sh ./scripts/test-unit.sh ./scripts/test-cover.sh ./scripts/test-e2e.sh:
+    - ./scripts/run-ci.sh ./scripts/prepare.sh
+    - ./scripts/run-ci.sh ./scripts/lint.sh
+    - ./scripts/run-ci.sh ./scripts/node-matrix.sh ./scripts/prepare.sh ./scripts/test-unit.sh ./scripts/test-cover.sh ./scripts/test-e2e.sh:
         parallel: true
+    - ./scripts/run-ci.sh ./scripts/prepare.sh
     - ./scripts/run-ci.sh ./scripts/test-instrumentations.sh
 
 deployment:
