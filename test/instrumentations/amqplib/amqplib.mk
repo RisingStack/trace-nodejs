@@ -1,4 +1,4 @@
-target := pg
+target := amqplib
 
 all = 0.2.0 0.2.1 0.3.0 0.3.2 0.4.0 0.4.2 0.5.0 0.5.1
 some = 0.3.0 0.4.0 0.5.0
@@ -31,6 +31,7 @@ before_$(target) : before
 	@echo '*---------------*'
 	@echo '| amqplib       |'
 	@echo '*---------------*'
+	npm i amqplib
 	AMQP_URL=$(amqp_url) $(addprefix $(cur_dir), verify.js)
 
 # this should run after `before` for each of the version targets
