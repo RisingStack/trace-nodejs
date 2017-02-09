@@ -32,6 +32,7 @@ before_$(target) : before
 	@echo '| pg            |'
 	@echo '*---------------*'
 	npm i pg pg-native
+	npm rebuild
 	DB_URL=$(db_url) $(addprefix $(cur_dir), dbVerify.js)
 
 # this should run after `before` for each of the version targets

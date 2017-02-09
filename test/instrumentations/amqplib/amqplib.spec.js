@@ -44,24 +44,17 @@ describe.only('amqplib', function () {
       }).then(function (ch) {
         ch.assertQueue('test').then(function (ok) {
           return ch.sendToQueue('test', new Buffer('something'))
+        }).then(function () {
+          return ch.consume('test', function (msg) {
+            ch.ack(msg)
+            expect(msg.content.toString()).to.eql('something')
+          })
+        }).then(function () {
+          return ch.close()
+        }).then(function () {
+          done()
         }).catch(function (err) {
           done(err)
-        }).then(function () {
-          ch.consume('test', function (msg) {
-            try {
-              ch.ack(msg)
-              expect(fakeAgent.incomingEdgeMetrics.report).to.have.been.calledWith({
-                protocol: 'amqp',
-                serviceKey: 62,
-                transportDelay: 0
-              })
-              ch.close()
-              done()
-            } catch (err) {
-              ch.close()
-              done(err)
-            }
-          })
         })
       })
     })
@@ -69,30 +62,26 @@ describe.only('amqplib', function () {
     it('is instrumented for incoming edges', function (done) {
       var open = require('amqplib').connect(process.env.AMQP_URL)
 
-      // Publisher
       open.then(function (conn) {
         return conn.createChannel()
       }).then(function (ch) {
         ch.assertQueue('test').then(function (ok) {
           return ch.sendToQueue('test', new Buffer('something'))
+        }).then(function () {
+          return ch.consume('test', function (msg) {
+            ch.ack(msg)
+            expect(fakeAgent.incomingEdgeMetrics.report).to.have.been.calledWith({
+              protocol: 'amqp',
+              serviceKey: 62,
+              transportDelay: 0
+            })
+          })
+        }).then(function () {
+          return ch.close()
+        }).then(function () {
+          done()
         }).catch(function (err) {
           done(err)
-        }).then(function () {
-          ch.consume('test', function (msg) {
-            try {
-              ch.ack(msg)
-              expect(fakeAgent.incomingEdgeMetrics.report).to.have.been.calledWith({
-                protocol: 'amqp',
-                serviceKey: 62,
-                transportDelay: 0
-              })
-              ch.close()
-              done()
-            } catch (err) {
-              ch.close()
-              done(err)
-            }
-          })
         })
       })
     })
@@ -114,10 +103,14 @@ describe.only('amqplib', function () {
     it('looks transparent', function (done) {
       require('amqplib/callback_api')
         .connect(process.env.AMQP_URL, function (err, conn) {
-          if (err != null) done(err)
+          if (err != null) {
+            return done(err)
+          }
           conn.createChannel(onOpen)
           function onOpen (err, ch) {
-            if (err != null) done(err)
+            if (err != null) {
+              return done(err)
+            }
             ch.consume('test-cb', function (msg) {
               try {
                 ch.ack(msg)

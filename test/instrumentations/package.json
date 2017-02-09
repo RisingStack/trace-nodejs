@@ -14,7 +14,6 @@
     "lodash.defaultsdeep": "^4.5.1",
     "memcached": "2.2.2",
     "mocha": "3.2.0",
-    "mongodb": "2.2.15",
     "mongoose": "4.7.2",
     "redis": "2.6.3",
     "sinon": "1.17.6",
