@@ -2,7 +2,6 @@
 
 require('string.prototype.startswith')
 
-var sinon = require('sinon')
 var test = require('./utils/test')
 var serviceMocks = require('./utils/serviceMocks')
 var pkg = require('@risingstack/trace/package.json')
@@ -24,46 +23,6 @@ var testSetup = {
     }
   }
 }
-
-test('should print error on missing service name', {
-    isolate: 'child-process',
-    timeout: TEST_TIMEOUT,
-    childProcessOpts: {
-    env: {
-      TRACE_API_KEY: TRACE_API_KEY,
-      TRACE_COLLECT_INTERVAL: 100
-    }
-  }
-}, function (t) {
-    var sandbox = sinon.sandbox.create()
-    var consoleErrorStub = sandbox.stub(console, 'error')
-    require('@risingstack/trace')
-    t.pass('does not crash')
-    t.ok(consoleErrorStub.called, 'console.error has been called')
-    t.ok(consoleErrorStub.args[0].join(' ').startsWith('error: [trace] Missing service name'), 'message indicates missing service name')
-    t.end()
-    process.exit(0)
-  })
-test('should print error on missing API key', {
-    isolate: 'child-process',
-    timeout: TEST_TIMEOUT,
-    childProcessOpts: {
-    env: {
-      TRACE_SERVICE_NAME: TRACE_SERVICE_NAME,
-      TRACE_COLLECT_INTERVAL: 100
-    }
-  }
-}, function (t) {
-    var sandbox = sinon.sandbox.create()
-    var consoleErrorStub = sandbox.stub(console, 'error')
-    require('@risingstack/trace')
-    t.pass('does not crash')
-    t.ok(consoleErrorStub.called, 'console.error has been called')
-    t.ok(consoleErrorStub.args[0].join(' ').startsWith('error: [trace] Missing API key'), 'message indicates missing API key')
-    t.end()
-    sandbox.restore()
-    process.exit(0)
-  })
 
 test('should get service key',
   {
