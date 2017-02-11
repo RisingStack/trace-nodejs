@@ -33,7 +33,7 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "semantic-release-pre": "semantic-release pre",
     "semantic-release-post": "semantic-release post",
-    "install": "npm i v8-profiler --build-from-source || exit 0"
+    "install": "npm i @risingstack/v8-profiler --build-from-source || exit 0"
   },
   "repository": {
     "type": "git",
