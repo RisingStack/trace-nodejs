@@ -15,7 +15,7 @@
 With version 3.x.x we have dropped support for Node v0.10. This means that
 future releases under this major version might contain code changes that are
 incompatible with Node.js v0.10 to an extent of crashing your application.
-Please consider updating to a newer runtime, especially that the 
+Please consider updating to a newer runtime, especially that the
 [maintenance of v0.10 has already ended](node-lts). See our compatibility table
 below.
 
@@ -166,6 +166,58 @@ Accepts a node-style callback to be called when trace stopped.
 
 Note: There is no way to restart trace after calling this method. You should end your process after calling this
 method.
+
+## Troubleshooting
+
+### Debug logs
+If you have problems using Trace, e.g it doesn't seem to report anything you can
+turn on logging. We use the lightweight
+(debug)[https://github.com/visionmedia/debug]. If you are not familiar with it
+yet, please read its documentation to learn how it works.
+
+
+#### Quickstart
+To turn it only for Trace start your app with the `DEBUG`
+environment variable set to `risingstack/trace*`.
+
+```
+DEBUG=risingstack/trace* node my_app.js
+```
+
+#### Configure logging
+
+To make it possible to filter severities and components in Trace we use
+subnamespaces. The namespace will start with `trace/risingstack` then a `:` then
+a mandatory severity specifier,
+- `error`,
+- `warn` or
+- `info`.
+
+Then come zero or more namespaces led by colons. The namespaces are
+hierarchically organized according to components inside of Trace.
+
+Currently these namespaces (and their subnamespaces) are used:
+
+- `config`
+- `instrumentation`
+- `agent`
+- `agent:tracer`
+- `agent:metrics`
+- `agent:profiler`
+- `agent:security`
+- `api`
+
+As they can have subnamespaces, always append an `*` to them to get all
+messages.
+
+Examples:
+
+- get all error messages: `DEBUG=risingstack/trace:error*`
+
+- get all messages from agents: `DEBUG=risingstack/trace:*:agent*`
+
+- get all error messages and all messages from agents: `DEBUG=risingstack/trace:error*,risingstack/trace:*:agent*`
+
 
 ## Compatibility with Node versions
 
