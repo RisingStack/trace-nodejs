@@ -172,7 +172,7 @@ method.
 ### Debug logs
 If you have problems using Trace, e.g it doesn't seem to report anything you can
 turn on logging. We use the lightweight
-(debug)[https://github.com/visionmedia/debug]. If you are not familiar with it
+[debug](https://github.com/visionmedia/debug). If you are not familiar with it
 yet, please read its documentation to learn how it works.
 
 
