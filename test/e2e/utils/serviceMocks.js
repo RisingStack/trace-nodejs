@@ -40,7 +40,7 @@ function mockCustomMetricsRequest (opts) {
       'Authorization': 'Bearer ' + opts.apiKey
     }
   })
-    .post('/service/' + opts.serviceKey + '/custom-metrics')
+    .post('/v2/service/' + opts.serviceKey + '/custom-metrics')
     .times(opts.maxTimes || 1)
     .reply(opts.callback || 200)
 }
