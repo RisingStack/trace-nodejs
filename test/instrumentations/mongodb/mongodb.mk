@@ -30,7 +30,7 @@ before_$(target) : before
 	@echo '*---------------*'
 	@echo '| mongodb       |'
 	@echo '*---------------*'
-	npm i mongodb
+	@npm i mongodb
 	$(addprefix $(cur_dir), dbVerify.js) $(db_url)
 
 # this should run after `before` for each of the version targets

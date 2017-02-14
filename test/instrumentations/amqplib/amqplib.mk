@@ -31,7 +31,7 @@ before_$(target) : before
 	@echo '*---------------*'
 	@echo '| amqplib       |'
 	@echo '*---------------*'
-	npm i amqplib
+	@npm i amqplib
 	AMQP_URL=$(amqp_url) $(addprefix $(cur_dir), verify.js)
 
 # this should run after `before` for each of the version targets

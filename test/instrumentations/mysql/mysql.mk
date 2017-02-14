@@ -59,7 +59,7 @@ before_$(target) : before
 	@echo '*---------------*'
 	@echo '| mysql         |'
 	@echo '*---------------*'
-	npm i mysql
+	@npm i mysql
 	# this script throws an error if it can't access the db
 	MYSQL_HOST=$(db_host) $(addprefix $(cur_dir), dbVerify.js)
 

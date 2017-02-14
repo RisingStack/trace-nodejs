@@ -3,10 +3,10 @@ require('../test-setup.spec.js')
 var expect = require('chai').expect
 var Storage = require('@risingstack/trace/lib/agent/storage')
 
+var when = require('when')
+
 describe('when', function () {
   it('retains context', function (done) {
-    var when = require('when')
-
     var storage = new Storage()
 
     storage.bind(usePromise)
