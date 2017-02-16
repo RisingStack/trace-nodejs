@@ -1,5 +1,5 @@
 var assign = require('lodash.assign')
-var defaultsDeep = require('lodash.defaultsdeep')
+var defaultsDeep = require('lodash').defaultsDeep
 var tape = require('tape')
 var spawnSync = require('child_process').spawnSync
 var spawnSyncFallback = require('spawn-sync')

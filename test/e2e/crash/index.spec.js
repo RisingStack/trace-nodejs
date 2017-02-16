@@ -1,30 +1,29 @@
-'use strict'
-
-var express = require('express')
-var bodyParser = require('body-parser')
-var test = require('tape')
-var spawnSync = require('spawn-sync')
-var defaultsDeep = require('lodash.defaultsdeep')
-var path = require('path')
-// var semver = require('semver')
-
-var TRACE_API_KEY = 'headers.payload.signature'
-var TRACE_SERVICE_NAME = 'service-name'
-var TEST_WEB_SERVER_PORT = process.env.TEST_WEBSERVER_PORT || 44332
-var TEST_TIMEOUT = 10000
-
-var env = {
-  TRACE_API_KEY: TRACE_API_KEY,
-  TRACE_SERVICE_NAME: TRACE_SERVICE_NAME,
-  TRACE_COLLECT_INTERVAL: 100,
-  TRACE_UPDATE_INTERVAL: 100000,
-  TRACE_COLLECTOR_API_URL: 'http://127.0.0.1:' + TEST_WEB_SERVER_PORT
-}
-
+// 'use strict'
+//
+// var express = require('express')
+// var bodyParser = require('body-parser')
+// var test = require('tape')
+// var spawnSync = require('spawn-sync')
+// var defaultsDeep = require('lodash').defaultsDeep
+// var path = require('path')
+// // var semver = require('semver')
+//
+// var TRACE_API_KEY = 'headers.payload.signature'
+// var TRACE_SERVICE_NAME = 'service-name'
+// var TEST_WEB_SERVER_PORT = process.env.TEST_WEBSERVER_PORT || 44332
+// var TEST_TIMEOUT = 10000
+//
+// var env = {
+//   TRACE_API_KEY: TRACE_API_KEY,
+//   TRACE_SERVICE_NAME: TRACE_SERVICE_NAME,
+//   TRACE_COLLECT_INTERVAL: 100,
+//   TRACE_UPDATE_INTERVAL: 100000,
+//   TRACE_COLLECTOR_API_URL: 'http://127.0.0.1:' + TEST_WEB_SERVER_PORT
+// }
+//
 // test('should report crash', {
 //   timeout: TEST_TIMEOUT,
-//   skip: true
-//   // skip: !semver.satisfies(process.version, '>= 6')
+//   skip: true // !semver.satisfies(process.version, '>= 6')
 // }, function (t) {
 //   var app = express()
 //   app.use(bodyParser.json())

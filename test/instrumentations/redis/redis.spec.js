@@ -2,10 +2,10 @@
 
 var expect = require('chai').expect
 var flatMap = require('lodash.flatmap')
-var wrapper = require('@risingstack/trace/lib/instrumentations/redis')
-var utils = require('@risingstack/trace/lib/instrumentations/utils')
-var Shimmer = require('@risingstack/trace/lib/utils/shimmer')
-var instrumentedCommands = require('@risingstack/trace/lib/instrumentations/utils').redisTools.instrumentedCommands
+var wrapper = require('../../../lib/instrumentations/redis')
+var utils = require('../../../lib/instrumentations/utils')
+var Shimmer = require('../../../lib/utils/shimmer')
+var instrumentedCommands = require('../../../lib/instrumentations/utils').redisTools.instrumentedCommands
 
 describe('The redis wrapper module', function () {
   // beforeEach(function () {

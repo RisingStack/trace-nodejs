@@ -4,8 +4,6 @@ cur_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 cur_dir := $(dir $(cur_path))
 cur_base := $(notdir $(cur_path))
 
-export PATH := $(shell npm bin):$(PATH)
-
 # Use this variable for invoking the test runner
 export MOCHA := $(shell npm bin)/mocha
 

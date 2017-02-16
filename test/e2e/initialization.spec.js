@@ -4,7 +4,7 @@ require('string.prototype.startswith')
 
 var test = require('./utils/test')
 var serviceMocks = require('./utils/serviceMocks')
-var pkg = require('@risingstack/trace/package.json')
+var pkg = require('../../package.json')
 
 var TRACE_COLLECTOR_API_URL = 'https://trace-collector-api.risingstack.com'
 var TRACE_API_KEY = 'headers.payload.signature'
@@ -48,7 +48,7 @@ test('should get service key',
         process.exit(0)
       }
     })
-    require('@risingstack/trace')
+    require('../..')
   })
 
 test('should stop', testSetup, function (t) {
@@ -78,7 +78,7 @@ test('should stop', testSetup, function (t) {
     }
   })
 
-  var trace = require('@risingstack/trace')
+  var trace = require('../..')
 
   setTimeout(function () {
     trace.stop(function (err) {

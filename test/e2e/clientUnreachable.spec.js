@@ -25,7 +25,6 @@ var cpOpts = {
   }
 }
 
-
 test('client Unreachable',
   {
     // FIXME: I patched nock, so it can gunzip requests on appropriate
@@ -36,11 +35,11 @@ test('client Unreachable',
     timeout: TEST_TIMEOUT,
     childProcessOpts: cpOpts
   }, function (t) {
-    var timesCalled = 0
     serviceMocks.mockServiceKeyRequest({
       url: TRACE_COLLECTOR_API_URL,
       apiKey: TRACE_API_KEY,
       callback: function () {
+        t.pass('Service key requested')
         return [200, { key: TEST_TRACE_SERVICE_KEY }]
       }
     })
@@ -54,7 +53,7 @@ test('client Unreachable',
         process.exit(0)
       }
     })
-    require('@risingstack/trace')
+    require('../..')
     t.pass('Trace loaded into server')
     // http server
     var app = express()

@@ -5,4 +5,6 @@ source ./scripts/util/env-node.sh
 
 nvm use $NODE_VERSION
 
-npm run lint
+eslint=$(npm run which --loglevel silent -- eslint)
+
+$eslint lib example test

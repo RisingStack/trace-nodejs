@@ -1,7 +1,7 @@
 'use strict'
 require('../test-setup.spec.js')
 var expect = require('chai').expect
-var Storage = require('@risingstack/trace/lib/agent/storage')
+var Storage = require('../../../lib/agent/storage')
 
 var when = require('when')
 

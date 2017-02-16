@@ -80,7 +80,7 @@ apiCalls.forEach(function (name) {
           }
         }
       })
-      require('@risingstack/trace')
+      require('../..')
       t.pass('Trace loaded into server')
       // http server
       var app = express()

@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 set -e
+source ./scripts/util/env-essential.sh
 source ./scripts/util/env-node.sh
 
 nvm use $NODE_VERSION_FW
 
 if [[ -z $INSTR_TARGET_VERSIONS ]]; then
-    INSTR_TARGET_VERSIONS=some
+    INSTR_TARGET_VERSIONS=one
 fi
 
 cd ./test/instrumentations

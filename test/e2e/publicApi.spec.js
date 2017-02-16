@@ -34,7 +34,7 @@ test('should be in a transaction',
         return [200, { key: TEST_TRACE_SERVICE_KEY }]
       }
     })
-    var trace = require('@risingstack/trace')
+    var trace = require('../..')
     t.pass('Trace loaded into server')
     // http server
     var app = express()

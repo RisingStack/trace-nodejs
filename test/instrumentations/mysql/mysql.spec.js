@@ -2,10 +2,10 @@
 
 require('../test-setup.spec.js')
 
-var wrapper = require('@risingstack/trace/lib/instrumentations/mysql')
+var wrapper = require('../../../lib/instrumentations/mysql')
 var expect = require('chai').expect
-var Shimmer = require('@risingstack/trace/lib/utils/shimmer')
-var utils = require('@risingstack/trace/lib/instrumentations/utils')
+var Shimmer = require('../../../lib/utils/shimmer')
+var utils = require('../../../lib/instrumentations/utils')
 
 describe('The mysql wrapper', function () {
   var CONNECTION_OPERATIONS = [

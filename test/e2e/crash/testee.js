@@ -1,2 +1,2 @@
-require('@risingstack/trace')
+require('../../..')
 not.exist() // eslint-disable-line

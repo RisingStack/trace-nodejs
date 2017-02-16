@@ -42,7 +42,7 @@ $(versions:%=before_version_$(target)_%) : before_$(target)
 
 # run the test for each of the versions
 $(versions:%=test_$(target)_%) : test_% : before_version_%
-	AMQP_URL=$(db_host) $(MOCHA) $(addprefix $(cur_dir), *.spec.js) || exit 0;
+	AMQP_URL=$(amqp_url) $(MOCHA) $(addprefix $(cur_dir), *.spec.js) || exit 0;
 
 # this should run before `after` for each of the version targets
 # after the test suite
