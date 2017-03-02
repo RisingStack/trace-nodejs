@@ -1,5 +1,4 @@
 'use strict'
-
 require('string.prototype.startswith')
 
 var test = require('./utils/test')

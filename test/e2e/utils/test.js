@@ -1,3 +1,4 @@
+'use strict'
 var assign = require('lodash.assign')
 var defaultsDeep = require('lodash').defaultsDeep
 var tape = require('tape')

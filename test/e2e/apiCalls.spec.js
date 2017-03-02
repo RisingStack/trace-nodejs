@@ -1,5 +1,4 @@
 'use strict'
-
 var express = require('express')
 var request = require('superagent')
 var test = require('./utils/test')
@@ -66,6 +65,7 @@ apiCalls.forEach(function (name) {
           t.pass('collector sends ' + name)
           if (typeof requestBody === 'object') {
             t.pass('requestBody is valid JSON')
+            console.log(requestBody)
             ok()
           } else {
             var buffer = new Buffer(requestBody, 'hex')

@@ -1,5 +1,4 @@
 'use strict'
-
 var expect = require('chai').expect
 var freshy = require('freshy')
 

@@ -12,8 +12,25 @@ var url = 'mongodb://localhost:27017/trace-collector-test'
 
 describe('mongo module wrapper', function () {
   var fakeAgent
+  var clientSendResult
 
   beforeEach(function () {
+    clientSendResult = {
+      duffelBag: {
+        timestamp: 5
+      },
+      event: {
+        p: 'child-id',
+        r: 'tr-id'
+      },
+      briefcase: [[2, {
+        p: 'child-id',
+        r: 'tr-id'
+      }], [1, {
+        p: 'parent-id',
+        r: 'tr-id'
+      }]]
+    }
     fakeAgent = {
       incomingEdgeMetrics: {
         report: this.sandbox.spy()
@@ -23,20 +40,8 @@ describe('mongo module wrapper', function () {
           mustCollectSeverity: 9,
           defaultSeverity: 0,
           clientRecv: this.sandbox.spy(),
-          clientSend: this.sandbox.stub().returns({
-            briefcase: {
-              csCtx: {
-                communicationId: 1
-              }
-            },
-            duffelBag: {
-              timestamp: 0
-            }
-          })
+          clientSend: this.sandbox.stub().returns(clientSendResult)
         }
-      },
-      storage: {
-        get: this.sandbox.spy()
       },
       externalEdgeMetrics: {
         report: this.sandbox.spy(),

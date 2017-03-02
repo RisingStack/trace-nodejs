@@ -1,5 +1,4 @@
 'use strict'
-
 require('../test-setup.spec.js')
 
 var expect = require('chai').expect
@@ -15,9 +14,6 @@ describe.only('amqplib', function () {
       incomingEdgeMetrics: {
         report: this.sandbox.spy()
       },
-      getRequestId: this.sandbox.spy(),
-      generateRequestId: this.sandbox.stub().returns('42'),
-      generateCommId: this.sandbox.stub().returns('52'),
       getServiceKey: this.sandbox.stub().returns('62'),
       storage: new Storage()
     }

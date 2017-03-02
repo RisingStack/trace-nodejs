@@ -5,13 +5,13 @@
     "test": "tape $(find . -name \"*.spec.js\" -not -path \"./node_modules/*\")"
   },
   "devDependencies": {
+    "@tap-format/spec": "^0.2.0",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "nock": "git+https://github.com/szdavid92/nock.git#feat/gzip-content-type-decoder",
     "spawn-sync": "^1.0.15",
     "string.prototype.startswith": "^0.2.0",
     "superagent": "3.2.1",
-    "tap-spec": "^4.1.1",
     "tape": "^4.4.0"
   }
 }

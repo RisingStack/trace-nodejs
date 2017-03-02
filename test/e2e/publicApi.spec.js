@@ -1,5 +1,4 @@
 'use strict'
-
 var express = require('express')
 var request = require('superagent')
 var test = require('./utils/test')

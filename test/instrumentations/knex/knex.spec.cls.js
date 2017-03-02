@@ -1,5 +1,4 @@
 'use strict'
-
 var util = require('util')
 var expect = require('chai').expect
 

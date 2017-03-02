@@ -1,5 +1,4 @@
 'use strict'
-
 require('../test-setup.spec.js')
 
 var expect = require('chai').expect

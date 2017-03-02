@@ -1,5 +1,4 @@
 'use strict'
-
 var util = require('util')
 var expect = require('chai').expect
 
@@ -27,7 +26,7 @@ describe('Bookshelf-cls', function () {
     })
     var bookshelf = require('bookshelf')(knex)
 
-    const Model = bookshelf.Model.extend({
+    var Model = bookshelf.Model.extend({
       tableName: 'pg_aggregate'
     })
 

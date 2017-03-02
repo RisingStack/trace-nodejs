@@ -1,4 +1,4 @@
-// index.js
+'use strict'
 var trace = require('@risingstack/trace')
 
 var app = require('express')()

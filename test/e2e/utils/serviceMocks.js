@@ -1,5 +1,4 @@
 'use strict'
-
 var nock = require('nock')
 
 function mockServiceKeyRequest (opts) {

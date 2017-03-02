@@ -1,5 +1,4 @@
 'use strict'
-
 var flatMap = require('lodash.flatmap')
 var expect = require('chai').expect
 var wrapper = require('../../../lib/instrumentations/trace-instrumentation-ioredis')

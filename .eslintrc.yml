@@ -1,8 +1,25 @@
+parserOptions:
+  ecmaVersion: 5
+  sourceType: script
 env:
   node: true
   mocha: true
 extends: standard
 rules:
-  no-unused-expressions: off
-  node/no-deprecated-api: off
-  standard/no-callback-literal: off
+  no-unused-expressions:
+  - off
+  node/no-deprecated-api:
+  - off
+  standard/no-callback-literal:
+  - off
+  strict:
+  - error
+  - safe
+  consistent-this:
+  - error
+  - self
+  no-multiple-empty-lines:
+  - error
+  - max: 1
+    maxEOF: 0
+    maxBOF: 0

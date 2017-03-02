@@ -1,5 +1,4 @@
 'use strict'
-
 require('../test-setup.spec.js')
 
 var wrapper = require('../../../lib/instrumentations/trace-instrumentation-mysql')

@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 'use strict'
 
 var pg = require('pg')
