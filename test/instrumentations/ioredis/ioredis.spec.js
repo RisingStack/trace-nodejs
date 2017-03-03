@@ -2,7 +2,7 @@
 
 var flatMap = require('lodash.flatmap')
 var expect = require('chai').expect
-var wrapper = require('../../../lib/instrumentations/ioredis')
+var wrapper = require('../../../lib/instrumentations/trace-instrumentation-ioredis')
 var Shimmer = require('../../../lib/utils/shimmer')
 var utils = require('../../../lib/instrumentations/utils')
 var instrumentedCommands = utils.redisTools.instrumentedCommands

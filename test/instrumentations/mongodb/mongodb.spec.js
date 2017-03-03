@@ -1,6 +1,6 @@
 'use strict'
-var wrapper = require('../../../lib/instrumentations/mongodb').instrumentations[ 0 ].post
-var COLLECTION_OPERATIONS = require('../../../lib/instrumentations/mongodb')._COLLECTION_OPERATIONS
+var wrapper = require('../../../lib/instrumentations/trace-instrumentation-mongodb').instrumentations[ 0 ].post
+var COLLECTION_OPERATIONS = require('../../../lib/instrumentations/trace-instrumentation-mongodb')._COLLECTION_OPERATIONS
 var utils = require('../../../lib/instrumentations/utils')
 var shimmer = require('../../../lib/utils/shimmer.js')
 

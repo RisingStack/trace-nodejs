@@ -3,7 +3,7 @@
 require('../test-setup.spec.js')
 
 var expect = require('chai').expect
-var wrapper = require('../../../lib/instrumentations/pg').instrumentations[0].post
+var wrapper = require('../../../lib/instrumentations/trace-instrumentation-pg').instrumentations[0].post
 var Shimmer = require('../../../lib/utils/shimmer')
 var utils = require('../../../lib/instrumentations/utils')
 

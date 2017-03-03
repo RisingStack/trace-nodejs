@@ -2,7 +2,7 @@
 
 require('../test-setup.spec.js')
 
-var wrapper = require('../../../lib/instrumentations/mysql')
+var wrapper = require('../../../lib/instrumentations/trace-instrumentation-mysql')
 var expect = require('chai').expect
 var Shimmer = require('../../../lib/utils/shimmer')
 var utils = require('../../../lib/instrumentations/utils')
