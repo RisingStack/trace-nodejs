@@ -1,8 +1,8 @@
 machine:
   node:
-    version: 4.4.4
+    version: 6.9.5
   environment:
-    NODE_VERSION_FW: 6
+    NODE_VERSION_FW: 6.9.5
     NODE_VERSIONS: 0.12 4 5 6 7
     RELEASE_REPONAME: trace-nodejs
     RELEASE_BRANCH: master
