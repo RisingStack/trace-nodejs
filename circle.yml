@@ -1,4 +1,9 @@
 machine:
+  services:
+    - redis
+    - mysql
+    - mongodb
+    - postgresql
   node:
     version: 6.9.5
   environment:

@@ -38,7 +38,7 @@ NODE_TOTAL ?= 1
 before :
 	@node --version
 	@npm --version
-	npm i
+	@npm i
 
 test : $(shell $(cur_dir)/distribute-tasks.py $(NODE_INDEX) $(NODE_TOTAL) $(targets:%=test_suite_%))
 

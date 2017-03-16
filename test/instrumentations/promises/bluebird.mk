@@ -31,11 +31,11 @@ before_$(target) : before
 # this should run after `before` for each of the version targets
 # before the test
 $(versions:%=before_version_$(target)_%) : before_$(target)
-	npm i bluebird@$(subst before_version_$(target)_,,$@)
+	@npm i bluebird@$(subst before_version_$(target)_,,$@)
 
 # run the test for each of the versions
 $(versions:%=test_$(target)_%) : test_% : before_version_%
-	$(MOCHA) $(addprefix $(cur_dir), bluebird.spec.js) || exit 0;
+	@$(MOCHA) $(addprefix $(cur_dir), bluebird.spec.js) || exit 0;
 
 ## this is the whole test suite
 test_suite_$(target) : $(versions:%=test_$(target)_%)

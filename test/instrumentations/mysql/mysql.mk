@@ -61,18 +61,18 @@ before_$(target) : before
 	@echo '*---------------*'
 	@npm i mysql
 	# this script throws an error if it can't access the db
-	MYSQL_HOST=$(db_host) $(addprefix $(cur_dir), dbVerify.js)
+	@MYSQL_HOST=$(db_host) $(addprefix $(cur_dir), dbVerify.js)
 
 # this should run after `before` for each of the version targets
 # but before the test
 $(versions:%=before_version_$(target)_%) : before_$(target)
 	# install version to be tested
-	npm i mysql@$(subst before_version_$(target)_,,$@)
+	@npm i mysql@$(subst before_version_$(target)_,,$@)
 
 # run the test for each of the versions
 $(versions:%=test_$(target)_%) : test_% : before_version_%
 	# TODO remove the failsafe once tests are stable
-	MYSQL_HOST=$(db_host) $(MOCHA) $(addprefix $(cur_dir), *.spec.js) || exit 0;
+	@MYSQL_HOST=$(db_host) $(MOCHA) $(addprefix $(cur_dir), *.spec.js) || exit 0;
 
 # this should run before `after` for each of the version targets
 # after the test suite

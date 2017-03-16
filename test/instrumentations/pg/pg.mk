@@ -32,17 +32,17 @@ before_$(target) : before
 	@echo '| pg            |'
 	@echo '*---------------*'
 	@npm i pg pg-native
-	DB_URL=$(db_url) $(addprefix $(cur_dir), dbVerify.js)
+	@DB_URL=$(db_url) $(addprefix $(cur_dir), dbVerify.js)
 
 # this should run after `before` for each of the version targets
 # before the test
 $(versions:%=before_version_$(target)_%) : before_$(target)
-	npm i pg@$(subst before_version_$(target)_,,$@)
+	@npm i pg@$(subst before_version_$(target)_,,$@)
 
 
 # run the test for each of the versions
 $(versions:%=test_$(target)_%) : test_% : before_version_%
-	DB_URL=$(db_url) $(MOCHA) $(addprefix $(cur_dir), *.spec.js) || exit 0;
+	@DB_URL=$(db_url) $(MOCHA) $(addprefix $(cur_dir), *.spec.js) || exit 0;
 
 # this should run before `after` for each of the version targets
 # after the test suite

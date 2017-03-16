@@ -32,17 +32,17 @@ before_$(target) : before
 	@echo '| amqplib       |'
 	@echo '*---------------*'
 	@npm i amqplib
-	AMQP_URL=$(amqp_url) $(addprefix $(cur_dir), verify.js)
+	@AMQP_URL=$(amqp_url) $(addprefix $(cur_dir), verify.js)
 
 # this should run after `before` for each of the version targets
 # before the test
 $(versions:%=before_version_$(target)_%) : before_$(target)
-	npm i amqplib@$(subst before_version_$(target)_,,$@)
+	@npm i amqplib@$(subst before_version_$(target)_,,$@)
 
 
 # run the test for each of the versions
 $(versions:%=test_$(target)_%) : test_% : before_version_%
-	AMQP_URL=$(amqp_url) $(MOCHA) $(addprefix $(cur_dir), *.spec.js) || exit 0;
+	@AMQP_URL=$(amqp_url) $(MOCHA) $(addprefix $(cur_dir), *.spec.js) || exit 0;
 
 # this should run before `after` for each of the version targets
 # after the test suite

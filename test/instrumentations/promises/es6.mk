@@ -23,7 +23,7 @@ before_$(target) : before
 
 # run the test for each of the versions
 test_$(target) : before_$(target)
-	$(MOCHA) $(addprefix $(cur_dir), es6.spec.js) || exit 0;
+	@$(MOCHA) $(addprefix $(cur_dir), es6.spec.js) || exit 0;
 
 ## this is the whole test suite
 test_suite_$(target) : test_$(target)
