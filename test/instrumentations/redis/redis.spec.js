@@ -7,7 +7,7 @@ var expect = require('chai').expect
 var Shimmer = require('../../../lib/utils/shimmer')
 var Module = require('module')
 
-describe.only('The redis wrapper module', function () {
+describe('The redis wrapper module', function () {
   var sandbox = sinon.sandbox.create()
   var fakeAgent = {
     incomingEdgeMetrics: {
