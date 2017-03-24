@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+. ./scripts/env.sh
+
+echo
+echo "LINTING"
+echo
+
+eslint=$(npm run which --loglevel silent -- eslint)
+
+$eslint lib example test

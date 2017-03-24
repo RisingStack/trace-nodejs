@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
-set -e
 
+echo
+echo "RUNNING E2E TESTS"
+echo
 cd ./test/e2e && ./run.sh

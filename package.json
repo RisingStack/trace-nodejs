@@ -22,16 +22,12 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "install": "npm i @risingstack/v8-profiler --build-from-source || exit 0",
-    "lint": "./scripts/lint.sh",
-    "test": "npm run test-unit",
+    "lint": "./scripts/lint",
+    "test": "./scripts/test",
     "test-unit": "mocha 'lib/**/*.spec.js'",
-    "test-e2e": "./scripts/test-e2e.sh",
-    "test-instrumentations": "./scripts/test-instrumentations.sh",
-    "test-coverage": "./scripts/test-coverage.sh",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "semantic-release-pre": "semantic-release pre",
-    "semantic-release-post": "semantic-release post",
+    "test-e2e": "./scripts/test-e2e",
+    "test-instrumentations": "./scripts/test-instrumentations",
+    "test-coverage": "./scripts/test-coverage",
     "which": "which"
   },
   "repository": {

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+. ./scripts/env.sh
+echo
+echo "INSTALLING DEPENDENCIES"
+echo
+npm install > /dev/null
+echo
+echo "REBUILDING NATIVE ADDONS"
+echo
+npm rebuild > /dev/null

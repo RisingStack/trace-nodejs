@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
-
 set -e
-
-if [[ -z $ENV_ESSENTIAL_SOURCED ]]; then
-    if [[ $CIRCLE_BRANCH ]]; then
-        # CircleCI
+if [[ -z $ENV_ESSENTIAL_EXPORTS ]]; then
+    if [[ $CIRCLE_BRANCH ]]; then # Runs on CircleCI
         export IS_CI="1"
         export CURRENT_BRANCH=$CIRCLE_BRANCH
         export NODE_TOTAL=$CIRCLE_NODE_TOTAL
@@ -15,16 +12,14 @@ if [[ -z $ENV_ESSENTIAL_SOURCED ]]; then
         export PROJECT_ROOT=$HOME/$CIRCLE_PROJECT_REPONAME
         export COMMIT_MESSAGE=$(git log -1 --pretty=%B)
         export COMMIT_AUTHOR=$(git log -1 --pretty=%an)
-        if [[ "$COMMIT_AUTHOR" == "risingbot" ]] || [[ $(echo $COMMIT_MESSAGE | sed -n 's/^chore(bump):/&/p') ]]; then
-            export SKIP_BUILD="1"
-        fi
         export REPOSITORY_URL=$CIRCLE_REPOSITORY_URL
-        if [[ -n "$REPOSITORY_URL" ]] && [[ -n "$GH_TOKEN" ]]; then
-           export REPOSITORY_PUSH_URL=$(echo $REPOSITORY_URL | sed -r "s|https?://(.+)/|https://risingbot:$GH_TOKEN@\1/|")
+        if [[ -z $TOOL_NODE_VERSION ]]; then
+            export TOOL_NODE_VERSION=6
         fi
-        export NODE_VERSION=$NODE_VERSION_FW
-    else
-        # local
+        if [[ -z $NODE_VERSION ]]; then
+            export NODE_VERSION=$TOOL_NODE_VERSION
+        fi
+    else # Runs locally
         export CURRENT_BRANCH=$(git branch --no-color | awk '/\*/{ print $2 }')
         export NODE_TOTAL=1
         export NODE_INDEX=0
@@ -36,13 +31,23 @@ if [[ -z $ENV_ESSENTIAL_SOURCED ]]; then
         export COMMIT_AUTHOR=$(git log -1 --pretty=%an)
         export REPOSITORY_URL=$(git config --get remote.origin.url)
         export REPOSITORY_PUSH_URL=$REPOSITORY_URL
+        if [[ -z $TOOL_NODE_VERSION ]]; then
+            export TOOL_NODE_VERSION=6
+        fi
         export NODE_VERSION_FW=6
-        export NODE_VERSION=$NODE_VERSION_FW
+        if [[ -z $NODE_VERSION ]]; then
+            export NODE_VERSION=$TOOL_NODE_VERSION
+        fi
     fi
 fi
 
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+nvm use $NODE_VERSION > /dev/null || nvm install $NODE_VERSION
 
+function print_node() {
+    echo '********************************'
+    echo '*' node:$(printf "%9s" $(node --version)) '|' npm:$(printf "%9s" $(npm --version)) '*'
+    echo '********************************'
+}
 
-# don't put common envs here, will be harder to check for missing ones
-
-export ENV_ESSENTIAL_SOURCED="1"
+export ENV_ESSENTIAL_EXPORTS="1"

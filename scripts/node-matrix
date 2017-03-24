@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+. ./scripts/env.sh
+
+config=(`python2 ./scripts/distribute-tasks.py $NODE_INDEX $NODE_TOTAL ${TARGET_NODE_VERSIONS[@]}`)
+
+for version in ${config[@]}; do
+  export NODE_VERSION=$version
+  for cmd in "$@"; do $cmd; done
+done

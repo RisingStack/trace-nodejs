@@ -36,11 +36,14 @@ NODE_TOTAL ?= 1
 # this way. Of course you could install other dependencies in the test suites.
 # This is actually needed for versioning.
 before :
-	@node --version
-	@npm --version
-	@npm i
+	@npm i > /dev/null
+	@echo '********************************'
+	@echo '*' node:$(shell printf "%9s" $(shell node --version)) '|' npm:$(shell printf "%9s" $(shell npm --version)) '*'
+	@echo '********************************'
+	@echo
 
 test : $(shell $(cur_dir)/distribute-tasks.py $(NODE_INDEX) $(NODE_TOTAL) $(targets:%=test_suite_%))
+.DEFAULT : test
 
 # On best practices for writing a test suite for an instrumentation, please
 # see mysql/mysql.mk
