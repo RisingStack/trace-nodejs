@@ -4,7 +4,7 @@ require('../test-setup.spec.js')
 
 var expect = require('chai').expect
 var wrapper = require('../../../lib/instrumentations/trace-instrumentation-amqplib')
-var microtime = require('../../../lib/optionalDependencies/microtime')
+var microtime = require('../../../lib/optionalDependencies/@risingstack/microtime')
 var Storage = require('../../../lib/agent/storage')
 
 describe.only('amqplib', function () {
