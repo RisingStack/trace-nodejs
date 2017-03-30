@@ -32,7 +32,13 @@ As Trace uses scoped packages, be sure to use npm version greater than 2.7.0.
 npm install --save @risingstack/trace
 ```
 
-*If you can't update to npm@2.7.0 for whatever reason, you can still install Trace using `npm i risingstack/trace-nodejs`.*
+> ⚠️ 
+
+>Trace depends on a couple of native addons. We host precompiled
+binaries of these for Linux and Darwin 64-bit platforms at https://oss.risingstack.com. 
+The installer will attempt to download these dependencies, so it should be allowed 
+through your firewall, or else the download will fail and the installer will fall back
+to building from source. This also happens if there isn't a precompiled binary for your platform. Note that compiling native addons requires native toolchain.
 
 After you installed Trace as a dependency, you just require it at the beginning of your main file.
 ```javascript
@@ -95,13 +101,14 @@ module.exports = {
 
 For the complete set of configuration options, visit the [docs](https://trace-docs.risingstack.com/docs/advanced-usage#section-available-options).
 
-*Note: Custom reporters are no longer supported in trace 2.x*
 
-*Note: If you are running your app with NODE_ENV=test, Trace won't start*
+> ⚠️ 
+
+>If you are running your app with NODE_ENV=test, Trace won't start
 
 ## API
 
-### trace.report(String, [Object])
+### trace.report(name, object)
 
 This method can be use to report additional data to the Trace servers which later on helps with debugging.
 
@@ -114,10 +121,9 @@ trace.report('name', {
 Throws an error if first parameter is not a String.
 Throws an error if second parameter is not an Object.
 
-### trace.reportError(String, Error)
+### trace.reportError(name, error)
 
-This method can be used to send errors to the Trace servers - note that transactions that use
-this method are not subject to sampling, so it will be collected all the time.
+This method can be used to send errors to the Trace servers.
 
 ```javascript
 trace.reportError('mysql_error', new Error('connection refused'));
@@ -155,7 +161,7 @@ trace.incrementMetric('user/signup')
 
 The name must have the following format: `<Category>/<Name>`
 
-### trace.stop()
+### trace.stop([cb])
 
 This method gracefully stops trace.
 
@@ -241,6 +247,8 @@ module.exports = {
 ```
 
 Also, from `2.x` you can specify these values using only environment variables: `TRACE_SERVICE_NAME` and `TRACE_API_KEY`.
+
+Custom reporters are no longer supported in trace 2.x*
 
 ### Versions below 3.x
 
