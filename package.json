@@ -28,7 +28,10 @@
     "test-e2e": "./scripts/test-e2e",
     "test-instrumentations": "./scripts/test-instrumentations",
     "test-coverage": "./scripts/test-coverage",
-    "which": "which"
+    "which": "which",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release-pre": "semantic-release pre",
+    "semantic-release-post": "semantic-release post"
   },
   "repository": {
     "type": "git",
