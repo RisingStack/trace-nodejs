@@ -227,11 +227,11 @@ Examples:
 
 ## Compatibility with Node versions
 
-* node v0.12@latest
-* node v4@latest
-* node v5@latest
-* node v6@latest
-* node v7@latest
+* node v0.12
+* node v4
+* node v5
+* node v6
+* node v7
 
 ## Migrating from previous versions
 
