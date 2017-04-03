@@ -54,4 +54,3 @@ module.exports = function testPromise (name, Prom) {
     })
   })
 }
-

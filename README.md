@@ -4,7 +4,6 @@
 [![npm version](https://img.shields.io/npm/v/@risingstack/trace.svg)](https://www.npmjs.com/package/@risingstack/trace)
 [![Website](https://img.shields.io/website-up-down-green-red/https/trace.risingstack.com.svg)](https://trace.risingstack.com)
 [![Slack Status](https://trace-slack.risingstack.com/badge.svg)](https://trace-slack.risingstack.com)
-[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![Twitter URL](https://img.shields.io/twitter/url/https/trace.risingstack.com.svg?style=social)](https://twitter.com/TraceAPM)
 ***
 [App](https://trace.risingstack.com/app) | [Documentation](https://trace-docs.risingstack.com/) | [Status page](https://trace-status.risingstack.com/) | [Case study](https://blog.risingstack.com/case-study-node-js-memory-leak-in-ghost/)

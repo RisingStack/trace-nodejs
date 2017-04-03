@@ -2,3 +2,5 @@ env:
   node: true
   mocha: true
 extends: standard
+rules:
+  no-unused-expressions: off
