@@ -37,7 +37,7 @@ describe('ioredis module wrapper', function () {
 
     var Redis = require('ioredis')
 
-    var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+    var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap').callsFake(function (nodule, name, cb) {
       expect(cb).to.be.a('function')
       var redisInstance = new Redis()
       var commandArguments = ['mySortedSet', 42]
@@ -69,7 +69,7 @@ describe('ioredis module wrapper', function () {
 
     var Redis = require('ioredis')
 
-    var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+    var shimmerWrapStub = this.sandbox.stub(Shimmer, 'wrap').callsFake(function (nodule, name, cb) {
       expect(cb).to.be.a('function')
       var redisInstance = new Redis()
       var dummyCallback = function () {}

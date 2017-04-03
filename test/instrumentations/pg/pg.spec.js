@@ -41,7 +41,7 @@ describe('pg module wrapper', function () {
         throw err
       }
 
-      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap').callsFake(function (nodule, name, cb) {
         expect(cb).to.be.a('function')
         var qryArguments = [qryString, function queryCallback () {}]
         cb(client.query).apply(client, qryArguments)
@@ -82,7 +82,7 @@ describe('pg module wrapper', function () {
         throw err
       }
 
-      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap').callsFake(function (nodule, name, cb) {
         expect(cb).to.be.a('function')
         var qryArguments = [qryString, function queryCallback () {}]
         cb(client.query).apply(client, qryArguments)
@@ -123,7 +123,7 @@ describe('pg module wrapper', function () {
         throw err
       }
 
-      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap').callsFake(function (nodule, name, cb) {
         expect(cb).to.be.a('function')
         var qryArguments = [qryString]
         cb(client.query).apply(client, qryArguments)
@@ -165,7 +165,7 @@ describe('pg module wrapper', function () {
         throw err
       }
 
-      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap').callsFake(function (nodule, name, cb) {
         expect(cb).to.be.a('function')
         var qryArguments = [qryString]
         cb(client.query).apply(client, qryArguments)

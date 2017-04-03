@@ -53,7 +53,7 @@ describe('The mysql wrapper', function () {
 
       // This is tricky. We have to stub exactly after wrapping, and before
       // createConnection to catch the wrapping of the query operation
-      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap').callsFake(function (nodule, name, cb) {
         expect(name).to.eql(CONNECTION_OPERATIONS)
         nodule.connect(function (err) {
           expect(err).to.not.exist
@@ -96,7 +96,7 @@ describe('The mysql wrapper', function () {
 
       // This is tricky. We have to stub exactly after wrapping, and before
       // createConnection to catch the wrapping of the query operation
-      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap').callsFake(function (nodule, name, cb) {
         expect(name).to.eql(POOL_OPERATIONS)
         var queryStr = 'SELECT 1 + 1 AS solution'
         var queryArguments = [queryStr, function queryCallback () {}]
@@ -136,7 +136,7 @@ describe('The mysql wrapper', function () {
 
       // This is tricky. We have to stub exactly after wrapping, and before
       // createConnection to catch the wrapping of the query operation
-      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap').callsFake(function (nodule, name, cb) {
         expect(name).to.eql(CONNECTION_OPERATIONS)
         nodule.connect(function (err) {
           expect(err).to.not.exist
@@ -180,7 +180,7 @@ describe('The mysql wrapper', function () {
 
       // This is tricky. We have to stub exactly after wrapping, and before
       // createConnection to catch the wrapping of the query operation
-      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap').callsFake(function (nodule, name, cb) {
         expect(name).to.eql(CONNECTION_OPERATIONS)
         nodule.connect(function (err) {
           expect(err).to.not.exist
@@ -224,7 +224,7 @@ describe('The mysql wrapper', function () {
 
       // This is tricky. We have to stub exactly after wrapping, and before
       // createConnection to catch the wrapping of the query operation
-      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap').callsFake(function (nodule, name, cb) {
         expect(name).to.eql(POOL_OPERATIONS)
         var queryStr = 'SELECT 1 + 1 AS solution'
         var queryArguments = [queryStr]
@@ -264,7 +264,7 @@ describe('The mysql wrapper', function () {
 
       // This is tricky. We have to stub exactly after wrapping, and before
       // createConnection to catch the wrapping of the query operation
-      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap', function (nodule, name, cb) {
+      var shimmerWrapStub = sandbox.stub(Shimmer, 'wrap').callsFake(function (nodule, name, cb) {
         expect(name).to.eql(CONNECTION_OPERATIONS)
         nodule.connect(function (err) {
           expect(err).to.not.exist
