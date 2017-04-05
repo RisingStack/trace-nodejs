@@ -1,6 +1,6 @@
 {
   "name": "@risingstack/trace",
-  "version": "3.6.0",
+  "version": "3.6.1",
   "author": "RisingStack, Inc.",
   "license": "SEE LICENSE IN LICENSE",
   "contributors": "RisingStack",
@@ -68,7 +68,7 @@
     "@risingstack/microtime": "2.1.6",
     "@risingstack/gc-stats": "1.0.7",
     "@risingstack/event-loop-stats": "1.0.5",
-    "@risingstack/v8-profiler": "5.7.4"
+    "@risingstack/v8-profiler": "5.7.8"
   },
   "devDependencies": {
     "chai": "^3.5.0",
