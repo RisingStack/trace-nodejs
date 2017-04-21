@@ -4,3 +4,5 @@ env:
 extends: standard
 rules:
   no-unused-expressions: off
+  node/no-deprecated-api: off
+  standard/no-callback-literal: off
