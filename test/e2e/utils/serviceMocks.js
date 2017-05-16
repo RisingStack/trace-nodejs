@@ -8,6 +8,7 @@ function mockServiceKeyRequest (opts) {
     }
   })
     .post('/v2/service')
+    .times(opts.maxTimes || 1)
     .reply(opts.callback)
 }
 

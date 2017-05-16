@@ -50,6 +50,42 @@ test('should get service key',
     require('../..')
   })
 
+test('should retry',
+  {
+    isolate: 'child-process',
+    timeout: TEST_TIMEOUT * 2,
+
+    childProcessOpts: {
+      env: {
+        TRACE_API_KEY: TRACE_API_KEY,
+        TRACE_SERVICE_NAME: TRACE_SERVICE_NAME,
+        TRACE_COLLECT_INTERVAL: 100
+      }
+    }
+  }, function (t) {
+    var requests = 0
+    var time
+    serviceMocks.mockServiceKeyRequest({
+      url: TRACE_COLLECTOR_API_URL,
+      apiKey: TRACE_API_KEY,
+      maxTimes: 5,
+      callback: function (uri, requestBody) {
+        var old = time
+        time = Date.now()
+        t.equal(requestBody.name, TRACE_SERVICE_NAME, 'request ' + requests + ': +' + String(time - old) + ' ms')
+        if (requests >= 4) {
+          t.end()
+        } else {
+          ++requests
+          return [500, {}]
+        }
+      }
+    })
+    t.plan(5)
+    time = Date.now()
+    require('../..')
+  })
+
 test('should stop', testSetup, function (t) {
   serviceMocks.mockServiceKeyRequest({
     url: TRACE_COLLECTOR_API_URL,
