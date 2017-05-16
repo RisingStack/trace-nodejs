@@ -46,6 +46,7 @@ apiCalls.forEach(function (name) {
         url: TRACE_COLLECTOR_API_URL,
         apiKey: TRACE_API_KEY,
         callback: function (uri, requestBody) {
+          t.pass('Resolving service key')
           return [200, { key: TEST_TRACE_SERVICE_KEY }]
         }
       })
@@ -92,7 +93,7 @@ apiCalls.forEach(function (name) {
           .get('127.0.0.1:' + TEST_WEB_SERVER_PORT + '/test2')
           .set('ignore-me', '1') // set in IGNORE_HEADERS, looks external
           .end(function (err) {
-            t.error(err, 'client sends request to /test2 with that should look external')
+            t.error(err, 'client sends request to /test2 that should look external')
           })
         res.send('test')
       })
