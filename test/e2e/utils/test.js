@@ -45,10 +45,8 @@ function childProcessTest (name_, opts_, cb_, args, fn) {
 
 function test (name_, opts_, cb_) {
   var args = getTestArgs(name_, opts_, cb_)
-  if (args.skip) {
+  if (args.opts.skip) {
     test.skip(name_, opts_, cb_)
-  } else if (args.only) {
-    test.only(name_, opts_, cb_)
   } else if (process.env.TEST_ISOLATE === 'child-process') {
     childProcessTest(name_ + ' (child process running in ' + process.pid + ')', opts_, cb_, args, tape.only)
   } else {
