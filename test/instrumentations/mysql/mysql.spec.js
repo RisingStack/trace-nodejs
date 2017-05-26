@@ -5,6 +5,7 @@ var wrapper = require('../../../lib/instrumentations/trace-instrumentation-mysql
 var expect = require('chai').expect
 var Shimmer = require('../../../lib/utils/shimmer')
 var utils = require('../../../lib/instrumentations/utils')
+var sinon = require('sinon')
 
 describe('The mysql wrapper', function () {
   var CONNECTION_OPERATIONS = [
@@ -18,6 +19,44 @@ describe('The mysql wrapper', function () {
     'query',
     'destroy'
   ]
+
+  var sandbox = sinon.sandbox.create()
+  var fakeAgent = {
+    incomingEdgeMetrics: {
+      report: sandbox.spy()
+    },
+    tracer: {
+      collector: {
+        mustCollectSeverity: 9,
+        defaultSeverity: 0,
+        clientRecv: sandbox.spy(),
+        clientSend: sandbox.stub().returns({
+          event: {
+            p: 'dfasdfs'
+          },
+          duffelBag: {
+            timestamp: 0
+          }
+        }),
+        systemError: sandbox.spy()
+      },
+      send: sandbox.spy()
+    },
+    storage: {
+      get: sandbox.spy()
+    },
+    externalEdgeMetrics: {
+      report: sandbox.spy(),
+      EDGE_STATUS: {
+        OK: 1,
+        NOT_OK: 0
+      }
+    }
+  }
+
+  afterEach(function () {
+    sandbox.restore()
+  })
 
   describe('Connection', function () {
     it('should wrap var connection = mysql.createConnection and var connection = mysql.createPool', function () {
@@ -44,7 +83,6 @@ describe('The mysql wrapper', function () {
     it('should use wrapQuery with expected arguments to wrap connection.query', function (done) {
       var sandbox = this.sandbox
       var fakeWrapQuery = sandbox.stub(utils, 'wrapQuery')
-      var fakeAgent = { clearly: 'a mock' }
 
       var mysql = require('mysql')
 
@@ -87,7 +125,6 @@ describe('The mysql wrapper', function () {
     it('should use wrapQuery with expected arguments to wrap pool.query', function (done) {
       var sandbox = this.sandbox
       var fakeWrapQuery = sandbox.stub(utils, 'wrapQuery')
-      var fakeAgent = { clearly: 'a mock' }
 
       var mysql = require('mysql')
 
@@ -124,10 +161,39 @@ describe('The mysql wrapper', function () {
       expect(shimmerWrapStub).to.have.been.called
     })
 
+    it('should wrap connection returned by pool.getConnection properly', function (done) {
+      require.cache = {}
+      var mysql = require('mysql')
+
+      wrapper(mysql, fakeAgent)
+
+      // This is tricky. We have to stub exactly after wrapping, and before
+      // createConnection to catch the wrapping of the query operation
+
+      var pool = mysql.createPool({
+        host: process.env.MYSQL_HOST || 'localhost',
+        user: 'root',
+        password: '',
+        database: 'information_schema'
+      })
+
+      pool.getConnection(function (err, conn) {
+        if (err) throw err
+        conn.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+          if (error) throw error
+          expect(fakeAgent.tracer.collector.clientSend).to.have.been.calledOnce
+          expect(fakeAgent.tracer.collector.clientRecv).to.have.been.calledWith({
+            protocol: 'mysql',
+            status: 'ok'
+          })
+          done()
+        })
+      })
+    })
+
     it('should not leak credentials', function (done) {
       var sandbox = this.sandbox
       var fakeWrapQuery = sandbox.stub(utils, 'wrapQuery')
-      var fakeAgent = { clearly: 'a mock' }
 
       var mysql = require('mysql')
 
@@ -171,7 +237,6 @@ describe('The mysql wrapper', function () {
     it('should use wrapQuery with expected arguments to wrap connection.query', function (done) {
       var sandbox = this.sandbox
       var fakeWrapQuery = sandbox.stub(utils, 'wrapQuery')
-      var fakeAgent = { clearly: 'a mock' }
 
       var mysql = require('mysql')
 
@@ -215,7 +280,6 @@ describe('The mysql wrapper', function () {
     it('should use wrapQuery with expected arguments to wrap pool.query', function (done) {
       var sandbox = this.sandbox
       var fakeWrapQuery = sandbox.stub(utils, 'wrapQuery')
-      var fakeAgent = { clearly: 'a mock' }
 
       var mysql = require('mysql')
 
@@ -255,7 +319,6 @@ describe('The mysql wrapper', function () {
     it('should not leak credentials', function (done) {
       var sandbox = this.sandbox
       var fakeWrapQuery = sandbox.stub(utils, 'wrapQuery')
-      var fakeAgent = { clearly: 'a mock' }
 
       var mysql = require('mysql')
 
