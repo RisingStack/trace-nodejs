@@ -63,7 +63,7 @@
     "lodash.uniq": "4.5.0",
     "lodash.unzip": "3.4.0",
     "semver": "5.3.0",
-    "sync-request": "4.0.3",
+    "sync-request": "3.0.1 ",
     "uuid": "3.0.1"
   },
   "optionalDependencies": {
