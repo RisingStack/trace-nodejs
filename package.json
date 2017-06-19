@@ -70,7 +70,7 @@
     "@risingstack/microtime": "2.1.8",
     "@risingstack/gc-stats": "1.0.9",
     "@risingstack/event-loop-stats": "1.0.7",
-    "@risingstack/v8-profiler": "5.7.10"
+    "@risingstack/v8-profiler": "5.7.11"
   },
   "devDependencies": {
     "chai": "^3.5.0",
