@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 set -e
+
+DEFAULT_NODE_VERSION=8
+
 if [[ -z $ENV_ESSENTIAL_EXPORTS ]]; then
     if [[ $CIRCLE_BRANCH ]]; then # Runs on CircleCI
         export IS_CI="1"
@@ -14,7 +17,7 @@ if [[ -z $ENV_ESSENTIAL_EXPORTS ]]; then
         export COMMIT_AUTHOR=$(git log -1 --pretty=%an)
         export REPOSITORY_URL=$CIRCLE_REPOSITORY_URL
         if [[ -z $TOOL_NODE_VERSION ]]; then
-            export TOOL_NODE_VERSION=6
+            export TOOL_NODE_VERSION=$DEFAULT_NODE_VERSION
         fi
         if [[ -z $NODE_VERSION ]]; then
             export NODE_VERSION=$TOOL_NODE_VERSION
@@ -32,9 +35,9 @@ if [[ -z $ENV_ESSENTIAL_EXPORTS ]]; then
         export REPOSITORY_URL=$(git config --get remote.origin.url)
         export REPOSITORY_PUSH_URL=$REPOSITORY_URL
         if [[ -z $TOOL_NODE_VERSION ]]; then
-            export TOOL_NODE_VERSION=6
+            export TOOL_NODE_VERSION=$DEFAULT_NODE_VERSION
         fi
-        export NODE_VERSION_FW=6
+        export NODE_VERSION_FW=$DEFAULT_NODE_VERSION
         if [[ -z $NODE_VERSION ]]; then
             export NODE_VERSION=$TOOL_NODE_VERSION
         fi
