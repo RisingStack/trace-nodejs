@@ -9,6 +9,8 @@
 [App](https://trace.risingstack.com/app) | [Documentation](https://trace-docs.risingstack.com/) | [Status page](https://trace-status.risingstack.com/) | [Case study](https://blog.risingstack.com/case-study-node-js-memory-leak-in-ghost/)
 ***
 
+## ⚠️ Trace-Nodejs is discontinued ⚠️ The client is not longer being developed and the backend has been shut down. 
+
 ## ⚠️ Breaking change
 
 With version 3.x.x we have dropped support for Node v0.10. This means that
